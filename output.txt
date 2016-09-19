@@ -752,11 +752,11 @@ Tag: FAM
 ---------
 1 HUSB @I2@
 Level Number: 1
-Tag: HUSB
+Tag: @I2@
 ---------
 1 WIFE @I3@
 Level Number: 1
-Tag: WIFE
+Tag: @I3@
 ---------
 1 CHIL @I1@
 Level Number: 1
@@ -776,11 +776,11 @@ Tag: FAM
 ---------
 1 HUSB @I4@
 Level Number: 1
-Tag: HUSB
+Tag: @I4@
 ---------
 1 WIFE @I5@
 Level Number: 1
-Tag: WIFE
+Tag: @I5@
 ---------
 1 CHIL @I3@
 Level Number: 1
@@ -800,11 +800,11 @@ Tag: FAM
 ---------
 1 HUSB @I8@
 Level Number: 1
-Tag: HUSB
+Tag: @I8@
 ---------
 1 WIFE @I9@
 Level Number: 1
-Tag: WIFE
+Tag: @I9@
 ---------
 1 CHIL @I4@
 Level Number: 1
@@ -820,11 +820,11 @@ Tag: FAM
 ---------
 1 HUSB @I10@
 Level Number: 1
-Tag: HUSB
+Tag: @I10@
 ---------
 1 WIFE @I11@
 Level Number: 1
-Tag: WIFE
+Tag: @I11@
 ---------
 1 CHIL @I5@
 Level Number: 1
@@ -840,11 +840,11 @@ Tag: FAM
 ---------
 1 HUSB @I6@
 Level Number: 1
-Tag: HUSB
+Tag: @I6@
 ---------
 1 WIFE @I13@
 Level Number: 1
-Tag: WIFE
+Tag: @I13@
 ---------
 1 CHIL @I15@
 Level Number: 1
@@ -860,11 +860,11 @@ Tag: FAM
 ---------
 1 HUSB @I6@
 Level Number: 1
-Tag: HUSB
+Tag: @I6@
 ---------
 1 WIFE @I12@
 Level Number: 1
-Tag: WIFE
+Tag: @I12@
 ---------
 1 CHIL @I14@
 Level Number: 1
@@ -880,11 +880,11 @@ Tag: FAM
 ---------
 1 HUSB @I16@
 Level Number: 1
-Tag: HUSB
+Tag: @I16@
 ---------
 1 WIFE @I17@
 Level Number: 1
-Tag: WIFE
+Tag: @I17@
 ---------
 1 CHIL @I11@
 Level Number: 1
@@ -968,4 +968,42 @@ Name: David /Blade/
 ID: 16
 UID: @I17@
 Name: Sarah /Blade/
+---------
+-----------------------------------------------
+Printing Family!
+-----------------------------------------------
+ID: 0
+UID: @F1@
+Husb: @I2@
+Wife: @I3@
+---------
+ID: 1
+UID: @F2@
+Husb: @I4@
+Wife: @I5@
+---------
+ID: 2
+UID: @F3@
+Husb: @I8@
+Wife: @I9@
+---------
+ID: 3
+UID: @F4@
+Husb: @I10@
+Wife: @I11@
+---------
+ID: 4
+UID: @F5@
+Husb: @I6@
+Wife: @I13@
+---------
+ID: 5
+UID: @F6@
+Husb: @I6@
+Wife: @I12@
+---------
+ID: 6
+UID: @F7@
+Husb: @I16@
+Wife: @I17@
 ---------

@@ -99,8 +99,12 @@ int main(int argc, char *argv[]) {
                        listPeople[numOfPeople].uniqueID = tagHolder;
                        numOfPeople++; //+1 Person
                     }
+                    if((tag.compare("FAM") == 0)) {
+                       listFamily[numOfFamilies].IDNumber = numOfFamilies;
+                       listFamily[numOfFamilies].familyID = tagHolder;
+                       numOfFamilies++; //+1 Family
+                    }
                 }
-                //Tag is HEAD, TRLR, or NOTE here.
            } else if (level == 1) {
                 if(!(tag.compare("NAME") == 0) && !(tag.compare("SEX") == 0) && !(tag.compare("BIRT") == 0)&& !(tag.compare("DEAT") == 0) && !(tag.compare("FAMC") == 0) && !(tag.compare("FAMS") == 0) && !(tag.compare("MARR") == 0) && !(tag.compare("HUSB") == 0) && !(tag.compare("WIFE") == 0) && !(tag.compare("CHIL") == 0) && !(tag.compare("DIV") == 0)) {
                    tag = "Invalid tag!";
@@ -112,6 +116,20 @@ int main(int argc, char *argv[]) {
                    numOfPeople--; //There has got to be a better way to do this.
                    listPeople[numOfPeople].peopleName = tag;
                    numOfPeople++; //There has got to be a better way to do this.
+                }
+                if((tag.compare("HUSB") == 0)) {
+                   gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                   tag = gedcomLine.substr(0);
+                   numOfFamilies--; //There has got to be a better way to do this.
+                   listFamily[numOfFamilies].husbando = tag;
+                   numOfFamilies++; //There has got to be a better way to do this.
+                }
+                if((tag.compare("WIFE") == 0)) {
+                   gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                   tag = gedcomLine.substr(0);
+                   numOfFamilies--; //There has got to be a better way to do this.
+                   listFamily[numOfFamilies].waifu = tag;
+                   numOfFamilies++; //There has got to be a better way to do this.
                 }
            } else if (level == 2) {
                 if(!(tag.compare("DATE") == 0)) {
@@ -144,6 +162,30 @@ int main(int argc, char *argv[]) {
         cout << "ID: " << listPeople[i].IDNumber << endl;
         cout << "UID: " << listPeople[i].uniqueID << endl;
         cout << "Name: " << listPeople[i].peopleName << endl;
+        
+        // Make output look neat and pretty.
+        output << "---------" << endl;
+        cout << "---------" << endl;
+    }
+
+    output << "-----------------------------------------------" << endl;
+    output << "Printing Family!" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "Printing Family! "<< endl;
+    cout << "-----------------------------------------------" << endl;
+
+    for(int i = 0; i < numOfFamilies; i++) {
+        output << "ID: " << listFamily[i].IDNumber << endl;
+        output << "UID: " << listFamily[i].familyID << endl;
+        output << "Husb: " << listFamily[i].husbando << endl;
+        output << "Wife: " << listFamily[i].waifu << endl;
+    
+        cout << "ID: " << listFamily[i].IDNumber << endl;
+        cout << "UID: " << listFamily[i].familyID << endl;
+        cout << "Husb: " << listFamily[i].husbando << endl;
+        cout << "Wife: " << listFamily[i].waifu << endl;
         
         // Make output look neat and pretty.
         output << "---------" << endl;

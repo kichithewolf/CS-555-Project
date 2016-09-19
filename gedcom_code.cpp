@@ -60,6 +60,8 @@ int main(int argc, char *argv[]) {
     
     // Read file line by line.
     while(getline(gedcomFile, gedcomLine)) {
+           //Eliminate trailing character causing string compare issue.
+           gedcomLine.erase(gedcomLine.find_last_not_of("\n\r") + 1);
            output << gedcomLine << endl;
            cout << gedcomLine << endl;
            

@@ -7,22 +7,22 @@ Git Repository: https://github.com/kichithewolf/CS-555-Project
 
 -----------------------------------------------------------------------------------------
 
-- As a user, I want to be able to save a GECOM file and have it read in the system (Sprint 1)
+- As a user, I want to be able to save a GECOM file and have it read in the system (Sprint 1 - Julia)
     Size: 3 lines, Time: 1 minute
-- As a user, I want to be able to run this system through a command line interface by providing a filename as an argument (Sprint 1)
+- As a user, I want to be able to run this system through a command line interface by providing a filename as an argument (Sprint 1 - Rafi)
     Size: 3 lines, Time: 1 minute
 - As a user, I want to be notified if the file provided is not a GEDCOM file
 - As a user, I want to be properly notified if the file name provided does not exist
-- As a user, I want to be able to itentify invalid tags listed in a GEDCOM file (Sprint 1)
+- As a user, I want to be able to itentify invalid tags listed in a GEDCOM file (Sprint 1 - Michelle)
     Size: 20 lines, Time: 10 minutes
-- As a user, I want to be able to identify level number, tags, and arguments for each line of a GEDCOM file (Sprint 1)
+- As a user, I want to be able to identify level number, tags, and arguments for each line of a GEDCOM file (Sprint 1 - Michelle)
     Size: 5 lines, Time: 3 minutes
 - As a user, I want the system to validate the format of DATE tags in a GEDCOM file
-- As a user, I want to view attributes of a person including their id, name, sex, birth date, death date, and relevant family members (Sprint 1)
+- As a user, I want to view attributes of a person including their id, name, sex, birth date, death date, and relevant family members (Sprint 1 - Michelle)
     Size: 15 lines, Time: 10 minutes
-- As a user, I want to view people in a family (Sprint 1)
+- As a user, I want to view people in a family (Sprint 1 - Rafi, Michelle)
     Size: 25 lines, Time: 20 minutes
-- As a user, I want to be able to see the roles people in a family (Sprint 1)
+- As a user, I want to be able to see the roles people in a family (Sprint 1 - Michelle)
     Size: 10 lines, Time: 10 minutes
 - As a user, I want the system to detect when a person's death date is before their birth, marriage, or divorce date
 - As a user, I want the system to detect when a person's birth date is after their death, marriage, or divorce date

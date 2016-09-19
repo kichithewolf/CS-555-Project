@@ -120,16 +120,28 @@ int main(int argc, char *argv[]) {
                 if((tag.compare("HUSB") == 0)) {
                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                    tag = gedcomLine.substr(0);
-                   numOfFamilies--; //There has got to be a better way to do this.
-                   listFamily[numOfFamilies].husbando = tag;
-                   numOfFamilies++; //There has got to be a better way to do this.
+                   
+                   for(int i = 0; i < numOfPeople; i++) {
+                           if(tag.compare(listPeople[i].uniqueID) == 0) {
+                                numOfFamilies--; //There has got to be a better way to do this.
+                                listFamily[numOfFamilies].husbando = listPeople[i].peopleName;
+                                numOfFamilies++; //There has got to be a better way to do this.
+                           
+                           }
+                   }
                 }
                 if((tag.compare("WIFE") == 0)) {
                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                    tag = gedcomLine.substr(0);
-                   numOfFamilies--; //There has got to be a better way to do this.
-                   listFamily[numOfFamilies].waifu = tag;
-                   numOfFamilies++; //There has got to be a better way to do this.
+                   
+                   for(int i = 0; i < numOfPeople; i++) {
+                           if(tag.compare(listPeople[i].uniqueID) == 0) {
+                                numOfFamilies--; //There has got to be a better way to do this.
+                                listFamily[numOfFamilies].waifu = listPeople[i].peopleName;
+                                numOfFamilies++; //There has got to be a better way to do this.
+                           
+                           }
+                   }
                 }
            } else if (level == 2) {
                 if(!(tag.compare("DATE") == 0)) {

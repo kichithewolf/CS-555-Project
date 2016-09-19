@@ -81,6 +81,31 @@ int main(int argc, char *argv[]) {
             * Project 3 Note: Feel free to change the tag parsing to something better.
             *
            */
+
+           /* BUG: tag recognition doesn't work on Ubuntu/Linux machines. Will be fixed for next project.
+                   Following is debug code from an attempt to find the problem
+              Program works fine on Windows environment.
+
+           cout << tag << endl;
+           output << tag << endl;
+           if(tag.compare("HEAD") == 0)
+             cout << "1" << endl;
+           else
+             cout << "2" << endl;
+
+           if(tag.compare("HEAD ") == 0)
+             cout << "3" << endl;
+           else
+             cout << "4" << endl;
+
+           if(tag.compare("HEAD\n") == 0)
+             cout << "5" << endl;
+           else
+             cout << "6" << endl;
+
+
+           */
+
            
            if(level == 0) {
                 if(!(tag.compare("HEAD") == 0) && !(tag.compare("TRLR") == 0) && !(tag.compare("NOTE") == 0)) {
@@ -89,9 +114,13 @@ int main(int argc, char *argv[]) {
                     tagHolder = tag;
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0, gedcomLine.find(delimiter));
+					//cout << "check: " << tag << endl;
+
                     
                     if(!(tag.compare("INDI") == 0) && !(tag.compare("FAM") == 0)) {
                        tag = "Invalid tag!";
+					   //cout << "check: " << tag << endl;
+
                     }
                     //Tag is either INDI or FAM at this point.
                     if((tag.compare("INDI") == 0)) {
@@ -104,9 +133,21 @@ int main(int argc, char *argv[]) {
                        listFamily[numOfFamilies].familyID = tagHolder;
                        numOfFamilies++; //+1 Family
                     }
+					//cout << "check: " << tag << endl;
+
                 }
            } else if (level == 1) {
-                if(!(tag.compare("NAME") == 0) && !(tag.compare("SEX") == 0) && !(tag.compare("BIRT") == 0)&& !(tag.compare("DEAT") == 0) && !(tag.compare("FAMC") == 0) && !(tag.compare("FAMS") == 0) && !(tag.compare("MARR") == 0) && !(tag.compare("HUSB") == 0) && !(tag.compare("WIFE") == 0) && !(tag.compare("CHIL") == 0) && !(tag.compare("DIV") == 0)) {
+                if(!(tag.compare("NAME") == 0) &&
+                   !(tag.compare("SEX") == 0) &&
+                   !(tag.compare("BIRT") == 0)&&
+                   !(tag.compare("DEAT") == 0) &&
+                   !(tag.compare("FAMC") == 0) &&
+                   !(tag.compare("FAMS") == 0) &&
+                   !(tag.compare("MARR") == 0) &&
+                   !(tag.compare("HUSB") == 0) &&
+                   !(tag.compare("WIFE") == 0) &&
+                   !(tag.compare("CHIL") == 0) &&
+                   !(tag.compare("DIV") == 0)) {
                    tag = "Invalid tag!";
                 }
                 //Tag is NAME, SEX, BIRT, DEAT, FAMC, FAMS, MARR, HUSB, WIFE, CHIL, or DIV.

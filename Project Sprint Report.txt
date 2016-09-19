@@ -7,7 +7,7 @@ Git Repository: https://github.com/kichithewolf/CS-555-Project
 
 -----------------------------------------------------------------------------------------
 
-- As a user, I want to be able to save a GECOM file and have it read in the system (Sprint 1 - Julia)
+- As a user, I want to be able to save a GECOM file and have it read in the system (Sprint 1)
     Size: 3 lines, Time: 1 minute
 - As a user, I want to be able to run this system through a command line interface by providing a filename as an argument (Sprint 1 - Rafi)
     Size: 3 lines, Time: 1 minute

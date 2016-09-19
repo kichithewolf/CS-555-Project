@@ -1,0 +1,47 @@
+Team Members:
+- Michelle Wong
+- Julia Kim
+- Rafal Poniatowski
+
+Git Repository: https://github.com/kichithewolf/CS-555-Project
+
+-----------------------------------------------------------------------------------------
+
+- As a user, I want to be able to save a GECOM file and have it read in the system (Sprint 1)
+    Size: 3 lines, Time: 1 minute
+- As a user, I want to be able to run this system through a command line interface by providing a filename as an argument (Sprint 1)
+    Size: 3 lines, Time: 1 minute
+- As a user, I want to be notified if the file provided is not a GEDCOM file
+- As a user, I want to be properly notified if the file name provided does not exist
+- As a user, I want to be able to itentify invalid tags listed in a GEDCOM file (Sprint 1)
+    Size: 20 lines, Time: 10 minutes
+- As a user, I want to be able to identify level number, tags, and arguments for each line of a GEDCOM file (Sprint 1)
+    Size: 5 lines, Time: 3 minutes
+- As a user, I want the system to validate the format of DATE tags in a GEDCOM file
+- As a user, I want to view attributes of a person including their id, name, sex, birth date, death date, and relevant family members (Sprint 1)
+    Size: 15 lines, Time: 10 minutes
+- As a user, I want to view people in a family (Sprint 1)
+    Size: 25 lines, Time: 20 minutes
+- As a user, I want to be able to see the roles people in a family (Sprint 1)
+    Size: 10 lines, Time: 10 minutes
+- As a user, I want the system to detect when a person's death date is before their birth, marriage, or divorce date
+- As a user, I want the system to detect when a person's birth date is after their death, marriage, or divorce date
+- As a user, I want the system to detect when a person is listed as married to a person listed as dead (should be listed as widowed)
+- As a user, I want the system to detect if a wife, sister, grandmother, daughter, etc's sex is listed as male
+- As a user, I want the system to detect if a husband, brother, grandfather, son, etc's sex is listed as female
+- As a user, I want the system to detect when a family has more than one current husband/wife
+- As a user, I want the system to detect when a person's birth date before their parents' marriage date (anomaly)
+- As a user, I want the system to detect when a person is listed as a spouse in multiple marriages (anomaly)
+- As a user, I want the system to detect when a persons marriage date is less than 18 years after their birth date (anomaly)
+- As a user, I want the system to detect when a persons death date is the same as their death date (anomaly)
+- As a user, I want the system to identify errors in the following format:
+    Error <error type>: <error description>
+- As a user, I want the system to identify anomolies in the following format:
+    Anomaly <anomaly type>: <anomaly description>
+- As a user, I want all error and anomaly descriptions to include the unique ID and name of all individuals involved, including the unique ID of all families involved in these errors/anomalies
+- As a user, I want the system to display a summary of the information listed in a GEDCOM file with the following information
+    - Number families
+    - Number of people involved
+    - Error Report
+    - Anomallies
+- As a user, I want to be able to run this system through a command line interface by providing a filename as an argument

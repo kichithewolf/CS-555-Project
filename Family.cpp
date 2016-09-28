@@ -12,6 +12,13 @@ class Family {
          string familyID;
          string husbando;
          string waifu;
+         string marryDate;
+         string divDate;
+         bool marryFlag;
+         bool divFlag;
+         
+         num_date marryInt;
+         num_date divInt;
          
          //Room for expansion
 };

@@ -14,6 +14,15 @@ GEDCOM Project
 
 using namespace std;
 
+int monthToInteger(string monthString) {
+    string allMonthStrings[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+    for(int i = 0; i < 12; i++) {
+            if(monthString == allMonthStrings[i]) {
+                           return (i+1);
+            }
+    }
+}
+
 int main(int argc, char *argv[]) {
     ifstream gedcomFile;
     ofstream output;
@@ -160,6 +169,12 @@ int main(int argc, char *argv[]) {
                     numOfPeople--;
                     listPeople[numOfPeople].deathFlag = true;
                     numOfPeople++;
+                } else if((tag.compare("MARR") == 0)) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+                    numOfFamilies--;
+                    listFamily[numOfFamilies].marryFlag = true;
+                    numOfFamilies++;
                 } else if((tag.compare("HUSB") == 0)) {
                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                    tag = gedcomLine.substr(0);
@@ -184,6 +199,12 @@ int main(int argc, char *argv[]) {
                            
                            }
                    }
+                } else if((tag.compare("DIV") == 0)) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+                    numOfFamilies--;
+                    listFamily[numOfFamilies].divFlag = true;
+                    numOfFamilies++;
                 }
            } else if (level == 2) {
                 if(!(tag.compare("DATE") == 0)) {
@@ -191,13 +212,47 @@ int main(int argc, char *argv[]) {
                 }
                 //Decrement/Increment before doing things to prevent crashes.
                 numOfPeople--;
+                numOfFamilies--;
                 //Dates for things.
                 if(listPeople[numOfPeople].deathFlag == true) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
                     listPeople[numOfPeople].deathDate = tag;
+                    //Set false again just in case.
+                    listPeople[numOfPeople].deathFlag = false;
+                    //Parse string into integers while we're at it.
+                    listPeople[numOfPeople].deathInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listPeople[numOfPeople].deathInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listPeople[numOfPeople].deathInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                } else if(listFamily[numOfFamilies].marryFlag == true) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+                    listFamily[numOfFamilies].marryDate = tag;
+                    //Set false again just in case.
+                    listFamily[numOfFamilies].marryFlag = false;
+                    //Parse string into integers while we're at it.
+                    listFamily[numOfFamilies].marryInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listFamily[numOfFamilies].marryInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listFamily[numOfFamilies].marryInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                } else if(listFamily[numOfFamilies].divFlag == true) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+                    listFamily[numOfFamilies].divDate = tag;
+                    //Set false again just in case.
+                    listFamily[numOfFamilies].divFlag = false;
+                    //Parse string into integers while we're at it.
+                    listFamily[numOfFamilies].divInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listFamily[numOfFamilies].divInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listFamily[numOfFamilies].divInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
                 }
                 numOfPeople++;
+                numOfFamilies++;
                 //Reset tag for initial printout.
                 tag = "DATE";
            }
@@ -233,15 +288,29 @@ int main(int argc, char *argv[]) {
     output << "-----------------------------------------------" << endl;
     
     cout << "-----------------------------------------------" << endl;
-    cout << "Family"<< endl;
+    cout << "Family" << endl;
     cout << "-----------------------------------------------" << endl;
     
-    output << "ID\tUID\tHusb\t\tWife\t\t" << endl;
-    cout << "ID\tUID\tHusb\t\tWife\t\t" << endl;
+    output << "ID\tUID\tHusb\t\tWife\t\tMarry\t\tDiv\t" << endl;
+    cout << "ID\tUID\tHusb\t\tWife\t\tMarry\t\tDiv\t" << endl;
 
     for(int i = 0; i < numOfFamilies; i++) {
-        output << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << endl;
-        cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << endl;
+        output << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
+        cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate <<endl;
+    }
+    
+    //Error checking for gedcom file.
+    
+    output << "-----------------------------------------------" << endl;
+    output << "Errors" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "Errors" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfPeople; i++) {
+        cout << listPeople[i].deathInt.day << "\t" << listPeople[i].deathInt.month << "\t"<< listPeople[i].deathInt.year << "\t" << listPeople[i].deathDate << "\t" << endl;
     }
     
     gedcomFile.close();

@@ -14,5 +14,7 @@ class People {
          string deathDate;
          bool deathFlag;
          
+         num_date deathInt;
+         
          //Room for expansion
 };

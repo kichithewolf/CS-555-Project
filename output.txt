@@ -6,10 +6,6 @@ Reading and Printing file...
 Level Number: 0
 Tag: HEAD
 ---------
-0 NOTE Github: https://github.com/kichithewolf/CS-555-Project
-Level Number: 0
-Tag: NOTE
----------
 1 SOUR Family Echo
 Level Number: 1
 Tag: Invalid tag!
@@ -22,7 +18,7 @@ Tag: DATE
 Level Number: 1
 Tag: Invalid tag!
 ---------
-1 DATE 31 AUG 2016
+1 DATE 28 SEP 2016
 Level Number: 1
 Tag: Invalid tag!
 ---------
@@ -790,6 +786,14 @@ Tag: CHIL
 Level Number: 1
 Tag: CHIL
 ---------
+1 MARR
+Level Number: 1
+Tag: MARR
+---------
+2 DATE 4 APR 1953
+Level Number: 2
+Tag: DATE
+---------
 1 _CURRENT Y
 Level Number: 1
 Tag: Invalid tag!
@@ -810,6 +814,22 @@ Tag: @I9@
 Level Number: 1
 Tag: CHIL
 ---------
+1 MARR
+Level Number: 1
+Tag: MARR
+---------
+2 DATE 11 FEB 1951
+Level Number: 2
+Tag: DATE
+---------
+1 DIV
+Level Number: 1
+Tag: DIV
+---------
+2 DATE 3 APR 1950
+Level Number: 2
+Tag: DATE
+---------
 1 _CURRENT Y
 Level Number: 1
 Tag: Invalid tag!
@@ -829,6 +849,14 @@ Tag: @I11@
 1 CHIL @I5@
 Level Number: 1
 Tag: CHIL
+---------
+1 MARR
+Level Number: 1
+Tag: MARR
+---------
+2 DATE 4 OCT 1953
+Level Number: 2
+Tag: DATE
 ---------
 1 _CURRENT Y
 Level Number: 1
@@ -922,11 +950,14 @@ ID	UID	Name		Death
 -----------------------------------------------
 Family
 -----------------------------------------------
-ID	UID	Husb		Wife		
-0	@F1@	Larry /Butz/	Katie /Aldrin/
-1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/
-2	@F3@	Scott /Aldrin/	Paw /Revere/
-3	@F4@	Hafta /Gough/	Stacy /Blade/
-4	@F5@	Adam /Aldrin/	Paw /Revere/
-5	@F6@	Adam /Aldrin/	Santa /Claws/
-6	@F7@	David /Blade/	Sarah /Blade/
+ID	UID	Husb		Wife		Marry		Div	
+0	@F1@	Larry /Butz/	Katie /Aldrin/		
+1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/	4 APR 1953	
+2	@F3@	Scott /Aldrin/	Paw /Revere/	11 FEB 1951	3 APR 1950
+3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	
+4	@F5@	Adam /Aldrin/	Paw /Revere/		
+5	@F6@	Adam /Aldrin/	Santa /Claws/		
+6	@F7@	David /Blade/	Sarah /Blade/		
+-----------------------------------------------
+Errors
+-----------------------------------------------

@@ -10,6 +10,7 @@ GEDCOM Project
 #include <cstdlib>
 #include "People.cpp"
 #include "Family.cpp"
+#include "Dates.h"
 
 using namespace std;
 
@@ -77,13 +78,8 @@ int main(int argc, char *argv[]) {
            // Get and print tag/invalid tag.
            tag = gedcomLine.substr(0, gedcomLine.find(delimiter));
            // Check tag/level
-           
-           /*
-            *
-            * Project 3 Note: Feel free to change the tag parsing to something better.
-            *
-           */
 
+           // BUG FIXED in 582be8b
            /* BUG: tag recognition doesn't work on Ubuntu/Linux machines. Will be fixed for next project.
                    Following is debug code from an attempt to find the problem
               Program works fine on Windows environment.
@@ -129,8 +125,7 @@ int main(int argc, char *argv[]) {
                        listPeople[numOfPeople].IDNumber = numOfPeople;
                        listPeople[numOfPeople].uniqueID = tagHolder;
                        numOfPeople++; //+1 Person
-                    }
-                    if((tag.compare("FAM") == 0)) {
+                    } else if((tag.compare("FAM") == 0)) {
                        listFamily[numOfFamilies].IDNumber = numOfFamilies;
                        listFamily[numOfFamilies].familyID = tagHolder;
                        numOfFamilies++; //+1 Family
@@ -159,8 +154,7 @@ int main(int argc, char *argv[]) {
                    numOfPeople--; //There has got to be a better way to do this.
                    listPeople[numOfPeople].peopleName = tag;
                    numOfPeople++; //There has got to be a better way to do this.
-                }
-                if((tag.compare("HUSB") == 0)) {
+                } else if((tag.compare("HUSB") == 0)) {
                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                    tag = gedcomLine.substr(0);
                    
@@ -172,8 +166,7 @@ int main(int argc, char *argv[]) {
                            
                            }
                    }
-                }
-                if((tag.compare("WIFE") == 0)) {
+                } else if((tag.compare("WIFE") == 0)) {
                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                    tag = gedcomLine.substr(0);
                    

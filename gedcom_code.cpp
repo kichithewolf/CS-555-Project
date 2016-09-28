@@ -154,6 +154,12 @@ int main(int argc, char *argv[]) {
                    numOfPeople--; //There has got to be a better way to do this.
                    listPeople[numOfPeople].peopleName = tag;
                    numOfPeople++; //There has got to be a better way to do this.
+                } else if((tag.compare("DEAT") == 0)) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+                    numOfPeople--;
+                    listPeople[numOfPeople].deathFlag = true;
+                    numOfPeople++;
                 } else if((tag.compare("HUSB") == 0)) {
                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                    tag = gedcomLine.substr(0);
@@ -183,6 +189,17 @@ int main(int argc, char *argv[]) {
                 if(!(tag.compare("DATE") == 0)) {
                    tag = "Invalid tag!";
                 }
+                //Decrement/Increment before doing things to prevent crashes.
+                numOfPeople--;
+                //Dates for things.
+                if(listPeople[numOfPeople].deathFlag == true) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+                    listPeople[numOfPeople].deathDate = tag;
+                }
+                numOfPeople++;
+                //Reset tag for initial printout.
+                tag = "DATE";
            }
            
            output << "Tag: " << tag << endl;
@@ -203,12 +220,12 @@ int main(int argc, char *argv[]) {
     cout << "People" << endl;
     cout << "-----------------------------------------------" << endl;
     
-    output << "ID\tUID\tName\t\t" << endl;
-    cout << "ID\tUID\tName\t\t" << endl;
+    output << "ID\tUID\tName\t\tDeath\t" << endl;
+    cout << "ID\tUID\tName\t\tDeath\t" << endl;
     
     for(int i = 0; i < numOfPeople; i++) {
-        output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << endl;
-        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << endl;
+        output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].deathDate << "\t" << endl;
+        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].deathDate << "\t" << endl;
     }
 
     output << "-----------------------------------------------" << endl;

@@ -11,6 +11,8 @@ class People {
          int IDNumber;
          string uniqueID;
          string peopleName;
+         string deathDate;
+         bool deathFlag;
          
          //Room for expansion
 };

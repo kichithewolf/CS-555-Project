@@ -199,52 +199,39 @@ int main(int argc, char *argv[]) {
            output << "---------" << endl;
            cout << "---------" << endl;
     }
-
-    output << "-----------------------------------------------" << endl;
-    output << "Printing People!" << endl;
-    output << "-----------------------------------------------" << endl;
-    
-    cout << "-----------------------------------------------" << endl;
-    cout << "Printing People! "<< endl;
-    cout << "-----------------------------------------------" << endl;
     
     //Print people and Family
-    for(int i = 0; i < numOfPeople; i++) {
-        output << "ID: " << listPeople[i].IDNumber << endl;
-        output << "UID: " << listPeople[i].uniqueID << endl;
-        output << "Name: " << listPeople[i].peopleName << endl;
+
+    output << "-----------------------------------------------" << endl;
+    output << "People" << endl;
+    output << "-----------------------------------------------" << endl;
     
-        cout << "ID: " << listPeople[i].IDNumber << endl;
-        cout << "UID: " << listPeople[i].uniqueID << endl;
-        cout << "Name: " << listPeople[i].peopleName << endl;
-        
-        // Make output look neat and pretty.
-        output << "---------" << endl;
-        cout << "---------" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "People" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    output << "ID\tUID\tName\t\t" << endl;
+    cout << "ID\tUID\tName\t\t" << endl;
+    
+    for(int i = 0; i < numOfPeople; i++) {
+        output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << endl;
+        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << endl;
     }
 
     output << "-----------------------------------------------" << endl;
-    output << "Printing Family!" << endl;
+    output << "Family" << endl;
     output << "-----------------------------------------------" << endl;
     
     cout << "-----------------------------------------------" << endl;
-    cout << "Printing Family! "<< endl;
+    cout << "Family"<< endl;
     cout << "-----------------------------------------------" << endl;
+    
+    output << "ID\tUID\tHusb\t\tWife\t\t" << endl;
+    cout << "ID\tUID\tHusb\t\tWife\t\t" << endl;
 
     for(int i = 0; i < numOfFamilies; i++) {
-        output << "ID: " << listFamily[i].IDNumber << endl;
-        output << "UID: " << listFamily[i].familyID << endl;
-        output << "Husb: " << listFamily[i].husbando << endl;
-        output << "Wife: " << listFamily[i].waifu << endl;
-    
-        cout << "ID: " << listFamily[i].IDNumber << endl;
-        cout << "UID: " << listFamily[i].familyID << endl;
-        cout << "Husb: " << listFamily[i].husbando << endl;
-        cout << "Wife: " << listFamily[i].waifu << endl;
-        
-        // Make output look neat and pretty.
-        output << "---------" << endl;
-        cout << "---------" << endl;
+        output << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << endl;
+        cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << endl;
     }
     
     gedcomFile.close();

@@ -899,111 +899,34 @@ Level Number: 0
 Tag: TRLR
 ---------
 -----------------------------------------------
-Printing People!
+People
 -----------------------------------------------
-ID: 0
-UID: @I1@
-Name: Seymour /Butz/
----------
-ID: 1
-UID: @I2@
-Name: Larry /Butz/
----------
-ID: 2
-UID: @I3@
-Name: Katie /Aldrin/
----------
-ID: 3
-UID: @I4@
-Name: Fuzz /Aldrin/
----------
-ID: 4
-UID: @I5@
-Name: Pawkeye /Gough/
----------
-ID: 5
-UID: @I6@
-Name: Adam /Aldrin/
----------
-ID: 6
-UID: @I7@
-Name: Lara /Butz/
----------
-ID: 7
-UID: @I8@
-Name: Scott /Aldrin/
----------
-ID: 8
-UID: @I9@
-Name: Paw /Revere/
----------
-ID: 9
-UID: @I10@
-Name: Hafta /Gough/
----------
-ID: 10
-UID: @I11@
-Name: Stacy /Blade/
----------
-ID: 11
-UID: @I12@
-Name: Santa /Claws/
----------
-ID: 12
-UID: @I13@
-Name: Paw /Revere/
----------
-ID: 13
-UID: @I14@
-Name: Mary /Aldrin/
----------
-ID: 14
-UID: @I15@
-Name: Mike /Aldrin/
----------
-ID: 15
-UID: @I16@
-Name: David /Blade/
----------
-ID: 16
-UID: @I17@
-Name: Sarah /Blade/
----------
+ID	UID	Name		
+0	@I1@	Seymour /Butz/	
+1	@I2@	Larry /Butz/	
+2	@I3@	Katie /Aldrin/	
+3	@I4@	Fuzz /Aldrin/	
+4	@I5@	Pawkeye /Gough/	
+5	@I6@	Adam /Aldrin/	
+6	@I7@	Lara /Butz/	
+7	@I8@	Scott /Aldrin/	
+8	@I9@	Paw /Revere/	
+9	@I10@	Hafta /Gough/	
+10	@I11@	Stacy /Blade/	
+11	@I12@	Santa /Claws/	
+12	@I13@	Paw /Revere/	
+13	@I14@	Mary /Aldrin/	
+14	@I15@	Mike /Aldrin/	
+15	@I16@	David /Blade/	
+16	@I17@	Sarah /Blade/	
 -----------------------------------------------
-Printing Family!
+Family
 -----------------------------------------------
-ID: 0
-UID: @F1@
-Husb: Larry /Butz/
-Wife: Katie /Aldrin/
----------
-ID: 1
-UID: @F2@
-Husb: Fuzz /Aldrin/
-Wife: Pawkeye /Gough/
----------
-ID: 2
-UID: @F3@
-Husb: Scott /Aldrin/
-Wife: Paw /Revere/
----------
-ID: 3
-UID: @F4@
-Husb: Hafta /Gough/
-Wife: Stacy /Blade/
----------
-ID: 4
-UID: @F5@
-Husb: Adam /Aldrin/
-Wife: Paw /Revere/
----------
-ID: 5
-UID: @F6@
-Husb: Adam /Aldrin/
-Wife: Santa /Claws/
----------
-ID: 6
-UID: @F7@
-Husb: David /Blade/
-Wife: Sarah /Blade/
----------
+ID	UID	Husb		Wife		
+0	@F1@	Larry /Butz/	Katie /Aldrin/
+1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/
+2	@F3@	Scott /Aldrin/	Paw /Revere/
+3	@F4@	Hafta /Gough/	Stacy /Blade/
+4	@F5@	Adam /Aldrin/	Paw /Revere/
+5	@F6@	Adam /Aldrin/	Santa /Claws/
+6	@F7@	David /Blade/	Sarah /Blade/

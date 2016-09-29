@@ -762,6 +762,22 @@ Tag: CHIL
 Level Number: 1
 Tag: CHIL
 ---------
+1 MARR
+Level Number: 1
+Tag: MARR
+---------
+2 DATE 4 AUG 2000
+Level Number: 2
+Tag: DATE
+---------
+1 DIV
+Level Number: 1
+Tag: DIV
+---------
+2 DATE 4 MAY 2000
+Level Number: 2
+Tag: DATE
+---------
 1 _CURRENT Y
 Level Number: 1
 Tag: Invalid tag!
@@ -918,6 +934,14 @@ Tag: @I17@
 Level Number: 1
 Tag: CHIL
 ---------
+1 MARR
+Level Number: 1
+Tag: MARR
+---------
+2 DATE 14 NOV 1960
+Level Number: 2
+Tag: DATE
+---------
 1 _CURRENT Y
 Level Number: 1
 Tag: Invalid tag!
@@ -951,13 +975,17 @@ ID	UID	Name		Death
 Family
 -----------------------------------------------
 ID	UID	Husb		Wife		Marry		Div	
-0	@F1@	Larry /Butz/	Katie /Aldrin/		
+0	@F1@	Larry /Butz/	Katie /Aldrin/	4 AUG 2000	4 MAY 2000
 1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/	4 APR 1953	
 2	@F3@	Scott /Aldrin/	Paw /Revere/	11 FEB 1951	3 APR 1950
 3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	
 4	@F5@	Adam /Aldrin/	Paw /Revere/		
 5	@F6@	Adam /Aldrin/	Santa /Claws/		
-6	@F7@	David /Blade/	Sarah /Blade/		
+6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	
 -----------------------------------------------
 Errors
 -----------------------------------------------
+Error: Marrage is after divorce in family: @F1@
+Error: Marrage is after divorce in family: @F3@
+Error: Marrage is after Husband's death in family: @F7@
+Error: Marrage is after Wife's death in family: @F7@

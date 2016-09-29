@@ -11,7 +11,9 @@ class Family {
          int IDNumber;
          string familyID;
          string husbando;
+         string husbandoID;
          string waifu;
+         string waifuID;
          string marryDate;
          string divDate;
          bool marryFlag;

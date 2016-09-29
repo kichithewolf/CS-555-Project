@@ -183,6 +183,7 @@ int main(int argc, char *argv[]) {
                            if(tag.compare(listPeople[i].uniqueID) == 0) {
                                 numOfFamilies--; //There has got to be a better way to do this.
                                 listFamily[numOfFamilies].husbando = listPeople[i].peopleName;
+                                listFamily[numOfFamilies].husbandoID = listPeople[i].uniqueID;
                                 numOfFamilies++; //There has got to be a better way to do this.
                            
                            }
@@ -195,6 +196,7 @@ int main(int argc, char *argv[]) {
                            if(tag.compare(listPeople[i].uniqueID) == 0) {
                                 numOfFamilies--; //There has got to be a better way to do this.
                                 listFamily[numOfFamilies].waifu = listPeople[i].peopleName;
+                                listFamily[numOfFamilies].waifuID = listPeople[i].uniqueID;
                                 numOfFamilies++; //There has got to be a better way to do this.
                            
                            }
@@ -309,9 +311,36 @@ int main(int argc, char *argv[]) {
     cout << "Errors" << endl;
     cout << "-----------------------------------------------" << endl;
     
-    for(int i = 0; i < numOfPeople; i++) {
-        cout << listPeople[i].deathInt.day << "\t" << listPeople[i].deathInt.month << "\t"<< listPeople[i].deathInt.year << "\t" << listPeople[i].deathDate << "\t" << endl;
+    for(int i = 0; i < numOfFamilies; i++) {
+        // Must marry before divorce
+        if(listFamily[i].divInt.year != 0) {
+           if(listFamily[i].marryInt.year > listFamily[i].divInt.year || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month > listFamily[i].divInt.month) || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month == listFamily[i].divInt.month && listFamily[i].marryInt.day > listFamily[i].divInt.day)) {
+                 output << "Error: Marrage is after divorce in family: " << listFamily[i].familyID << endl;
+                 cout << "Error: Marrage is after divorce in family: " << listFamily[i].familyID << endl;
+           }
+        }
+        
+        // Must marry before die
+        for(int j = 0; j < numOfPeople; j++) {
+                if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
+                   if(listPeople[j].deathInt.year != 0) {
+                      if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
+                          output << "Error: Marrage is after Husband's death in family: " << listFamily[i].familyID << endl;
+                          cout << "Error: Marrage is after Husband's death in family: " << listFamily[i].familyID << endl;
+                      }
+                   }
+                }
+                if(listFamily[i].waifuID == listPeople[j].uniqueID) {
+                   if(listPeople[j].deathInt.year != 0) {
+                      if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
+                          output << "Error: Marrage is after Wife's death in family: " << listFamily[i].familyID << endl;
+                          cout << "Error: Marrage is after Wife's death in family: " << listFamily[i].familyID << endl; 
+                      }
+                   }
+                }
+        }
     }
+    
     
     gedcomFile.close();
     output.close();

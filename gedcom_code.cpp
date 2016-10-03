@@ -14,14 +14,42 @@ GEDCOM Project
 
 using namespace std;
 
+//compare dates; return true if first date occurs before second and false if the dates are equal or the second occurs first
+bool compareDates(num_date date1, num_date date2) {
+    if(date1.year != 0 && date2.year !=0) {
+        if(date1.year > date2.year || (date1.year == date2.year && date1.month > date2.month) || (date1.year == date2.year && date1.month == date2.month && date1.day > date2.day)) {
+        	return false;
+		}
+		return true;
+	} else {
+		return false;
+	}
+
+};
+
 int monthToInteger(string monthString) {
     string allMonthStrings[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
     for(int i = 0; i < 12; i++) {
-            if(monthString == allMonthStrings[i]) {
-                           return (i+1);
-            }
+          if(monthString == allMonthStrings[i]) {
+                         return (i+1);
+          }
     }
-}
+};
+
+//parse date string to create num_date object
+num_date strToNumDate(string date) {
+    num_date result;
+
+    result.day = atoi((date.substr(0, date.find(" "))).c_str());
+    date.erase(0, date.find(" ")+1);
+    result.month = monthToInteger(date.substr(0, date.find(" ")).c_str());
+    date.erase(0, date.find(" ")+1);
+    result.year = atoi(date.substr(0, date.find(" ")).c_str());
+    
+    cout << "Converting date: " << result.year << " " << result.month << " " << result.day << endl;
+    
+    return result;
+};
 
 int main(int argc, char *argv[]) {
     ifstream gedcomFile;
@@ -87,32 +115,6 @@ int main(int argc, char *argv[]) {
            // Get and print tag/invalid tag.
            tag = gedcomLine.substr(0, gedcomLine.find(delimiter));
            // Check tag/level
-
-           // BUG FIXED in 582be8b
-           /* BUG: tag recognition doesn't work on Ubuntu/Linux machines. Will be fixed for next project.
-                   Following is debug code from an attempt to find the problem
-              Program works fine on Windows environment.
-
-           cout << tag << endl;
-           output << tag << endl;
-           if(tag.compare("HEAD") == 0)
-             cout << "1" << endl;
-           else
-             cout << "2" << endl;
-
-           if(tag.compare("HEAD ") == 0)
-             cout << "3" << endl;
-           else
-             cout << "4" << endl;
-
-           if(tag.compare("HEAD\n") == 0)
-             cout << "5" << endl;
-           else
-             cout << "6" << endl;
-
-
-           */
-
            
            if(level == 0) {
                 if(!(tag.compare("HEAD") == 0) && !(tag.compare("TRLR") == 0) && !(tag.compare("NOTE") == 0)) {
@@ -163,17 +165,23 @@ int main(int argc, char *argv[]) {
                    numOfPeople--; //There has got to be a better way to do this.
                    listPeople[numOfPeople].peopleName = tag;
                    numOfPeople++; //There has got to be a better way to do this.
+               } else if((tag.compare("BIRT") == 0)) {
+                   gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                   tag = gedcomLine.substr(0);
+                   numOfPeople--;
+                   listPeople[numOfPeople].setBirthFlag(true);
+                   numOfPeople++;
                 } else if((tag.compare("DEAT") == 0)) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
                     numOfPeople--;
-                    listPeople[numOfPeople].deathFlag = true;
+                    listPeople[numOfPeople].setDeathFlag(true);
                     numOfPeople++;
                 } else if((tag.compare("MARR") == 0)) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
                     numOfFamilies--;
-                    listFamily[numOfFamilies].marryFlag = true;
+                    listFamily[numOfFamilies].setMarryFlag(true);
                     numOfFamilies++;
                 } else if((tag.compare("HUSB") == 0)) {
                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
@@ -205,58 +213,53 @@ int main(int argc, char *argv[]) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
                     numOfFamilies--;
-                    listFamily[numOfFamilies].divFlag = true;
+                    listFamily[numOfFamilies].setDivFlag(true);
                     numOfFamilies++;
                 }
            } else if (level == 2) {
                 if(!(tag.compare("DATE") == 0)) {
                    tag = "Invalid tag!";
-                }
-                //Decrement/Increment before doing things to prevent crashes.
-                numOfPeople--;
-                numOfFamilies--;
-                //Dates for things.
-                if(listPeople[numOfPeople].deathFlag == true) {
-                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                    tag = gedcomLine.substr(0);
-                    listPeople[numOfPeople].deathDate = tag;
-                    //Set false again just in case.
-                    listPeople[numOfPeople].deathFlag = false;
-                    //Parse string into integers while we're at it.
-                    listPeople[numOfPeople].deathInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listPeople[numOfPeople].deathInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listPeople[numOfPeople].deathInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                } else if(listFamily[numOfFamilies].marryFlag == true) {
-                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                    tag = gedcomLine.substr(0);
-                    listFamily[numOfFamilies].marryDate = tag;
-                    //Set false again just in case.
-                    listFamily[numOfFamilies].marryFlag = false;
-                    //Parse string into integers while we're at it.
-                    listFamily[numOfFamilies].marryInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].marryInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].marryInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                } else if(listFamily[numOfFamilies].divFlag == true) {
-                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                    tag = gedcomLine.substr(0);
-                    listFamily[numOfFamilies].divDate = tag;
-                    //Set false again just in case.
-                    listFamily[numOfFamilies].divFlag = false;
-                    //Parse string into integers while we're at it.
-                    listFamily[numOfFamilies].divInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].divInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].divInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                }
-                numOfPeople++;
-                numOfFamilies++;
-                //Reset tag for initial printout.
-                tag = "DATE";
+                } else {
+                	//Decrement/Increment before doing things to prevent crashes.
+	                numOfPeople--;
+	                numOfFamilies--;
+	                //Dates for things.
+	                if(listPeople[numOfPeople].getBirthFlag() == true) {
+	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+	                    tag = gedcomLine.substr(0);
+	                    cout << "birth: " << tag << endl;
+	                    listPeople[numOfPeople].birthDate = tag;
+	                    //Parse string into integers while we're at it.
+	                    listPeople[numOfPeople].birthInt = strToNumDate(tag);
+	                } else if(listPeople[numOfPeople].getDeathFlag() == true) {
+	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+	                    tag = gedcomLine.substr(0);
+	                    cout << "death: " << tag << endl;
+	                    listPeople[numOfPeople].deathDate = tag;
+	                    //Parse string into integers while we're at it.
+	                    listPeople[numOfPeople].deathInt = strToNumDate(tag);
+	                } else if(listFamily[numOfFamilies].getMarryFlag() == true) {
+	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+	                    tag = gedcomLine.substr(0);
+	                    cout << "marry: " << tag << endl;
+	                    listFamily[numOfFamilies].marryDate = tag;
+	                    //Set false again just in case.
+	                    //Parse string into integers while we're at it.
+	                    listFamily[numOfFamilies].marryInt = strToNumDate(tag);
+	                } else if(listFamily[numOfFamilies].getDivFlag() == true) {
+	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+	                    tag = gedcomLine.substr(0);
+	                    cout << "div: " << tag << endl;
+	                    listFamily[numOfFamilies].divDate = tag;
+	                    //Set false again just in case.
+	                    //Parse string into integers while we're at it.
+	                    listFamily[numOfFamilies].divInt = strToNumDate(tag);
+	                }
+	                numOfPeople++;
+	                numOfFamilies++;
+	                //Reset tag for initial printout.
+	                tag = "DATE";
+				}
            }
            
            output << "Tag: " << tag << endl;
@@ -313,30 +316,52 @@ int main(int argc, char *argv[]) {
     
     for(int i = 0; i < numOfFamilies; i++) {
         // Must marry before divorce
-        if(listFamily[i].divInt.year != 0) {
-           if(listFamily[i].marryInt.year > listFamily[i].divInt.year || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month > listFamily[i].divInt.month) || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month == listFamily[i].divInt.month && listFamily[i].marryInt.day > listFamily[i].divInt.day)) {
-                 output << "Error: Marrage is after divorce in family: " << listFamily[i].familyID << endl;
-                 cout << "Error: Marrage is after divorce in family: " << listFamily[i].familyID << endl;
-           }
-        }
-        
-        // Must marry before die
+        if(listFamily[i].getMarryFlag() && listFamily[i].getDivFlag()){
+        	cout << "compare date: "<< compareDates(listFamily[i].marryInt, listFamily[i].divInt) << "; famid: "<< listFamily[i].familyID << endl;
+        	cout << "Marriage: " << listFamily[i].marryInt.year << listFamily[i].marryInt.month << listFamily[i].marryInt.day << "; Divorce: " << listFamily[i].divInt.year << listFamily[i].divInt.month << listFamily[i].divInt.day << endl;
+	        if(compareDates(listFamily[i].marryInt, listFamily[i].divInt)) {
+	           output << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
+	           cout << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
+	        }
+		} else {
+			cout << "married: " << listFamily[i].getMarryFlag() << endl;
+			cout << "divorced: " << listFamily[i].getDivFlag() << endl;
+		}
+
         for(int j = 0; j < numOfPeople; j++) {
-                if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
-                   if(listPeople[j].deathInt.year != 0) {
-                      if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
-                          output << "Error: Marrage is after Husband's death in family: " << listFamily[i].familyID << endl;
-                          cout << "Error: Marrage is after Husband's death in family: " << listFamily[i].familyID << endl;
-                      }
+                //Must have birth before death
+                if (listPeople[j].getDeathFlag() && listPeople[j].getBirthFlag()) {
+                	cout << listPeople[j].birthDate << endl;
+                   if(compareDates(listPeople[j].birthInt, listPeople[j].deathInt)) {
+                       output << "Error: Birth is after person's Death: " << listFamily[i].familyID << "; Birth: " << listPeople[j].birthDate << "; Death: " << listPeople[j].deathDate << endl;
+                       cout << "Error: Birth is after person's Death: " << listFamily[i].familyID << "; Birth: " << listPeople[j].birthDate << "; Death: " << listPeople[j].deathDate << endl;
                    }
                 }
-                if(listFamily[i].waifuID == listPeople[j].uniqueID) {
-                   if(listPeople[j].deathInt.year != 0) {
-                      if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
-                          output << "Error: Marrage is after Wife's death in family: " << listFamily[i].familyID << endl;
-                          cout << "Error: Marrage is after Wife's death in family: " << listFamily[i].familyID << endl; 
+                //Must have been born before marrying
+
+                if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
+                     // Must have been born before marriage
+                      if(compareDates(listPeople[j].birthInt, listFamily[i].marryInt)) {
+                         output << "Error: Husband's birth is after Marriage in family: " << listFamily[i].familyID << endl;
+                         cout << "Error: Husband's birth is after Marriage in family: " << listFamily[i].familyID << endl;
                       }
-                   }
+                     // Must marry before die
+                     if(compareDates(listFamily[i].marryInt, listPeople[j].deathInt)) {
+                        output << "Error: Marriage is after Husband's death in family: " << listFamily[i].familyID << endl;
+                        cout << "Error: Marriage is after Husband's death in family: " << listFamily[i].familyID << endl;
+                     }
+                }
+                if(listFamily[i].waifuID == listPeople[j].uniqueID) {
+                      // Must have been born before marriage
+                      if(compareDates(listPeople[j].birthInt, listFamily[i].marryInt)) {
+                         output << "Error: Husband's birth is after Marriage in family: " << listFamily[i].familyID << endl;
+                         cout << "Error: Husband's birth is after Marriage in family: " << listFamily[i].familyID << endl;
+                      }
+                    // Must marry before die
+                    if(compareDates(listFamily[i].marryInt, listPeople[j].deathInt)) {
+                        output << "Error: Marriage is after Wife's death in family: " << listFamily[i].familyID << endl;
+                        cout << "Error: Marriage is after Wife's death in family: " << listFamily[i].familyID << endl;
+                    }
                 }
         }
     }

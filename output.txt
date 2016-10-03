@@ -12,7 +12,7 @@ Tag: Invalid tag!
 ---------
 2 WWW http://www.familyecho.com/
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 FILE My Family
 Level Number: 1
@@ -32,11 +32,11 @@ Tag: Invalid tag!
 ---------
 2 VERS 5.5.1
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 FORM LINEAGE-LINKED
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SUBM @I1@
 Level Number: 1
@@ -44,7 +44,7 @@ Tag: Invalid tag!
 ---------
 2 NAME Seymour Butz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SUBN
 Level Number: 1
@@ -64,11 +64,11 @@ Tag: Seymour /Butz/
 ---------
 2 GIVN Seymour
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Butz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -96,15 +96,15 @@ Tag: Larry /Butz/
 ---------
 2 GIVN Larry
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Butz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Butz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -132,15 +132,15 @@ Tag: Katie /Aldrin/
 ---------
 2 GIVN Katie
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Butz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -172,15 +172,15 @@ Tag: Fuzz /Aldrin/
 ---------
 2 GIVN Fuzz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -212,15 +212,15 @@ Tag: Pawkeye /Gough/
 ---------
 2 GIVN Pawkeye
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Gough
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Gough
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -252,15 +252,15 @@ Tag: Adam /Aldrin/
 ---------
 2 GIVN Adam
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -296,15 +296,15 @@ Tag: Lara /Butz/
 ---------
 2 GIVN Lara
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Butz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Butz
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -332,15 +332,15 @@ Tag: Scott /Aldrin/
 ---------
 2 GIVN Scott
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -376,15 +376,15 @@ Tag: Paw /Revere/
 ---------
 2 GIVN Paw
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Revere
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -420,15 +420,15 @@ Tag: Hafta /Gough/
 ---------
 2 GIVN Hafta
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Gough
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Gough
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -464,15 +464,15 @@ Tag: Stacy /Blade/
 ---------
 2 GIVN Stacy
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Blade
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Gough
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -512,15 +512,15 @@ Tag: Santa /Claws/
 ---------
 2 GIVN Santa
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Claws
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -556,15 +556,15 @@ Tag: Paw /Revere/
 ---------
 2 GIVN Paw
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Revere
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -592,15 +592,15 @@ Tag: Mary /Aldrin/
 ---------
 2 GIVN Mary
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -628,15 +628,15 @@ Tag: Mike /Aldrin/
 ---------
 2 GIVN Mike
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Aldrin
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -664,15 +664,15 @@ Tag: David /Blade/
 ---------
 2 GIVN David
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Blade
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Blade
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX M
 Level Number: 1
@@ -708,15 +708,15 @@ Tag: Sarah /Blade/
 ---------
 2 GIVN Sarah
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 SURN Blade
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 2 _MARNM Blade
 Level Number: 2
-Tag: DATE
+Tag: Invalid tag!
 ---------
 1 SEX F
 Level Number: 1
@@ -961,31 +961,27 @@ ID	UID	Name		Death
 4	@I5@	Pawkeye /Gough/		
 5	@I6@	Adam /Aldrin/		
 6	@I7@	Lara /Butz/		
-7	@I8@	Scott /Aldrin/	10 MAY 1999	
-8	@I9@	Paw /Revere/	19 APR 1998	
-9	@I10@	Hafta /Gough/	20 DEC 1995	
-10	@I11@	Stacy /Blade/	12 MAY 2000	
-11	@I12@	Santa /Claws/	12 APR 2000	
+7	@I8@	Scott /Aldrin/		
+8	@I9@	Paw /Revere/		
+9	@I10@	Hafta /Gough/		
+10	@I11@	Stacy /Blade/		
+11	@I12@	Santa /Claws/		
 12	@I13@	Paw /Revere/		
 13	@I14@	Mary /Aldrin/		
 14	@I15@	Mike /Aldrin/		
-15	@I16@	David /Blade/	8 NOV 1939	
-16	@I17@	Sarah /Blade/	9 JUL 1950	
+15	@I16@	David /Blade/		
+16	@I17@	Sarah /Blade/		
 -----------------------------------------------
 Family
 -----------------------------------------------
 ID	UID	Husb		Wife		Marry		Div	
-0	@F1@	Larry /Butz/	Katie /Aldrin/	4 AUG 2000	4 MAY 2000
-1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/	4 APR 1953	
-2	@F3@	Scott /Aldrin/	Paw /Revere/	11 FEB 1951	3 APR 1950
-3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	
+0	@F1@	Larry /Butz/	Katie /Aldrin/		
+1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/		
+2	@F3@	Scott /Aldrin/	Paw /Revere/		
+3	@F4@	Hafta /Gough/	Stacy /Blade/		
 4	@F5@	Adam /Aldrin/	Paw /Revere/		
 5	@F6@	Adam /Aldrin/	Santa /Claws/		
-6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	
+6	@F7@	David /Blade/	Sarah /Blade/		
 -----------------------------------------------
 Errors
 -----------------------------------------------
-Error: Marrage is after divorce in family: @F1@
-Error: Marrage is after divorce in family: @F3@
-Error: Marrage is after Husband's death in family: @F7@
-Error: Marrage is after Wife's death in family: @F7@

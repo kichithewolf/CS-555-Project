@@ -11,11 +11,14 @@ class People {
          int IDNumber;
          string uniqueID;
          string peopleName;
+         string birthDate;
          string deathDate;
          string sex;
+         bool birthFlag;
          bool deathFlag;
          
          bool sexFlag;
+         num_date birthInt;
          num_date deathInt;
          
          //Room for expansion

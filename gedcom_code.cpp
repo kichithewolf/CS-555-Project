@@ -174,6 +174,12 @@ int main(int argc, char *argv[]) {
                     else 
                         listPeople[numOfPeople].sexFlag = false;
                     numOfPeople++; 
+                } else if((tag.compare("BIRT") == 0)) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tagP = gedcomLine.substr(0);
+                    numOfPeople--;
+                    listPeople[numOfPeople].birthFlag = true;
+                    numOfPeople++;
                 } else if((tag.compare("DEAT") == 0)) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tagP = gedcomLine.substr(0);
@@ -227,7 +233,19 @@ int main(int argc, char *argv[]) {
                 numOfPeople--;
                 numOfFamilies--;
                 //Dates for things.
-                if(listPeople[numOfPeople].deathFlag == true) {
+                if(listPeople[numOfPeople].birthFlag == true) {
+                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+                    listPeople[numOfPeople].birthDate = tag;
+                    //Set false again just in case.
+                    listPeople[numOfPeople].birthFlag = false;
+                    //Parse string into integers while we're at it.
+                    listPeople[numOfPeople].birthInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listPeople[numOfPeople].birthInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    listPeople[numOfPeople].birthInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                } else if(listPeople[numOfPeople].deathFlag == true) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
                     listPeople[numOfPeople].deathDate = tag;
@@ -330,30 +348,53 @@ int main(int argc, char *argv[]) {
                  cout << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
            }
         }
-        
-        // Must marry before die
-        for(int j = 0; j < numOfPeople; j++) {
-                if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
-                   if(listPeople[j].deathInt.year != 0) {
-                      if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
-                          output << "Error: Marriage is after Husband's death in family: " << listFamily[i].familyID << endl;
-                          cout << "Error: Marriage is after Husband's death in family: " << listFamily[i].familyID << endl;
-                      }
-                   }
-                }
-                if(listFamily[i].waifuID == listPeople[j].uniqueID) {
-                   if(listPeople[j].deathInt.year != 0) {
-                      if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
-                          output << "Error: Marriage is after Wife's death in family: " << listFamily[i].familyID << endl;
-                          cout << "Error: Marriage is after Wife's death in family: " << listFamily[i].familyID << endl; 
-                      }
-                   }
-                }
-        }
 		
-        // Must divorce before die
         for(int j = 0; j < numOfPeople; j++) {
+        	//Must be born before dying
+        	if(listPeople[j].deathInt.year != 0) {
+        		if(listPeople[j].birthInt.year > listPeople[j].deathInt.year || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month > listPeople[j].deathInt.month) || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month == listPeople[j].deathInt.month && listPeople[j].birthInt.day > listPeople[j].deathInt.day)) {
+					output << "Error: Birth is after death: " << listPeople[j].uniqueID << endl;
+					output << "Error: Birth is after death: " << listPeople[j].uniqueID << endl;
+				}
+			}
+        	
+        	// Must be born before marriage
+        	if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
+               if(listFamily[i].marryInt.year != 0) {
+                  if(listPeople[j].birthInt.year > listFamily[i].marryInt.year || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listPeople[j].birthInt.month > listFamily[i].marryInt.month) || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listFamily[i].marryInt.month == listPeople[j].birthInt.month && listPeople[j].birthInt.day > listFamily[i].marryInt.day)) {
+                      output << "Error: Birth is after Husband's marriage in family: " << listFamily[i].familyID << endl;
+                      cout << "Error: Birth is after Husband's marriage in family: " << listFamily[i].familyID << endl;
+                  }
+               }
+            }
+            if(listFamily[i].waifuID == listPeople[j].uniqueID) {
+               if(listFamily[i].marryInt.year != 0) {
+                  if(listPeople[j].birthInt.year > listFamily[i].marryInt.year || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listPeople[j].birthInt.month > listFamily[i].marryInt.month) || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listFamily[i].marryInt.month == listPeople[j].birthInt.month && listPeople[j].birthInt.day > listFamily[i].marryInt.day)) {
+                      output << "Error: Birth is after Wife's marriage in family: " << listFamily[i].familyID << endl;
+                      cout << "Error: Birth is after Wife's marriage in family: " << listFamily[i].familyID << endl;
+                  }
+               }
+            }
+        	
+        	// Must marry before die
+        	if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
+               if(listPeople[j].deathInt.year != 0) {
+                  if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
+                      output << "Error: Marriage is after Husband's death in family: " << listFamily[i].familyID << endl;
+                      cout << "Error: Marriage is after Husband's death in family: " << listFamily[i].familyID << endl;
+                  }
+               }
+            }
+            if(listFamily[i].waifuID == listPeople[j].uniqueID) {
+               if(listPeople[j].deathInt.year != 0) {
+                  if(listFamily[i].marryInt.year > listPeople[j].deathInt.year || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month > listPeople[j].deathInt.month) || (listFamily[i].marryInt.year == listPeople[j].deathInt.year && listFamily[i].marryInt.month == listPeople[j].deathInt.month && listFamily[i].marryInt.day > listPeople[j].deathInt.day)) {
+                      output << "Error: Marriage is after Wife's death in family: " << listFamily[i].familyID << endl;
+                      cout << "Error: Marriage is after Wife's death in family: " << listFamily[i].familyID << endl; 
+                  }
+               }
+            }
             
+            // Must divorce before die
             if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
                 if(listPeople[j].deathInt.year != 0) { 
                     if(listFamily[i].divInt.year > listPeople[j].deathInt.year
@@ -381,11 +422,9 @@ int main(int argc, char *argv[]) {
                     }
                 }
             }
-        }
-        //Husband must be Male
-        //Wife must be Female
-        
-        for(int j = 0; j < numOfPeople; j++) {
+            
+            //Husband must be Male
+        	//Wife must be Female
             if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
                 //cout << listPeople[j].peopleName << endl;
                 if(listPeople[j].sexFlag != true) {
@@ -401,12 +440,7 @@ int main(int argc, char *argv[]) {
                     cout << "Error: Wife is not a Female in family: " << listFamily[i].familyID << endl;
                 }
             }
-            
         }
-        
-            
-        
-			//if(listFamily[i].husbandoID == listPeople[j].unique
     }
     
     gedcomFile.close();

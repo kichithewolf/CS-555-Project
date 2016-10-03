@@ -995,6 +995,7 @@ Errors
 -----------------------------------------------
 Error: Marriage is after divorce in family: @F1@
 Error: Husband is not a Male in family: @F1@
+Error: Birth is after Wife's marriage in family: @F2@
 Error: Marriage is after divorce in family: @F3@
 Error: Wife is not a Female in family: @F3@
 Error: Divorce is after Husband's death in family: @F4@

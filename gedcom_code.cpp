@@ -17,11 +17,14 @@ using namespace std;
 //compare dates; return true if first date occurs before second and false if the dates are equal or the second occurs first
 bool compareDates(num_date date1, num_date date2) {
     if(date1.year != 0 && date2.year !=0) {
+    	cout << "valid year" << endl;
         if(date1.year > date2.year || (date1.year == date2.year && date1.month > date2.month) || (date1.year == date2.year && date1.month == date2.month && date1.day > date2.day)) {
-        	return false;
+        	cout << "year 1 before year 2" << endl;
+			return false;
 		}
 		return true;
 	} else {
+		cout << "date 1 or date 2 year not valid" << endl;
 		return false;
 	}
 
@@ -224,33 +227,41 @@ int main(int argc, char *argv[]) {
 	                numOfPeople--;
 	                numOfFamilies--;
 	                //Dates for things.
-	                if(listPeople[numOfPeople].getBirthFlag() == true) {
+	                if(listPeople[numOfPeople].getBirthFlag()) {
 	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
 	                    tag = gedcomLine.substr(0);
+	                    output << "birth: " << tag << endl;
 	                    cout << "birth: " << tag << endl;
 	                    listPeople[numOfPeople].birthDate = tag;
+	                    listPeople[numOfPeople].setBirthFlag(false);
 	                    //Parse string into integers while we're at it.
 	                    listPeople[numOfPeople].birthInt = strToNumDate(tag);
-	                } else if(listPeople[numOfPeople].getDeathFlag() == true) {
+	                } else if(listPeople[numOfPeople].getDeathFlag()) {
 	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
 	                    tag = gedcomLine.substr(0);
+	                    output << "death: " << tag << endl;
 	                    cout << "death: " << tag << endl;
 	                    listPeople[numOfPeople].deathDate = tag;
+	                    listPeople[numOfPeople].setDeathFlag(false);
 	                    //Parse string into integers while we're at it.
 	                    listPeople[numOfPeople].deathInt = strToNumDate(tag);
-	                } else if(listFamily[numOfFamilies].getMarryFlag() == true) {
+	                } else if(listFamily[numOfFamilies].getMarryFlag()) {
 	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
 	                    tag = gedcomLine.substr(0);
+	                    output << "marry: " << tag << endl;
 	                    cout << "marry: " << tag << endl;
 	                    listFamily[numOfFamilies].marryDate = tag;
 	                    //Set false again just in case.
+	                    listFamily[numOfFamilies].setMarryFlag(false);
 	                    //Parse string into integers while we're at it.
 	                    listFamily[numOfFamilies].marryInt = strToNumDate(tag);
-	                } else if(listFamily[numOfFamilies].getDivFlag() == true) {
+	                } else if(listFamily[numOfFamilies].getDivFlag()) {
 	                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
 	                    tag = gedcomLine.substr(0);
+	                    output << "div: " << tag << endl;
 	                    cout << "div: " << tag << endl;
 	                    listFamily[numOfFamilies].divDate = tag;
+	                    listFamily[numOfFamilies].setDivFlag(false);
 	                    //Set false again just in case.
 	                    //Parse string into integers while we're at it.
 	                    listFamily[numOfFamilies].divInt = strToNumDate(tag);
@@ -315,28 +326,33 @@ int main(int argc, char *argv[]) {
     cout << "-----------------------------------------------" << endl;
     
     for(int i = 0; i < numOfFamilies; i++) {
-        // Must marry before divorce
-        if(listFamily[i].getMarryFlag() && listFamily[i].getDivFlag()){
-        	cout << "compare date: "<< compareDates(listFamily[i].marryInt, listFamily[i].divInt) << "; famid: "<< listFamily[i].familyID << endl;
-        	cout << "Marriage: " << listFamily[i].marryInt.year << listFamily[i].marryInt.month << listFamily[i].marryInt.day << "; Divorce: " << listFamily[i].divInt.year << listFamily[i].divInt.month << listFamily[i].divInt.day << endl;
-	        if(compareDates(listFamily[i].marryInt, listFamily[i].divInt)) {
-	           output << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
-	           cout << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
-	        }
-		} else {
-			cout << "married: " << listFamily[i].getMarryFlag() << endl;
-			cout << "divorced: " << listFamily[i].getDivFlag() << endl;
-		}
+//        // Must marry before divorce
+//        if(listFamily[i].getMarryFlag() && listFamily[i].getDivFlag()){
+//        	cout << "compare date: "<< compareDates(listFamily[i].marryInt, listFamily[i].divInt) << "; famid: "<< listFamily[i].familyID << endl;
+//        	cout << "Marriage: " << listFamily[i].marryInt.year << listFamily[i].marryInt.month << listFamily[i].marryInt.day << "; Divorce: " << listFamily[i].divInt.year << listFamily[i].divInt.month << listFamily[i].divInt.day << endl;
+//	        if(compareDates(listFamily[i].marryInt, listFamily[i].divInt)) {
+//	           output << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
+//	           cout << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
+//	        }
+//		} else {
+//			cout << "married: " << listFamily[i].getMarryFlag() << endl;
+//			cout << "divorced: " << listFamily[i].getDivFlag() << endl;
+//		}
+		if(compareDates(listFamily[i].marryInt, listFamily[i].divInt)) {
+           output << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
+           cout << "Error: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
+        }
 
         for(int j = 0; j < numOfPeople; j++) {
-                //Must have birth before death
-                if (listPeople[j].getDeathFlag() && listPeople[j].getBirthFlag()) {
-                	cout << listPeople[j].birthDate << endl;
-                   if(compareDates(listPeople[j].birthInt, listPeople[j].deathInt)) {
+//                //Must have birth before death
+//                if (listPeople[j].getDeathFlag() && listPeople[j].getBirthFlag()) {
+//                	cout << "birth: " << listPeople[j].birthDate << endl;
+//                   
+//                }
+                if(compareDates(listPeople[j].birthInt, listPeople[j].deathInt)) {
                        output << "Error: Birth is after person's Death: " << listFamily[i].familyID << "; Birth: " << listPeople[j].birthDate << "; Death: " << listPeople[j].deathDate << endl;
                        cout << "Error: Birth is after person's Death: " << listFamily[i].familyID << "; Birth: " << listPeople[j].birthDate << "; Death: " << listPeople[j].deathDate << endl;
                    }
-                }
                 //Must have been born before marrying
 
                 if(listFamily[i].husbandoID == listPeople[j].uniqueID) {

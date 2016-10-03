@@ -80,6 +80,7 @@ Tag: BIRT
 ---------
 2 DATE 6 FEB 2001
 Level Number: 2
+birth: 6 FEB 2001
 Tag: DATE
 ---------
 1 FAMC @F1@
@@ -116,6 +117,7 @@ Tag: BIRT
 ---------
 2 DATE 3 JUN 1978
 Level Number: 2
+birth: 3 JUN 1978
 Tag: DATE
 ---------
 1 FAMS @F1@
@@ -152,6 +154,7 @@ Tag: BIRT
 ---------
 2 DATE 20 JUN 1980
 Level Number: 2
+birth: 20 JUN 1980
 Tag: DATE
 ---------
 1 FAMS @F1@
@@ -192,6 +195,7 @@ Tag: BIRT
 ---------
 2 DATE 11 FEB 1952
 Level Number: 2
+birth: 11 FEB 1952
 Tag: DATE
 ---------
 1 FAMS @F2@
@@ -232,6 +236,7 @@ Tag: BIRT
 ---------
 2 DATE 4 OCT 1954
 Level Number: 2
+birth: 4 OCT 1954
 Tag: DATE
 ---------
 1 FAMS @F2@
@@ -272,6 +277,7 @@ Tag: BIRT
 ---------
 2 DATE 11 DEC 1978
 Level Number: 2
+birth: 11 DEC 1978
 Tag: DATE
 ---------
 1 FAMS @F5@
@@ -316,6 +322,7 @@ Tag: BIRT
 ---------
 2 DATE 7 MAR 2003
 Level Number: 2
+birth: 7 MAR 2003
 Tag: DATE
 ---------
 1 FAMC @F1@
@@ -352,6 +359,7 @@ Tag: BIRT
 ---------
 2 DATE 15 NOV 1933
 Level Number: 2
+birth: 15 NOV 1933
 Tag: DATE
 ---------
 1 DEAT Y
@@ -360,6 +368,7 @@ Tag: Y
 ---------
 2 DATE 10 MAY 1999
 Level Number: 2
+death: 10 MAY 1999
 Tag: DATE
 ---------
 1 FAMS @F3@
@@ -396,6 +405,7 @@ Tag: BIRT
 ---------
 2 DATE 18 APR 1932
 Level Number: 2
+birth: 18 APR 1932
 Tag: DATE
 ---------
 1 DEAT Y
@@ -404,6 +414,7 @@ Tag: Y
 ---------
 2 DATE 19 APR 1998
 Level Number: 2
+death: 19 APR 1998
 Tag: DATE
 ---------
 1 FAMS @F3@
@@ -440,6 +451,7 @@ Tag: BIRT
 ---------
 2 DATE 6 AUG 1925
 Level Number: 2
+birth: 6 AUG 1925
 Tag: DATE
 ---------
 1 DEAT Y
@@ -448,6 +460,7 @@ Tag: Y
 ---------
 2 DATE 20 DEC 1995
 Level Number: 2
+death: 20 DEC 1995
 Tag: DATE
 ---------
 1 FAMS @F4@
@@ -484,6 +497,7 @@ Tag: BIRT
 ---------
 2 DATE 9 MAR 1929
 Level Number: 2
+birth: 9 MAR 1929
 Tag: DATE
 ---------
 1 DEAT Y
@@ -492,6 +506,7 @@ Tag: Y
 ---------
 2 DATE 12 MAY 2000
 Level Number: 2
+death: 12 MAY 2000
 Tag: DATE
 ---------
 1 FAMS @F4@
@@ -532,6 +547,7 @@ Tag: BIRT
 ---------
 2 DATE 9 MAR 1977
 Level Number: 2
+birth: 9 MAR 1977
 Tag: DATE
 ---------
 1 DEAT Y
@@ -540,6 +556,7 @@ Tag: Y
 ---------
 2 DATE 12 APR 2000
 Level Number: 2
+death: 12 APR 2000
 Tag: DATE
 ---------
 1 FAMS @F6@
@@ -576,6 +593,7 @@ Tag: BIRT
 ---------
 2 DATE 30 OCT 1979
 Level Number: 2
+birth: 30 OCT 1979
 Tag: DATE
 ---------
 1 FAMS @F5@
@@ -612,6 +630,7 @@ Tag: BIRT
 ---------
 2 DATE 18 MAY 1997
 Level Number: 2
+birth: 18 MAY 1997
 Tag: DATE
 ---------
 1 FAMC @F6@
@@ -648,6 +667,7 @@ Tag: BIRT
 ---------
 2 DATE 26 NOV 2009
 Level Number: 2
+birth: 26 NOV 2009
 Tag: DATE
 ---------
 1 FAMC @F5@
@@ -684,6 +704,7 @@ Tag: BIRT
 ---------
 2 DATE 1 FEB 1890
 Level Number: 2
+birth: 1 FEB 1890
 Tag: DATE
 ---------
 1 DEAT Y
@@ -692,6 +713,7 @@ Tag: Y
 ---------
 2 DATE 8 NOV 1939
 Level Number: 2
+death: 8 NOV 1939
 Tag: DATE
 ---------
 1 FAMS @F7@
@@ -728,6 +750,7 @@ Tag: BIRT
 ---------
 2 DATE 10 JUL 1890
 Level Number: 2
+birth: 10 JUL 1890
 Tag: DATE
 ---------
 1 DEAT Y
@@ -736,6 +759,7 @@ Tag: Y
 ---------
 2 DATE 9 JUL 1950
 Level Number: 2
+death: 9 JUL 1950
 Tag: DATE
 ---------
 1 FAMS @F7@
@@ -768,6 +792,7 @@ Tag: MARR
 ---------
 2 DATE 4 AUG 2000
 Level Number: 2
+marry: 4 AUG 2000
 Tag: DATE
 ---------
 1 DIV
@@ -776,6 +801,7 @@ Tag: DIV
 ---------
 2 DATE 4 MAY 2000
 Level Number: 2
+div: 4 MAY 2000
 Tag: DATE
 ---------
 1 _CURRENT Y
@@ -808,6 +834,7 @@ Tag: MARR
 ---------
 2 DATE 4 APR 1953
 Level Number: 2
+marry: 4 APR 1953
 Tag: DATE
 ---------
 1 _CURRENT Y
@@ -836,6 +863,7 @@ Tag: MARR
 ---------
 2 DATE 11 FEB 1951
 Level Number: 2
+marry: 11 FEB 1951
 Tag: DATE
 ---------
 1 DIV
@@ -844,6 +872,7 @@ Tag: DIV
 ---------
 2 DATE 3 APR 1950
 Level Number: 2
+div: 3 APR 1950
 Tag: DATE
 ---------
 1 _CURRENT Y
@@ -872,6 +901,7 @@ Tag: MARR
 ---------
 2 DATE 4 OCT 1953
 Level Number: 2
+marry: 4 OCT 1953
 Tag: DATE
 ---------
 1 _CURRENT Y
@@ -940,6 +970,7 @@ Tag: MARR
 ---------
 2 DATE 14 NOV 1960
 Level Number: 2
+marry: 14 NOV 1960
 Tag: DATE
 ---------
 1 _CURRENT Y
@@ -961,27 +992,89 @@ ID	UID	Name		Death
 4	@I5@	Pawkeye /Gough/		
 5	@I6@	Adam /Aldrin/		
 6	@I7@	Lara /Butz/		
-7	@I8@	Scott /Aldrin/		
-8	@I9@	Paw /Revere/		
-9	@I10@	Hafta /Gough/		
-10	@I11@	Stacy /Blade/		
-11	@I12@	Santa /Claws/		
+7	@I8@	Scott /Aldrin/	10 MAY 1999	
+8	@I9@	Paw /Revere/	19 APR 1998	
+9	@I10@	Hafta /Gough/	20 DEC 1995	
+10	@I11@	Stacy /Blade/	12 MAY 2000	
+11	@I12@	Santa /Claws/	12 APR 2000	
 12	@I13@	Paw /Revere/		
 13	@I14@	Mary /Aldrin/		
 14	@I15@	Mike /Aldrin/		
-15	@I16@	David /Blade/		
-16	@I17@	Sarah /Blade/		
+15	@I16@	David /Blade/	8 NOV 1939	
+16	@I17@	Sarah /Blade/	9 JUL 1950	
 -----------------------------------------------
 Family
 -----------------------------------------------
 ID	UID	Husb		Wife		Marry		Div	
-0	@F1@	Larry /Butz/	Katie /Aldrin/		
-1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/		
-2	@F3@	Scott /Aldrin/	Paw /Revere/		
-3	@F4@	Hafta /Gough/	Stacy /Blade/		
+0	@F1@	Larry /Butz/	Katie /Aldrin/	4 AUG 2000	4 MAY 2000
+1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/	4 APR 1953	
+2	@F3@	Scott /Aldrin/	Paw /Revere/	11 FEB 1951	3 APR 1950
+3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	
 4	@F5@	Adam /Aldrin/	Paw /Revere/		
 5	@F6@	Adam /Aldrin/	Santa /Claws/		
-6	@F7@	David /Blade/	Sarah /Blade/		
+6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	
 -----------------------------------------------
 Errors
 -----------------------------------------------
+Error: Husband's birth is after Marriage in family: @F1@
+Error: Husband's birth is after Marriage in family: @F1@
+Error: Birth is after person's Death: @F1@; Birth: 15 NOV 1933; Death: 10 MAY 1999
+Error: Birth is after person's Death: @F1@; Birth: 18 APR 1932; Death: 19 APR 1998
+Error: Birth is after person's Death: @F1@; Birth: 6 AUG 1925; Death: 20 DEC 1995
+Error: Birth is after person's Death: @F1@; Birth: 9 MAR 1929; Death: 12 MAY 2000
+Error: Birth is after person's Death: @F1@; Birth: 9 MAR 1977; Death: 12 APR 2000
+Error: Birth is after person's Death: @F1@; Birth: 1 FEB 1890; Death: 8 NOV 1939
+Error: Birth is after person's Death: @F1@; Birth: 10 JUL 1890; Death: 9 JUL 1950
+Error: Husband's birth is after Marriage in family: @F2@
+Error: Birth is after person's Death: @F2@; Birth: 15 NOV 1933; Death: 10 MAY 1999
+Error: Birth is after person's Death: @F2@; Birth: 18 APR 1932; Death: 19 APR 1998
+Error: Birth is after person's Death: @F2@; Birth: 6 AUG 1925; Death: 20 DEC 1995
+Error: Birth is after person's Death: @F2@; Birth: 9 MAR 1929; Death: 12 MAY 2000
+Error: Birth is after person's Death: @F2@; Birth: 9 MAR 1977; Death: 12 APR 2000
+Error: Birth is after person's Death: @F2@; Birth: 1 FEB 1890; Death: 8 NOV 1939
+Error: Birth is after person's Death: @F2@; Birth: 10 JUL 1890; Death: 9 JUL 1950
+Error: Birth is after person's Death: @F3@; Birth: 15 NOV 1933; Death: 10 MAY 1999
+Error: Husband's birth is after Marriage in family: @F3@
+Error: Marriage is after Husband's death in family: @F3@
+Error: Birth is after person's Death: @F3@; Birth: 18 APR 1932; Death: 19 APR 1998
+Error: Husband's birth is after Marriage in family: @F3@
+Error: Marriage is after Wife's death in family: @F3@
+Error: Birth is after person's Death: @F3@; Birth: 6 AUG 1925; Death: 20 DEC 1995
+Error: Birth is after person's Death: @F3@; Birth: 9 MAR 1929; Death: 12 MAY 2000
+Error: Birth is after person's Death: @F3@; Birth: 9 MAR 1977; Death: 12 APR 2000
+Error: Birth is after person's Death: @F3@; Birth: 1 FEB 1890; Death: 8 NOV 1939
+Error: Birth is after person's Death: @F3@; Birth: 10 JUL 1890; Death: 9 JUL 1950
+Error: Birth is after person's Death: @F4@; Birth: 15 NOV 1933; Death: 10 MAY 1999
+Error: Birth is after person's Death: @F4@; Birth: 18 APR 1932; Death: 19 APR 1998
+Error: Birth is after person's Death: @F4@; Birth: 6 AUG 1925; Death: 20 DEC 1995
+Error: Husband's birth is after Marriage in family: @F4@
+Error: Marriage is after Husband's death in family: @F4@
+Error: Birth is after person's Death: @F4@; Birth: 9 MAR 1929; Death: 12 MAY 2000
+Error: Husband's birth is after Marriage in family: @F4@
+Error: Marriage is after Wife's death in family: @F4@
+Error: Birth is after person's Death: @F4@; Birth: 9 MAR 1977; Death: 12 APR 2000
+Error: Birth is after person's Death: @F4@; Birth: 1 FEB 1890; Death: 8 NOV 1939
+Error: Birth is after person's Death: @F4@; Birth: 10 JUL 1890; Death: 9 JUL 1950
+Error: Birth is after person's Death: @F5@; Birth: 15 NOV 1933; Death: 10 MAY 1999
+Error: Birth is after person's Death: @F5@; Birth: 18 APR 1932; Death: 19 APR 1998
+Error: Birth is after person's Death: @F5@; Birth: 6 AUG 1925; Death: 20 DEC 1995
+Error: Birth is after person's Death: @F5@; Birth: 9 MAR 1929; Death: 12 MAY 2000
+Error: Birth is after person's Death: @F5@; Birth: 9 MAR 1977; Death: 12 APR 2000
+Error: Birth is after person's Death: @F5@; Birth: 1 FEB 1890; Death: 8 NOV 1939
+Error: Birth is after person's Death: @F5@; Birth: 10 JUL 1890; Death: 9 JUL 1950
+Error: Birth is after person's Death: @F6@; Birth: 15 NOV 1933; Death: 10 MAY 1999
+Error: Birth is after person's Death: @F6@; Birth: 18 APR 1932; Death: 19 APR 1998
+Error: Birth is after person's Death: @F6@; Birth: 6 AUG 1925; Death: 20 DEC 1995
+Error: Birth is after person's Death: @F6@; Birth: 9 MAR 1929; Death: 12 MAY 2000
+Error: Birth is after person's Death: @F6@; Birth: 9 MAR 1977; Death: 12 APR 2000
+Error: Birth is after person's Death: @F6@; Birth: 1 FEB 1890; Death: 8 NOV 1939
+Error: Birth is after person's Death: @F6@; Birth: 10 JUL 1890; Death: 9 JUL 1950
+Error: Birth is after person's Death: @F7@; Birth: 15 NOV 1933; Death: 10 MAY 1999
+Error: Birth is after person's Death: @F7@; Birth: 18 APR 1932; Death: 19 APR 1998
+Error: Birth is after person's Death: @F7@; Birth: 6 AUG 1925; Death: 20 DEC 1995
+Error: Birth is after person's Death: @F7@; Birth: 9 MAR 1929; Death: 12 MAY 2000
+Error: Birth is after person's Death: @F7@; Birth: 9 MAR 1977; Death: 12 APR 2000
+Error: Birth is after person's Death: @F7@; Birth: 1 FEB 1890; Death: 8 NOV 1939
+Error: Husband's birth is after Marriage in family: @F7@
+Error: Birth is after person's Death: @F7@; Birth: 10 JUL 1890; Death: 9 JUL 1950
+Error: Husband's birth is after Marriage in family: @F7@

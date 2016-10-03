@@ -8,8 +8,8 @@ using namespace std;
 
 class People {
       private:
-         bool birthFlag;
-         bool deathFlag;
+         bool birthFlag = false;
+         bool deathFlag = false;
 
       public:
          int IDNumber;

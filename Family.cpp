@@ -8,8 +8,8 @@ using namespace std;
 
 class Family {
       private:
-         bool marryFlag;
-         bool divFlag;
+         bool marryFlag = false;
+         bool divFlag = false;
 
       public:
          int IDNumber;
@@ -41,7 +41,8 @@ bool Family::getDivFlag() {
 }
 
 void Family::setMarryFlag(bool b) {
-  marryFlag = b;
+	cout << "CALLED MARRY FLAG SDKLA=MA=MLEDLMWML --------------------------------" << endl;
+	marryFlag = b;
 }
 
 void Family::setDivFlag(bool b) {

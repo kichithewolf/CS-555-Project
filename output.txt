@@ -60,7 +60,7 @@ Tag: INDI
 ---------
 1 NAME Seymour /Butz/
 Level Number: 1
-Tag: Seymour /Butz/
+Tag: NAME
 ---------
 2 GIVN Seymour
 Level Number: 2
@@ -92,7 +92,7 @@ Tag: INDI
 ---------
 1 NAME Larry /Butz/
 Level Number: 1
-Tag: Larry /Butz/
+Tag: NAME
 ---------
 2 GIVN Larry
 Level Number: 2
@@ -106,7 +106,7 @@ Tag: DATE
 Level Number: 2
 Tag: DATE
 ---------
-1 SEX M
+1 SEX F
 Level Number: 1
 Tag: SEX
 ---------
@@ -128,7 +128,7 @@ Tag: INDI
 ---------
 1 NAME Katie /Aldrin/
 Level Number: 1
-Tag: Katie /Aldrin/
+Tag: NAME
 ---------
 2 GIVN Katie
 Level Number: 2
@@ -168,7 +168,7 @@ Tag: INDI
 ---------
 1 NAME Fuzz /Aldrin/
 Level Number: 1
-Tag: Fuzz /Aldrin/
+Tag: NAME
 ---------
 2 GIVN Fuzz
 Level Number: 2
@@ -208,7 +208,7 @@ Tag: INDI
 ---------
 1 NAME Pawkeye /Gough/
 Level Number: 1
-Tag: Pawkeye /Gough/
+Tag: NAME
 ---------
 2 GIVN Pawkeye
 Level Number: 2
@@ -248,7 +248,7 @@ Tag: INDI
 ---------
 1 NAME Adam /Aldrin/
 Level Number: 1
-Tag: Adam /Aldrin/
+Tag: NAME
 ---------
 2 GIVN Adam
 Level Number: 2
@@ -292,7 +292,7 @@ Tag: INDI
 ---------
 1 NAME Lara /Butz/
 Level Number: 1
-Tag: Lara /Butz/
+Tag: NAME
 ---------
 2 GIVN Lara
 Level Number: 2
@@ -328,7 +328,7 @@ Tag: INDI
 ---------
 1 NAME Scott /Aldrin/
 Level Number: 1
-Tag: Scott /Aldrin/
+Tag: NAME
 ---------
 2 GIVN Scott
 Level Number: 2
@@ -356,7 +356,7 @@ Tag: DATE
 ---------
 1 DEAT Y
 Level Number: 1
-Tag: Y
+Tag: DEAT
 ---------
 2 DATE 10 MAY 1999
 Level Number: 2
@@ -372,7 +372,7 @@ Tag: INDI
 ---------
 1 NAME Paw /Revere/
 Level Number: 1
-Tag: Paw /Revere/
+Tag: NAME
 ---------
 2 GIVN Paw
 Level Number: 2
@@ -386,7 +386,7 @@ Tag: DATE
 Level Number: 2
 Tag: DATE
 ---------
-1 SEX F
+1 SEX M
 Level Number: 1
 Tag: SEX
 ---------
@@ -400,7 +400,7 @@ Tag: DATE
 ---------
 1 DEAT Y
 Level Number: 1
-Tag: Y
+Tag: DEAT
 ---------
 2 DATE 19 APR 1998
 Level Number: 2
@@ -416,7 +416,7 @@ Tag: INDI
 ---------
 1 NAME Hafta /Gough/
 Level Number: 1
-Tag: Hafta /Gough/
+Tag: NAME
 ---------
 2 GIVN Hafta
 Level Number: 2
@@ -444,7 +444,7 @@ Tag: DATE
 ---------
 1 DEAT Y
 Level Number: 1
-Tag: Y
+Tag: DEAT
 ---------
 2 DATE 20 DEC 1995
 Level Number: 2
@@ -460,7 +460,7 @@ Tag: INDI
 ---------
 1 NAME Stacy /Blade/
 Level Number: 1
-Tag: Stacy /Blade/
+Tag: NAME
 ---------
 2 GIVN Stacy
 Level Number: 2
@@ -488,7 +488,7 @@ Tag: DATE
 ---------
 1 DEAT Y
 Level Number: 1
-Tag: Y
+Tag: DEAT
 ---------
 2 DATE 12 MAY 2000
 Level Number: 2
@@ -508,7 +508,7 @@ Tag: INDI
 ---------
 1 NAME Santa /Claws/
 Level Number: 1
-Tag: Santa /Claws/
+Tag: NAME
 ---------
 2 GIVN Santa
 Level Number: 2
@@ -536,7 +536,7 @@ Tag: DATE
 ---------
 1 DEAT Y
 Level Number: 1
-Tag: Y
+Tag: DEAT
 ---------
 2 DATE 12 APR 2000
 Level Number: 2
@@ -552,7 +552,7 @@ Tag: INDI
 ---------
 1 NAME Paw /Revere/
 Level Number: 1
-Tag: Paw /Revere/
+Tag: NAME
 ---------
 2 GIVN Paw
 Level Number: 2
@@ -588,7 +588,7 @@ Tag: INDI
 ---------
 1 NAME Mary /Aldrin/
 Level Number: 1
-Tag: Mary /Aldrin/
+Tag: NAME
 ---------
 2 GIVN Mary
 Level Number: 2
@@ -624,7 +624,7 @@ Tag: INDI
 ---------
 1 NAME Mike /Aldrin/
 Level Number: 1
-Tag: Mike /Aldrin/
+Tag: NAME
 ---------
 2 GIVN Mike
 Level Number: 2
@@ -660,7 +660,7 @@ Tag: INDI
 ---------
 1 NAME David /Blade/
 Level Number: 1
-Tag: David /Blade/
+Tag: NAME
 ---------
 2 GIVN David
 Level Number: 2
@@ -688,7 +688,7 @@ Tag: DATE
 ---------
 1 DEAT Y
 Level Number: 1
-Tag: Y
+Tag: DEAT
 ---------
 2 DATE 8 NOV 1939
 Level Number: 2
@@ -704,7 +704,7 @@ Tag: INDI
 ---------
 1 NAME Sarah /Blade/
 Level Number: 1
-Tag: Sarah /Blade/
+Tag: NAME
 ---------
 2 GIVN Sarah
 Level Number: 2
@@ -732,7 +732,7 @@ Tag: DATE
 ---------
 1 DEAT Y
 Level Number: 1
-Tag: Y
+Tag: DEAT
 ---------
 2 DATE 9 JUL 1950
 Level Number: 2
@@ -748,11 +748,11 @@ Tag: FAM
 ---------
 1 HUSB @I2@
 Level Number: 1
-Tag: @I2@
+Tag: HUSB
 ---------
 1 WIFE @I3@
 Level Number: 1
-Tag: @I3@
+Tag: WIFE
 ---------
 1 CHIL @I1@
 Level Number: 1
@@ -788,11 +788,11 @@ Tag: FAM
 ---------
 1 HUSB @I4@
 Level Number: 1
-Tag: @I4@
+Tag: HUSB
 ---------
 1 WIFE @I5@
 Level Number: 1
-Tag: @I5@
+Tag: WIFE
 ---------
 1 CHIL @I3@
 Level Number: 1
@@ -820,11 +820,11 @@ Tag: FAM
 ---------
 1 HUSB @I8@
 Level Number: 1
-Tag: @I8@
+Tag: HUSB
 ---------
 1 WIFE @I9@
 Level Number: 1
-Tag: @I9@
+Tag: WIFE
 ---------
 1 CHIL @I4@
 Level Number: 1
@@ -856,11 +856,11 @@ Tag: FAM
 ---------
 1 HUSB @I10@
 Level Number: 1
-Tag: @I10@
+Tag: HUSB
 ---------
 1 WIFE @I11@
 Level Number: 1
-Tag: @I11@
+Tag: WIFE
 ---------
 1 CHIL @I5@
 Level Number: 1
@@ -874,6 +874,14 @@ Tag: MARR
 Level Number: 2
 Tag: DATE
 ---------
+1 DIV
+Level Number: 1
+Tag: DIV
+---------
+2 DATE 3 APR 1997
+Level Number: 2
+Tag: DATE
+---------
 1 _CURRENT Y
 Level Number: 1
 Tag: Invalid tag!
@@ -884,11 +892,11 @@ Tag: FAM
 ---------
 1 HUSB @I6@
 Level Number: 1
-Tag: @I6@
+Tag: HUSB
 ---------
 1 WIFE @I13@
 Level Number: 1
-Tag: @I13@
+Tag: WIFE
 ---------
 1 CHIL @I15@
 Level Number: 1
@@ -904,11 +912,11 @@ Tag: FAM
 ---------
 1 HUSB @I6@
 Level Number: 1
-Tag: @I6@
+Tag: HUSB
 ---------
 1 WIFE @I12@
 Level Number: 1
-Tag: @I12@
+Tag: WIFE
 ---------
 1 CHIL @I14@
 Level Number: 1
@@ -924,11 +932,11 @@ Tag: FAM
 ---------
 1 HUSB @I16@
 Level Number: 1
-Tag: @I16@
+Tag: HUSB
 ---------
 1 WIFE @I17@
 Level Number: 1
-Tag: @I17@
+Tag: WIFE
 ---------
 1 CHIL @I11@
 Level Number: 1
@@ -953,24 +961,24 @@ Tag: TRLR
 -----------------------------------------------
 People
 -----------------------------------------------
-ID	UID	Name		Death	
-0	@I1@	Seymour /Butz/		
-1	@I2@	Larry /Butz/		
-2	@I3@	Katie /Aldrin/		
-3	@I4@	Fuzz /Aldrin/		
-4	@I5@	Pawkeye /Gough/		
-5	@I6@	Adam /Aldrin/		
-6	@I7@	Lara /Butz/		
-7	@I8@	Scott /Aldrin/	10 MAY 1999	
-8	@I9@	Paw /Revere/	19 APR 1998	
-9	@I10@	Hafta /Gough/	20 DEC 1995	
-10	@I11@	Stacy /Blade/	12 MAY 2000	
-11	@I12@	Santa /Claws/	12 APR 2000	
-12	@I13@	Paw /Revere/		
-13	@I14@	Mary /Aldrin/		
-14	@I15@	Mike /Aldrin/		
-15	@I16@	David /Blade/	8 NOV 1939	
-16	@I17@	Sarah /Blade/	9 JUL 1950	
+ID	UID	Name	Sex	Death	
+0	@I1@	Seymour /Butz/	M		
+1	@I2@	Larry /Butz/	F		
+2	@I3@	Katie /Aldrin/	F		
+3	@I4@	Fuzz /Aldrin/	M		
+4	@I5@	Pawkeye /Gough/	F		
+5	@I6@	Adam /Aldrin/	M		
+6	@I7@	Lara /Butz/	F		
+7	@I8@	Scott /Aldrin/	M	10 MAY 1999	
+8	@I9@	Paw /Revere/	M	19 APR 1998	
+9	@I10@	Hafta /Gough/	M	20 DEC 1995	
+10	@I11@	Stacy /Blade/	F	12 MAY 2000	
+11	@I12@	Santa /Claws/	F	12 APR 2000	
+12	@I13@	Paw /Revere/	F		
+13	@I14@	Mary /Aldrin/	F		
+14	@I15@	Mike /Aldrin/	M		
+15	@I16@	David /Blade/	M	8 NOV 1939	
+16	@I17@	Sarah /Blade/	F	9 JUL 1950	
 -----------------------------------------------
 Family
 -----------------------------------------------
@@ -978,14 +986,17 @@ ID	UID	Husb		Wife		Marry		Div
 0	@F1@	Larry /Butz/	Katie /Aldrin/	4 AUG 2000	4 MAY 2000
 1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/	4 APR 1953	
 2	@F3@	Scott /Aldrin/	Paw /Revere/	11 FEB 1951	3 APR 1950
-3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	
+3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	3 APR 1997
 4	@F5@	Adam /Aldrin/	Paw /Revere/		
 5	@F6@	Adam /Aldrin/	Santa /Claws/		
 6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	
 -----------------------------------------------
 Errors
 -----------------------------------------------
-Error: Marrage is after divorce in family: @F1@
-Error: Marrage is after divorce in family: @F3@
-Error: Marrage is after Husband's death in family: @F7@
-Error: Marrage is after Wife's death in family: @F7@
+Error: Marriage is after divorce in family: @F1@
+Error: Husband is not a Male in family: @F1@
+Error: Marriage is after divorce in family: @F3@
+Error: Wife is not a Female in family: @F3@
+Error: Divorce is after Husband's death in family: @F4@
+Error: Marriage is after Husband's death in family: @F7@
+Error: Marriage is after Wife's death in family: @F7@

@@ -12,8 +12,10 @@ class People {
          string uniqueID;
          string peopleName;
          string deathDate;
+         string sex;
          bool deathFlag;
          
+         bool sexFlag;
          num_date deathInt;
          
          //Room for expansion

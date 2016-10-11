@@ -59,6 +59,7 @@ int main(int argc, char *argv[]) {
          return 0;
     }
     
+    /*
     output << "-----------------------------------------------" << endl;
     output << "File \"" << argv[1] << "\" opened!"<< endl;
     output << "Reading and Printing file..." << endl;
@@ -68,19 +69,20 @@ int main(int argc, char *argv[]) {
     cout << "File \"" << argv[1] << "\" opened!"<< endl;
     cout << "Reading and Printing file..." << endl;
     cout << "-----------------------------------------------" << endl;
+    */
     
     // Read file line by line.
     while(getline(gedcomFile, gedcomLine)) {
            //Eliminate trailing character causing string compare issue.
            gedcomLine.erase(gedcomLine.find_last_not_of("\n\r") + 1);
-           output << gedcomLine << endl;
-           cout << gedcomLine << endl;
+           //output << gedcomLine << endl;
+           //cout << gedcomLine << endl;
            
            // Get and print level number.
            levelNum = gedcomLine.substr(0, gedcomLine.find(delimiter));
            level = atoi(levelNum.c_str());
-           output << "Level Number: " << level << endl;
-           cout << "Level Number: " << level << endl;
+           //output << "Level Number: " << level << endl;
+           //cout << "Level Number: " << level << endl;
            
            // Don't care about preserving the string.
            gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
@@ -88,33 +90,6 @@ int main(int argc, char *argv[]) {
            // Get and print tag/invalid tag.
            tag = gedcomLine.substr(0, gedcomLine.find(delimiter));
            // Check tag/level
-
-           // BUG FIXED in 582be8b
-           /* BUG: tag recognition doesn't work on Ubuntu/Linux machines. Will be fixed for next project.
-                   Following is debug code from an attempt to find the problem
-              Program works fine on Windows environment.
-
-           cout << tag << endl;
-           output << tag << endl;
-           if(tag.compare("HEAD") == 0)
-             cout << "1" << endl;
-           else
-             cout << "2" << endl;
-
-           if(tag.compare("HEAD ") == 0)
-             cout << "3" << endl;
-           else
-             cout << "4" << endl;
-
-           if(tag.compare("HEAD\n") == 0)
-             cout << "5" << endl;
-           else
-             cout << "6" << endl;
-
-
-           */
-
-           
            if(level == 0) {
                 if(!(tag.compare("HEAD") == 0) && !(tag.compare("TRLR") == 0) && !(tag.compare("NOTE") == 0)) {
                     // Check for/skip xrefid
@@ -288,12 +263,12 @@ int main(int argc, char *argv[]) {
                 tag = "DATE";
            }
            
-           output << "Tag: " << tag << endl;
-           cout << "Tag: " << tag << endl;
+           //output << "Tag: " << tag << endl;
+           //cout << "Tag: " << tag << endl;
            
            // Make output look neat and pretty.
-           output << "---------" << endl;
-           cout << "---------" << endl;
+           //output << "---------" << endl;
+           //cout << "---------" << endl;
     }
     
     //Print people and Family
@@ -314,13 +289,13 @@ int main(int argc, char *argv[]) {
         cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].deathDate << "\t" << endl;
     }
 
-    output << "-----------------------------------------------" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
     output << "Family" << endl;
-    output << "-----------------------------------------------" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
     
-    cout << "-----------------------------------------------" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
     cout << "Family" << endl;
-    cout << "-----------------------------------------------" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
     
     output << "ID\tUID\tHusb\t\tWife\t\tMarry\t\tDiv\t" << endl;
     cout << "ID\tUID\tHusb\t\tWife\t\tMarry\t\tDiv\t" << endl;

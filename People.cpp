@@ -16,6 +16,7 @@ class People {
          string sex;
          bool birthFlag;
          bool deathFlag;
+         int age;
          
          bool sexFlag;
          num_date birthInt;

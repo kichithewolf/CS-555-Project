@@ -12,6 +12,8 @@ GEDCOM Project
 #include "Family.cpp"
 #include "Dates.h"
 
+#define CURRYEAR 2016
+
 using namespace std;
 
 int monthToInteger(string monthString) {
@@ -271,6 +273,28 @@ int main(int argc, char *argv[]) {
            //cout << "---------" << endl;
     }
     
+    //List dead people - please keep this before printing people
+    output << "-----------------------------------------------" << endl;
+    output << "Hall of the Dead" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "Hall of the Dead" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfPeople; i++) {
+            //If the death date is filled in then person is dead.
+            if(listPeople[i].deathDate[0] != '\0') {
+                output << listPeople[i].peopleName << endl;
+                cout << listPeople[i].peopleName << endl;
+                //Also calculate age
+                listPeople[i].age = listPeople[i].deathInt.year - listPeople[i].birthInt.year;
+            } else {
+                //Calculate age if not dead
+                listPeople[i].age = CURRYEAR - listPeople[i].birthInt.year;
+            }
+    }
+    
     //Print people and Family
 
     output << "-----------------------------------------------" << endl;
@@ -281,12 +305,12 @@ int main(int argc, char *argv[]) {
     cout << "People" << endl;
     cout << "-----------------------------------------------" << endl;
     
-    output << "ID\tUID\tName\tSex\tDeath\t" << endl;
-    cout << "ID\tUID\tName\t\tSex\tDeath\t" << endl;
+    output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
+    cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
     
     for(int i = 0; i < numOfPeople; i++) {
-        output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].deathDate << "\t" << endl;
-        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].deathDate << "\t" << endl;
+        output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t" << listPeople[i].birthDate << "\t" << listPeople[i].deathDate << endl;
+        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t" << listPeople[i].birthDate << "\t" << listPeople[i].deathDate << endl;
     }
 
     output << "-----------------------------------------------------------------------------" << endl;

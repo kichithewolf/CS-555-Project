@@ -1,24 +1,34 @@
 -----------------------------------------------
+Hall of the Dead
+-----------------------------------------------
+Scott /Aldrin/
+Paw /Revere/
+Hafta /Gough/
+Stacy /Blade/
+Santa /Claws/
+David /Blade/
+Sarah /Blade/
+-----------------------------------------------
 People
 -----------------------------------------------
-ID	UID	Name	Sex	Death	
-0	@I1@	Seymour /Butz/	M		
-1	@I2@	Larry /Butz/	F		
-2	@I3@	Katie /Aldrin/	F		
-3	@I4@	Fuzz /Aldrin/	M		
-4	@I5@	Pawkeye /Gough/	F		
-5	@I6@	Adam /Aldrin/	M		
-6	@I7@	Lara /Butz/	F		
-7	@I8@	Scott /Aldrin/	M	10 MAY 1999	
-8	@I9@	Paw /Revere/	M	19 APR 1998	
-9	@I10@	Hafta /Gough/	M	20 DEC 1995	
-10	@I11@	Stacy /Blade/	F	12 MAY 2000	
-11	@I12@	Santa /Claws/	F	12 APR 2000	
-12	@I13@	Paw /Revere/	F		
-13	@I14@	Mary /Aldrin/	F		
-14	@I15@	Mike /Aldrin/	M		
-15	@I16@	David /Blade/	M	8 NOV 1939	
-16	@I17@	Sarah /Blade/	F	9 JUL 1950	
+ID	UID	Name	Sex	Age	Birth		Death
+0	@I1@	Seymour /Butz/	M	15	6 FEB 2001	
+1	@I2@	Larry /Butz/	F	38	3 JUN 1978	
+2	@I3@	Katie /Aldrin/	F	36	20 JUN 1980	
+3	@I4@	Fuzz /Aldrin/	M	64	11 FEB 1952	
+4	@I5@	Pawkeye /Gough/	F	62	4 OCT 1954	
+5	@I6@	Adam /Aldrin/	M	38	11 DEC 1978	
+6	@I7@	Lara /Butz/	F	13	7 MAR 2003	
+7	@I8@	Scott /Aldrin/	M	66	15 NOV 1933	10 MAY 1999
+8	@I9@	Paw /Revere/	M	66	18 APR 1932	19 APR 1998
+9	@I10@	Hafta /Gough/	M	70	6 AUG 1925	20 DEC 1995
+10	@I11@	Stacy /Blade/	F	71	9 MAR 1929	12 MAY 2000
+11	@I12@	Santa /Claws/	F	23	9 MAR 1977	12 APR 2000
+12	@I13@	Paw /Revere/	F	37	30 OCT 1979	
+13	@I14@	Mary /Aldrin/	F	19	18 MAY 1997	
+14	@I15@	Mike /Aldrin/	M	7	26 NOV 2009	
+15	@I16@	David /Blade/	M	49	1 FEB 1890	8 NOV 1939
+16	@I17@	Sarah /Blade/	F	60	10 JUL 1890	9 JUL 1950
 -----------------------------------------------------------------------------
 Family
 -----------------------------------------------------------------------------

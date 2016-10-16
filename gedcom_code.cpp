@@ -357,13 +357,24 @@ int main(int argc, char *argv[]) {
 				}
 			}
         	
-        	// Must be born before marriage
+        	// Must be born before marriage and must be at least 14 years old
         	if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
                if(listFamily[i].marryInt.year != 0) {
                   if(listPeople[j].birthInt.year > listFamily[i].marryInt.year || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listPeople[j].birthInt.month > listFamily[i].marryInt.month) || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listFamily[i].marryInt.month == listPeople[j].birthInt.month && listPeople[j].birthInt.day > listFamily[i].marryInt.day)) {
                       output << "Error: Birth is after Husband's marriage in family: " << listFamily[i].familyID << endl;
                       cout << "Error: Birth is after Husband's marriage in family: " << listFamily[i].familyID << endl;
                   }
+                  if(listFamily[i].marryInt.month < listPeople[j].birthInt.month) {
+                  	  if (listFamily[i].marryInt.year - listPeople[j].birthInt.year - 1 < 14) {
+                  	  	output << "Error: Marriage is before Husband's 14th birthday: " << listFamily[i].familyID << endl;
+                      	cout << "Error: Marriage is before Husband's 14th birthday: " << listFamily[i].familyID << endl;
+					}
+				  } else {
+				  	if (listFamily[i].marryInt.year - listPeople[j].birthInt.year < 14) {
+                  	  	output << "Error: Marriage is before Husband's 14th birthday: " << listFamily[i].familyID << endl;
+                      	cout << "Error: Marriage is before Husband's 14th birthday: " << listFamily[i].familyID << endl;
+					}
+				  }
                }
             }
             if(listFamily[i].waifuID == listPeople[j].uniqueID) {
@@ -372,6 +383,17 @@ int main(int argc, char *argv[]) {
                       output << "Error: Birth is after Wife's marriage in family: " << listFamily[i].familyID << endl;
                       cout << "Error: Birth is after Wife's marriage in family: " << listFamily[i].familyID << endl;
                   }
+                  if(listFamily[i].marryInt.month < listPeople[j].birthInt.month) {
+                  	  if (listFamily[i].marryInt.year - listPeople[j].birthInt.year - 1 < 14) {
+                  	  	output << "Error: Marriage is before Wife's 14th birthday: " << listFamily[i].familyID << endl;
+                      	cout << "Error: Marriage is before Wife's 14th birthday: " << listFamily[i].familyID << endl;
+					}
+				  } else {
+				  	if (listFamily[i].marryInt.year - listPeople[j].birthInt.year < 14) {
+                  	  	output << "Error: Marriage is before Wife's 14th birthday: " << listFamily[i].familyID << endl;
+                      	cout << "Error: Marriage is before Wife's 14th birthday: " << listFamily[i].familyID << endl;
+					}
+				  }
                }
             }
         	

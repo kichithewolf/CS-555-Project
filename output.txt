@@ -9,6 +9,11 @@ Santa /Claws/
 David /Blade/
 Sarah /Blade/
 -----------------------------------------------
+Hall of the Living and Married
+-----------------------------------------------
+Fuzz /Aldrin/
+Pawkeye /Gough/
+-----------------------------------------------
 People
 -----------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
@@ -45,7 +50,9 @@ Errors
 -----------------------------------------------
 Error: Marriage is after divorce in family: @F1@
 Error: Husband is not a Male in family: @F1@
+Error: Marriage is before Husband's 14th birthday: @F2@
 Error: Birth is after Wife's marriage in family: @F2@
+Error: Marriage is before Wife's 14th birthday: @F2@
 Error: Marriage is after divorce in family: @F3@
 Error: Wife is not a Female in family: @F3@
 Error: Divorce is after Husband's death in family: @F4@

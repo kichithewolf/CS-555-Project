@@ -295,6 +295,30 @@ int main(int argc, char *argv[]) {
             }
     }
     
+    //List living and married people - please keep this before printing people
+    output << "-----------------------------------------------" << endl;
+    output << "Hall of the Living and Married" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "Hall of the Living and Married" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfFamilies; i++) {
+            //If married but not divorced
+            if((listFamily[i].marryDate[0] != '\0') && (listFamily[i].divDate[0] == '\0')){           
+                for(int j = 0; j < numOfPeople; j++){
+                        if((listFamily[i].husbandoID == listPeople[j].uniqueID) || (listFamily[i].waifuID == listPeople[j].uniqueID)){
+                               //If alive                           
+                               if(listPeople[j].deathDate[0] == '\0') {
+                                   output << listPeople[j].peopleName << endl;
+                                   cout << listPeople[j].peopleName << endl;
+                                   }
+                        }
+                }
+            }           
+    }
+    
     //Print people and Family
 
     output << "-----------------------------------------------" << endl;
@@ -326,7 +350,7 @@ int main(int argc, char *argv[]) {
 
     for(int i = 0; i < numOfFamilies; i++) {
         output << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
-        cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate <<endl;
+        cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
     }
     
     //Error checking for gedcom file.

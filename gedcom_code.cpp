@@ -308,6 +308,31 @@ int main(int argc, char *argv[]) {
             }
     }
     
+    //List living and married people - please keep this before printing people
+    output << "-----------------------------------------------" << endl;
+    output << "Hall of the Living and Married" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "Hall of the Living and Married" << endl;
+    cout << "-----------------------------------------------" << endl;
+    //these loops and ifs are horrendous... im sorry.
+    for(int i = 0; i < numOfFamilies; i++) {
+            //show married but not divorced
+            if((listFamily[i].marryDate[0] != '\0') && (listFamily[i].divDate[0] == '\0')){           
+                for(int j = 0; j < numOfPeople; j++){
+                        //show both husband and wife
+                        if((listFamily[i].husbandoID == listPeople[j].uniqueID) || (listFamily[i].waifuID == listPeople[j].uniqueID)){
+                               //show only if alive                           
+                               if(listPeople[j].deathDate[0] == '\0') {
+                                   output << listPeople[j].peopleName << endl;
+                                   cout << listPeople[j].peopleName << endl;
+                                   }
+                        }
+                }
+            }           
+    }
+    
     //Print people and Family
 
     output << "-----------------------------------------------" << endl;
@@ -339,7 +364,7 @@ int main(int argc, char *argv[]) {
 
     for(int i = 0; i < numOfFamilies; i++) {
         output << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
-        cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate <<endl;
+        cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
     }
     
     //Error checking for gedcom file.
@@ -351,8 +376,8 @@ int main(int argc, char *argv[]) {
     cout << "-----------------------------------------------" << endl;
     cout << "Errors" << endl;
     cout << "-----------------------------------------------" << endl;
-	
-	for(int i = 0; i < numOfFamilies; i++) {    	
+    
+    for(int i = 0; i < numOfFamilies; i++) {
         // Must marry before divorce
         if(listFamily[i].divInt.year != 0) {
            if(listFamily[i].marryInt.year > listFamily[i].divInt.year || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month > listFamily[i].divInt.month) || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month == listFamily[i].divInt.month && listFamily[i].marryInt.day > listFamily[i].divInt.day)) {
@@ -362,6 +387,13 @@ int main(int argc, char *argv[]) {
         }
 		
         for(int j = 0; j < numOfPeople; j++) {
+        	//Age must be less than 150 years old
+        	if(listPeople[j].age > 149) {
+	            output << "Error: " << listPeople[j].peopleName << "'s age is bigger than 150 (" << listPeople[j].age << ")" << endl;
+	            cout << "Error: " << listPeople[j].peopleName << "'s age is bigger than 150 (" << listPeople[j].age << ")" << endl;
+	        }
+         
+         	//Cannot Marry if currently married
         	if(listFamily[i].husbandoID == listPeople[j].uniqueID && listFamily[i].marryInt.year != 0) {
 				families[listPeople[j].uniqueID].push_back(listFamily[i]);
 				it = families.find(listPeople[j].uniqueID);

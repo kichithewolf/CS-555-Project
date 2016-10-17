@@ -48,15 +48,15 @@ ID	UID	Husb		Wife		Marry		Div
 -----------------------------------------------
 Errors
 -----------------------------------------------
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error: Marriage is after divorce in family: @F1@
-Error: Husband is not a Male in family: @F1@
-Error: Marriage is before Husband's 14th birthday: @F2@
-Error: Birth is after Wife's marriage in family: @F2@
-Error: Marriage is before Wife's 14th birthday: @F2@
-Error: Marriage is after divorce in family: @F3@
-Error: Wife is not a Female in family: @F3@
-Error: Divorce is after Husband's death in family: @F4@
-Error: Marriage is after Husband's death in family: @F7@
-Error: Marriage is after Wife's death in family: @F7@
+Error 07: Seymour /Butz/'s age is bigger than 150 (215)
+Error 07: Scott /Aldrin/'s age is bigger than 150 (266)
+Error 04: Marriage is after divorce in family: @F1@
+Error 21: Husband is not a Male in family: @F1@
+Error 10: Marriage is before Husband's 14th birthday: @F2@
+Error 02: Birth is after Wife's marriage in family: @F2@
+Error 10: Marriage is before Wife's 14th birthday: @F2@
+Error 04: Marriage is after divorce in family: @F3@
+Error 21: Wife is not a Female in family: @F3@
+Error 06: Divorce is after Husband's death in family: @F4@
+Error 05: Marriage is after Husband's death in family: @F7@
+Error 05: Marriage is after Wife's death in family: @F7@

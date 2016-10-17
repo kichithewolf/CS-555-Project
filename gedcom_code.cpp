@@ -288,11 +288,11 @@ int main(int argc, char *argv[]) {
     
     //List dead people - please keep this before printing people (US29)
     output << "-----------------------------------------------" << endl;
-    output << "Hall of the Dead" << endl;
+    output << "US29: Hall of the Dead" << endl;
     output << "-----------------------------------------------" << endl;
     
     cout << "-----------------------------------------------" << endl;
-    cout << "Hall of the Dead" << endl;
+    cout << "US29: Hall of the Dead" << endl;
     cout << "-----------------------------------------------" << endl;
     
     for(int i = 0; i < numOfPeople; i++) {
@@ -310,11 +310,11 @@ int main(int argc, char *argv[]) {
     
     //List living and married people - please keep this before printing people (US30)
     output << "-----------------------------------------------" << endl;
-    output << "Hall of the Living and Married" << endl;
+    output << "US30: Hall of the Living and Married" << endl;
     output << "-----------------------------------------------" << endl;
     
     cout << "-----------------------------------------------" << endl;
-    cout << "Hall of the Living and Married" << endl;
+    cout << "US30: Hall of the Living and Married" << endl;
     cout << "-----------------------------------------------" << endl;
     //these loops and ifs are horrendous... im sorry.
     for(int i = 0; i < numOfFamilies; i++) {
@@ -335,13 +335,13 @@ int main(int argc, char *argv[]) {
     
     //Print people and Family
 
-    output << "-----------------------------------------------" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
     output << "People" << endl;
-    output << "-----------------------------------------------" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
     
-    cout << "-----------------------------------------------" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
     cout << "People" << endl;
-    cout << "-----------------------------------------------" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
     
     output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
     cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
@@ -389,8 +389,8 @@ int main(int argc, char *argv[]) {
         for(int j = 0; j < numOfPeople; j++) {
         	//Age must be less than 150 years old
         	if(listPeople[j].age > 149) {
-	            output << "Error: " << listPeople[j].peopleName << "'s age is bigger than 150 (" << listPeople[j].age << ")" << endl;
-	            cout << "Error: " << listPeople[j].peopleName << "'s age is bigger than 150 (" << listPeople[j].age << ")" << endl;
+	            output << "Error 07: " << listPeople[j].peopleName << "'s age is bigger than 150 (" << listPeople[j].age << ")" << endl;
+	            cout << "Error 07: " << listPeople[j].peopleName << "'s age is bigger than 150 (" << listPeople[j].age << ")" << endl;
 	        }
          
          	//Cannot Marry if currently married
@@ -404,13 +404,13 @@ int main(int argc, char *argv[]) {
 						Family currentFam = listFamily[i];
 						if(checkIfBefore(currentFam.marryInt, otherFam.marryInt)) {
 							if(currentFam.divInt.year == 0 || !checkIfBefore(currentFam.divInt, otherFam.marryInt)){
-								output << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
-                 				cout << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+								output << "Error 11: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error 11: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
 							}
 						} else {
 							if(otherFam.divInt.year == 0 || !checkIfBefore(otherFam.divInt, currentFam.marryInt)){
-								output << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
-                 				cout << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+								output << "Error 11: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error 11: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
 							}
 						}
 					}
@@ -426,13 +426,13 @@ int main(int argc, char *argv[]) {
 						Family currentFam = listFamily[i];
 						if(checkIfBefore(currentFam.marryInt, otherFam.marryInt)) {
 							if(currentFam.divInt.year == 0 || !checkIfBefore(currentFam.divInt, otherFam.marryInt)){
-								output << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
-                 				cout << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+								output << "Error 11: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error 11: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
 							}
 						} else {
 							if(otherFam.divInt.year == 0 || !checkIfBefore(otherFam.divInt, currentFam.marryInt)){
-								output << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
-                 				cout << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+								output << "Error 11: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error 11: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
 							}
 						}
 					}

@@ -8,6 +8,10 @@ GEDCOM Project
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <map>
+#include <list>
+#include <sstream>
+#include <vector>
 #include "People.cpp"
 #include "Family.cpp"
 #include "Dates.h"
@@ -23,6 +27,12 @@ int monthToInteger(string monthString) {
                            return (i+1);
             }
     }
+}
+
+bool checkIfBefore(num_date date1, num_date date2) {
+	if (date1.year > date2.year || (date1.year == date2.year && date1.month > date2.month) || (date1.year == date2.year && date1.month == date2.month && date1.day > date2.day))
+		return false;
+	return true;
 }
 
 int main(int argc, char *argv[]) {
@@ -41,6 +51,9 @@ int main(int argc, char *argv[]) {
     //Will need to count #of People/Families for output later.
     int numOfPeople = 0;
     int numOfFamilies = 0;
+    map<string, string> familyNames;
+    map<string, list<Family> > families;
+    map<string, list<Family> >::iterator it;
     
     output.open("output.txt");
     
@@ -338,8 +351,8 @@ int main(int argc, char *argv[]) {
     cout << "-----------------------------------------------" << endl;
     cout << "Errors" << endl;
     cout << "-----------------------------------------------" << endl;
-    
-    for(int i = 0; i < numOfFamilies; i++) {
+	
+	for(int i = 0; i < numOfFamilies; i++) {    	
         // Must marry before divorce
         if(listFamily[i].divInt.year != 0) {
            if(listFamily[i].marryInt.year > listFamily[i].divInt.year || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month > listFamily[i].divInt.month) || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month == listFamily[i].divInt.month && listFamily[i].marryInt.day > listFamily[i].divInt.day)) {
@@ -349,6 +362,71 @@ int main(int argc, char *argv[]) {
         }
 		
         for(int j = 0; j < numOfPeople; j++) {
+        	if(listFamily[i].husbandoID == listPeople[j].uniqueID && listFamily[i].marryInt.year != 0) {
+				families[listPeople[j].uniqueID].push_back(listFamily[i]);
+				it = families.find(listPeople[j].uniqueID);
+				if(it != families.end()) {
+					list<Family> famList = families.find(listPeople[j].uniqueID)->second;
+					for(list<Family>::iterator it2 = famList.begin(); it2 != famList.end(); it2++) {
+						Family otherFam = *it2;
+						Family currentFam = listFamily[i];
+						if(checkIfBefore(currentFam.marryInt, otherFam.marryInt)) {
+							if(currentFam.divInt.year == 0 || !checkIfBefore(currentFam.divInt, otherFam.marryInt)){
+								output << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+							}
+						} else {
+							if(otherFam.divInt.year == 0 || !checkIfBefore(otherFam.divInt, currentFam.marryInt)){
+								output << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error: Husband remarried during another marriage: " << listFamily[i].familyID << endl;
+							}
+						}
+					}
+				}
+			}
+			if(listFamily[i].waifuID == listPeople[j].uniqueID && listFamily[i].marryInt.year != 0) {
+				families[listPeople[j].uniqueID].push_back(listFamily[i]);
+				it = families.find(listPeople[j].uniqueID);
+				if(it != families.end()) {
+					list<Family> famList = families.find(listPeople[j].uniqueID)->second;
+					for(list<Family>::iterator it2 = famList.begin(); it2 != famList.end(); it2++) {
+						Family otherFam = *it2;
+						Family currentFam = listFamily[i];
+						if(checkIfBefore(currentFam.marryInt, otherFam.marryInt)) {
+							if(currentFam.divInt.year == 0 || !checkIfBefore(currentFam.divInt, otherFam.marryInt)){
+								output << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+							}
+						} else {
+							if(otherFam.divInt.year == 0 || !checkIfBefore(otherFam.divInt, currentFam.marryInt)){
+								output << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+                 				cout << "Error: Wife remarried during another marriage: " << listFamily[i].familyID << endl;
+							}
+						}
+					}
+				}
+			}
+//        	//Males in the same family must have same last name
+//        	if(listPeople[j].sexFlag){
+//        		cout <<"found " << listPeople[j].peopleName <<"; famid: " << listFamily[i].familyID << endl;
+//        		vector<string> name;
+//        		istringstream iss(listPeople[j].peopleName);
+//        		string temp;
+//        		while(iss >> temp) name.push_back(temp);
+//        		string lastName = name.back();
+//        		cout << "found male: " << name.front()<< lastName << " with key " << listFamily[i].familyID << endl;
+//        		if (familyNames.count(listFamily[i].familyID) == 0){
+//        			cout << "added name to samily names: " << name.front()<< lastName << " with key " << listFamily[i].IDNumber << endl;
+//					familyNames[listFamily[i].familyID] = lastName;
+//				} else {
+//					if(familyNames.find(listFamily[i].familyID)->second != lastName) {
+//						cout << "last name: " << lastName << "; family name: " << familyNames.find(listFamily[i].IDNumber)->second << endl;
+//						output << "Error: Male last name different from family: " << listFamily[i].familyID << endl;
+//                 		cout << "Error: Male last name different from family: " << listFamily[i].familyID << endl;
+//					}
+//				}
+//			}
+        	
         	//Must be born before dying
         	if(listPeople[j].deathInt.year != 0) {
         		if(listPeople[j].birthInt.year > listPeople[j].deathInt.year || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month > listPeople[j].deathInt.month) || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month == listPeople[j].deathInt.month && listPeople[j].birthInt.day > listPeople[j].deathInt.day)) {
@@ -357,7 +435,7 @@ int main(int argc, char *argv[]) {
 				}
 			}
         	
-        	// Must be born before marriage and must be at least 14 years old
+        	// Must be born at least 14 years before marriage
         	if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
                if(listFamily[i].marryInt.year != 0) {
                   if(listPeople[j].birthInt.year > listFamily[i].marryInt.year || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listPeople[j].birthInt.month > listFamily[i].marryInt.month) || (listFamily[i].marryInt.year == listPeople[j].birthInt.year && listFamily[i].marryInt.month == listPeople[j].birthInt.month && listPeople[j].birthInt.day > listFamily[i].marryInt.day)) {

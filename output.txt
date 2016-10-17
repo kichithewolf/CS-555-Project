@@ -17,14 +17,14 @@ Pawkeye /Gough/
 People
 -----------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
-0	@I1@	Seymour /Butz/	M	15	6 FEB 2001	
+0	@I1@	Seymour /Butz/	M	215	6 FEB 1801	
 1	@I2@	Larry /Butz/	F	38	3 JUN 1978	
 2	@I3@	Katie /Aldrin/	F	36	20 JUN 1980	
 3	@I4@	Fuzz /Aldrin/	M	64	11 FEB 1952	
 4	@I5@	Pawkeye /Gough/	F	62	4 OCT 1954	
 5	@I6@	Adam /Aldrin/	M	38	11 DEC 1978	
 6	@I7@	Lara /Butz/	F	13	7 MAR 2003	
-7	@I8@	Scott /Aldrin/	M	66	15 NOV 1933	10 MAY 1999
+7	@I8@	Scott /Aldrin/	M	266	15 NOV 1733	10 MAY 1999
 8	@I9@	Paw /Revere/	M	66	18 APR 1932	19 APR 1998
 9	@I10@	Hafta /Gough/	M	70	6 AUG 1925	20 DEC 1995
 10	@I11@	Stacy /Blade/	F	71	9 MAR 1929	12 MAY 2000
@@ -48,6 +48,8 @@ ID	UID	Husb		Wife		Marry		Div
 -----------------------------------------------
 Errors
 -----------------------------------------------
+Error: Seymour /Butz/'s age is bigger than 150 (215)
+Error: Scott /Aldrin/'s age is bigger than 150 (266)
 Error: Marriage is after divorce in family: @F1@
 Error: Husband is not a Male in family: @F1@
 Error: Marriage is before Husband's 14th birthday: @F2@

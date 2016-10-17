@@ -303,13 +303,14 @@ int main(int argc, char *argv[]) {
     cout << "-----------------------------------------------" << endl;
     cout << "Hall of the Living and Married" << endl;
     cout << "-----------------------------------------------" << endl;
-    
+    //these loops and ifs are horrendous... im sorry.
     for(int i = 0; i < numOfFamilies; i++) {
-            //If married but not divorced
+            //show married but not divorced
             if((listFamily[i].marryDate[0] != '\0') && (listFamily[i].divDate[0] == '\0')){           
                 for(int j = 0; j < numOfPeople; j++){
+                        //show both husband and wife
                         if((listFamily[i].husbandoID == listPeople[j].uniqueID) || (listFamily[i].waifuID == listPeople[j].uniqueID)){
-                               //If alive                           
+                               //show only if alive                           
                                if(listPeople[j].deathDate[0] == '\0') {
                                    output << listPeople[j].peopleName << endl;
                                    cout << listPeople[j].peopleName << endl;
@@ -363,7 +364,17 @@ int main(int argc, char *argv[]) {
     cout << "Errors" << endl;
     cout << "-----------------------------------------------" << endl;
     
+    for(int i = 0; i < numOfPeople; i++) {
+         //Age must be less than 150 years old
+         if(listPeople[i].age > 149) {
+            output << "Error: " << listPeople[i].peopleName << "'s age is bigger than 150 (" << listPeople[i].age << ")" << endl;
+            cout << "Error: " << listPeople[i].peopleName << "'s age is bigger than 150 (" << listPeople[i].age << ")" << endl;
+         }
+    }
+    
     for(int i = 0; i < numOfFamilies; i++) {
+            
+            
         // Must marry before divorce
         if(listFamily[i].divInt.year != 0) {
            if(listFamily[i].marryInt.year > listFamily[i].divInt.year || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month > listFamily[i].divInt.month) || (listFamily[i].marryInt.year == listFamily[i].divInt.year && listFamily[i].marryInt.month == listFamily[i].divInt.month && listFamily[i].marryInt.day > listFamily[i].divInt.day)) {

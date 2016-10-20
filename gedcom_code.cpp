@@ -462,7 +462,7 @@ int main(int argc, char *argv[]) {
         	//Must be born before dying
         	if(listPeople[j].deathInt.year != 0) {
         		if(listPeople[j].birthInt.year > listPeople[j].deathInt.year || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month > listPeople[j].deathInt.month) || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month == listPeople[j].deathInt.month && listPeople[j].birthInt.day > listPeople[j].deathInt.day)) {
-					output << "Error 03: Birth is after death: " << listPeople[j].uniqueID << endl;
+					cout << "Error 03: Birth is after death: " << listPeople[j].uniqueID << endl;
 					output << "Error 03: Birth is after death: " << listPeople[j].uniqueID << endl;
 				}
 			}
@@ -506,7 +506,7 @@ int main(int argc, char *argv[]) {
 				  }
                }
             }
-        	
+    	    
         	// Must marry before death
         	if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
                if(listPeople[j].deathInt.year != 0) {

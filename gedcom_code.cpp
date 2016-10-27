@@ -17,6 +17,8 @@ GEDCOM Project
 #include "Dates.h"
 
 #define CURRYEAR 2016
+#define CURRMONTH 10
+#define CURRDAY 27
 
 using namespace std;
 
@@ -54,6 +56,7 @@ int main(int argc, char *argv[]) {
     map<string, string> familyNames;
     map<string, list<Family> > families;
     map<string, list<Family> >::iterator it;
+    //Current date as num_date
     
     output.open("output.txt");
     
@@ -331,6 +334,63 @@ int main(int argc, char *argv[]) {
                         }
                 }
             }           
+    }
+    
+    //List birthdays in next 30 days (US38)
+    output << "-----------------------------------------------" << endl;
+    output << "US38: Upcoming Birthdays" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US38: Upcoming Birthdays" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    num_date tempCurrDate;
+    for(int i = 0; i < numOfPeople; i++) {
+            //If the death date is filled in then person is dead.
+            //This means they can't celebrate!
+            if(listPeople[i].deathDate[0] == '\0') {
+                //Reset date
+                tempCurrDate.day = CURRDAY;
+                tempCurrDate.month = CURRMONTH;
+                tempCurrDate.year = CURRYEAR;
+
+                //Check next 30 days
+                //cout << "NEW TARGET ==================" << endl;
+                //output << "NEW TARGET ==================" << endl;
+                for(int j = 0; j < 30; j++) {
+                        //cout << "TARG DATE: " << listPeople[i].birthInt.month << "-" << listPeople[i].birthInt.day << endl;
+                        //output << "TARG DATE: " << listPeople[i].birthInt.month << "-" << listPeople[i].birthInt.day << endl;
+                        
+                    if((listPeople[i].birthInt.month == tempCurrDate.month && listPeople[i].birthInt.day > tempCurrDate.day)){
+                     //Print name
+                        output << listPeople[i].peopleName << endl;
+                        cout << listPeople[i].peopleName << endl;
+                        break;
+                    } else {
+                        //cout << "TEMP CURR DATE: " << tempCurrDate.month << "-" << tempCurrDate.day << endl;
+                        //output << "TEMP CURR DATE: " << tempCurrDate.month << "-" << tempCurrDate.day << endl;
+                           
+                      //Increment day
+                      tempCurrDate.day++;
+                      //Check month rollover
+                      if(tempCurrDate.month == 2 && tempCurrDate.day > 28) {
+                         tempCurrDate.day = 1;
+                         tempCurrDate.month++;
+                      } else if((tempCurrDate.month == 1 || tempCurrDate.month == 3 || tempCurrDate.month == 5 || tempCurrDate.month == 7 || tempCurrDate.month == 8 || tempCurrDate.month == 10 || tempCurrDate.month == 12)&& tempCurrDate.day > 31) {
+                        tempCurrDate.day = 1;
+                        tempCurrDate.month++;
+                        if(tempCurrDate.month > 12) {
+                           tempCurrDate.year++;
+                           tempCurrDate.month = 1;
+                        }
+                      } else if((tempCurrDate.month == 4 || tempCurrDate.month == 6 || tempCurrDate.month == 9 || tempCurrDate.month == 11) && tempCurrDate.day > 30) {
+                         tempCurrDate.day = 1;
+                         tempCurrDate.month++;
+                      }
+                   }
+                }
+            }
     }
     
     //Print people and Family

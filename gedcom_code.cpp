@@ -131,6 +131,8 @@ int main(int argc, char *argv[]) {
                     } else if((tag.compare("FAM") == 0)) {
                        listFamily[numOfFamilies].IDNumber = numOfFamilies;
                        listFamily[numOfFamilies].familyID = tagHolder;
+                       listFamily[numOfFamilies].numOfChild = 0;
+                       listFamily[numOfFamilies].listChild = new Child[5000];
                        numOfFamilies++; //+1 Family
                     }
 					//cout << "check: " << tag << endl;
@@ -209,6 +211,23 @@ int main(int argc, char *argv[]) {
                                 listFamily[numOfFamilies].waifuID = listPeople[i].uniqueID;
                                 numOfFamilies++; //There has got to be a better way to do this.
                            
+                           }
+                   }
+                } else if((tag.compare("CHIL") == 0)) {
+                   gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                   tagP = gedcomLine.substr(0);
+                   
+                   for(int i = 0; i < numOfPeople; i++) {
+                           if(tagP.compare(listPeople[i].uniqueID) == 0) {
+                                numOfFamilies--; //There has got to be a better way to do this.
+                                
+                                listFamily[numOfFamilies].listChild[listFamily[numOfFamilies].numOfChild].child = listPeople[i].peopleName;
+                                listFamily[numOfFamilies].listChild[listFamily[numOfFamilies].numOfChild].childID = listPeople[i].uniqueID;
+                                //You know what this is way faster and easier.
+                                listFamily[numOfFamilies].listChild[listFamily[numOfFamilies].numOfChild].childBirthday = listPeople[i].birthInt;
+                                listFamily[numOfFamilies].numOfChild++;
+                                
+                                numOfFamilies++; //There has got to be a better way to do this.
                            }
                    }
                 } else if((tag.compare("DIV") == 0)) {
@@ -445,7 +464,28 @@ int main(int argc, char *argv[]) {
                  cout << "Error 04: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
            }
         }
-		
+        
+        //No more than 5 children born on the same day.
+        if(listFamily[i].numOfChild > 5) {
+               //More than 5 kids, check birthdays.
+               int sameBDay = 0;
+               //LOOPS WHY
+               for(int k = 0; k < listFamily[i].numOfChild; k++) {
+                       for(int l = 0; l < listFamily[i].numOfChild; l++) {
+                               //Prevent checking same kid.
+                               if(listFamily[i].listChild[k].childID != listFamily[i].listChild[l].childID) {
+                                   if((listFamily[i].listChild[k].childBirthday.year == listFamily[i].listChild[l].childBirthday.year) && (listFamily[i].listChild[k].childBirthday.month == listFamily[i].listChild[l].childBirthday.month) && (listFamily[i].listChild[k].childBirthday.day == listFamily[i].listChild[l].childBirthday.day)) {
+                                      sameBDay++;
+                                      break;
+                                   }
+                               }
+                       }
+                       
+               }
+               cout << "Error 14: " << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+               output << "Error 14: " << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+        }
+        		
         for(int j = 0; j < numOfPeople; j++) {
         	//Age must be less than 150 years old
         	if(listPeople[j].age > 149) {

@@ -18,6 +18,12 @@ US38: Upcoming Birthdays
 -----------------------------------------------
 Paw /Revere/
 Mike /Aldrin/
+Cero /Aldrin/
+Uno /Aldrin/
+Dos /Aldrin/
+Tres /Aldrin/
+Cuarto /Aldrin/
+Cinco /Aldrin/
 -----------------------------------------------------------------------------
 People
 -----------------------------------------------------------------------------
@@ -29,16 +35,22 @@ ID	UID	Name	Sex	Age	Birth		Death
 4	@I5@	Pawkeye /Gough/	F	62	4 OCT 1954	
 5	@I6@	Adam /Adams/	M	38	11 DEC 1978	
 6	@I7@	Lara /Butz/	F	13	7 MAR 2003	
-7	@I8@	Scott /Aldrin/	M	-33	15 NOV 1933	10 MAY 1900
+7	@I8@	Scott /Aldrin/	M	66	15 NOV 1933	10 MAY 1999
 8	@I9@	Paw /Revere/	F	66	18 APR 1932	19 APR 1998
 9	@I10@	Hafta /Gough/	M	70	6 AUG 1925	20 DEC 1995
 10	@I11@	Stacy /Blade/	F	71	9 MAR 1929	12 MAY 2000
 11	@I12@	Santa /Claws/	F	23	9 MAR 1977	12 APR 2000
 12	@I13@	Paw /Revere/	F	37	30 OCT 1979	
 13	@I14@	Mary /Aldrin/	F	19	18 MAY 1997	
-14	@I15@	Mike /Aldrin/	M	7	26 NOV 2009	
+14	@I15@	Mike /Aldrin/	M	6	26 NOV 2010	
 15	@I16@	David /Blade/	M	49	1 FEB 1890	8 NOV 1939
 16	@I17@	Sarah /Blade/	F	60	10 JUL 1890	9 JUL 1950
+17	@I18@	Cero /Aldrin/	F	7	26 NOV 2009	
+18	@I19@	Uno /Aldrin/	F	7	26 NOV 2009	
+19	@I20@	Dos /Aldrin/	F	7	26 NOV 2009	
+20	@I21@	Tres /Aldrin/	F	7	26 NOV 2009	
+21	@I22@	Cuarto /Aldrin/	F	7	26 NOV 2009	
+22	@I23@	Cinco /Aldrin/	F	7	26 NOV 2009	
 -----------------------------------------------------------------------------
 Family
 -----------------------------------------------------------------------------
@@ -54,23 +66,15 @@ ID	UID	Husb		Wife		Marry		Div
 Errors
 -----------------------------------------------
 Error 04: Marriage is after divorce in family: @F1@
-Error 03: Birth is after death: @I8@
 Error 11: Husband remarried during another marriage: @F2@
 Error 10: Marriage is before Husband's 14th birthday: @F2@
 Error 11: Wife remarried during another marriage: @F2@
 Error 02: Birth is after Wife's marriage in family: @F2@
 Error 10: Marriage is before Wife's 14th birthday: @F2@
-Error 03: Birth is after death: @I8@
 Error 04: Marriage is after divorce in family: @F3@
-Error 03: Birth is after death: @I8@
-Error 05: Marriage is after Husband's death in family: @F3@
-Error 06: Divorce is after Husband's death in family: @F3@
-Error 03: Birth is after death: @I8@
 Error 11: Husband remarried during another marriage: @F4@
 Error 11: Wife remarried during another marriage: @F4@
-Error 03: Birth is after death: @I8@
-Error 03: Birth is after death: @I8@
-Error 03: Birth is after death: @I8@
+Error 14: 6 kids born at same time in @F5@
 Error 11: Husband remarried during another marriage: @F7@
 Error 05: Marriage is after Husband's death in family: @F7@
 Error 11: Wife remarried during another marriage: @F7@

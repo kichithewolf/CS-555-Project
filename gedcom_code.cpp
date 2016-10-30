@@ -19,7 +19,7 @@ GEDCOM Project
 
 #define CURRYEAR 2016
 #define CURRMONTH 10
-#define CURRDAY 27
+#define CURRDAY 30
 
 using namespace std;
 
@@ -356,6 +356,31 @@ int main(int argc, char *argv[]) {
             }           
     }
     
+    //List living and single people - please keep this before printing people (US31)
+    output << "-----------------------------------------------" << endl;
+    output << "US31: Hall of the Living and Single" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US31: Hall of the Living and Single" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfPeople; i++) {
+            //if person was ever husband or wife, set the married flag
+            bool mFlag = false;
+            for(int j = 0; j < numOfFamilies; j++)
+                    if((listFamily[j].husbandoID == listPeople[i].uniqueID) || (listFamily[j].waifuID == listPeople[i].uniqueID))
+                           mFlag = true;       
+            //show people that did set have the married flag
+            if(!(mFlag)) {             
+                    //output alive and over 30             
+                    if((listPeople[i].deathDate[0] == '\0') && (listPeople[i].age > 30)) {
+                           output << listPeople[i].peopleName << endl;
+                           cout << listPeople[i].peopleName << endl;
+                    }
+            }
+    }
+    
     //List birthdays in next 30 days (US38)
     output << "-----------------------------------------------" << endl;
     output << "US38: Upcoming Birthdays" << endl;
@@ -447,13 +472,13 @@ int main(int argc, char *argv[]) {
         cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
     }
     
-    // List Recent Births, (people born in the last 30 days)
+    // List Recent Births, Recent Deaths (people born and people who died in the last 30 days)
     output << "-----------------------------------------------------------------------------" << endl;
-    output << "Recent Births" << endl;
+    output << "Recent Births and Deaths (within last 30 days)" << endl;
     output << "-----------------------------------------------------------------------------" << endl;
     
     cout << "-------------------------------------------------------------------------------" << endl;
-    cout << "Recent Births" << endl;
+    cout << "Recent Births and Deaths (within last 30 days)" << endl;
     cout << "-------------------------------------------------------------------------------" << endl;
     
     output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
@@ -475,9 +500,13 @@ int main(int argc, char *argv[]) {
     	monthBefore.month = now->tm_mon + 1;
     	monthBefore.year = now->tm_year + 1900;
 		if(checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore)) {
-			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t" << listPeople[i].birthDate << "\t" << listPeople[i].deathDate << endl;
-	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t" << listPeople[i].birthDate << "\t" << listPeople[i].deathDate << endl;
-	    }	
+			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+         }
+        if(checkIfBefore(listPeople[i].deathInt, current) && !checkIfBefore(listPeople[i].deathInt, monthBefore)) {
+			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t " << listPeople[i].birthDate << "\t(" << listPeople[i].deathDate << ")" << endl;
+	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t " << listPeople[i].birthDate << "\t(" << listPeople[i].deathDate << ")" << endl;
+         }	
     }
     
     //Error checking for gedcom file. Error # corresponds to User Story Requirement

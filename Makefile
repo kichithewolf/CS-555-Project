@@ -1,5 +1,5 @@
 NAME = gedprogram
-SRC =  Family.cpp People.cpp gedcom_code.cpp
+SRC =  Child.cpp Family.cpp People.cpp gedcom_code.cpp 
 OBJ = $(SRC:.c=.o)
 RM = rm -f
 

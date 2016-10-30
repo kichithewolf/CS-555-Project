@@ -18,6 +18,8 @@ GEDCOM Project
 #include "Dates.h"
 
 #define CURRYEAR 2016
+#define CURRMONTH 10
+#define CURRDAY 27
 
 using namespace std;
 
@@ -130,6 +132,8 @@ int main(int argc, char *argv[]) {
                     } else if((tag.compare("FAM") == 0)) {
                        listFamily[numOfFamilies].IDNumber = numOfFamilies;
                        listFamily[numOfFamilies].familyID = tagHolder;
+                       listFamily[numOfFamilies].numOfChild = 0;
+                       listFamily[numOfFamilies].listChild = new Child[5000];
                        numOfFamilies++; //+1 Family
                     }
 					//cout << "check: " << tag << endl;
@@ -208,6 +212,23 @@ int main(int argc, char *argv[]) {
                                 listFamily[numOfFamilies].waifuID = listPeople[i].uniqueID;
                                 numOfFamilies++; //There has got to be a better way to do this.
                            
+                           }
+                   }
+                } else if((tag.compare("CHIL") == 0)) {
+                   gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                   tagP = gedcomLine.substr(0);
+                   
+                   for(int i = 0; i < numOfPeople; i++) {
+                           if(tagP.compare(listPeople[i].uniqueID) == 0) {
+                                numOfFamilies--; //There has got to be a better way to do this.
+                                
+                                listFamily[numOfFamilies].listChild[listFamily[numOfFamilies].numOfChild].child = listPeople[i].peopleName;
+                                listFamily[numOfFamilies].listChild[listFamily[numOfFamilies].numOfChild].childID = listPeople[i].uniqueID;
+                                //You know what this is way faster and easier.
+                                listFamily[numOfFamilies].listChild[listFamily[numOfFamilies].numOfChild].childBirthday = listPeople[i].birthInt;
+                                listFamily[numOfFamilies].numOfChild++;
+                                
+                                numOfFamilies++; //There has got to be a better way to do this.
                            }
                    }
                 } else if((tag.compare("DIV") == 0)) {
@@ -335,6 +356,63 @@ int main(int argc, char *argv[]) {
             }           
     }
     
+    //List birthdays in next 30 days (US38)
+    output << "-----------------------------------------------" << endl;
+    output << "US38: Upcoming Birthdays" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US38: Upcoming Birthdays" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    num_date tempCurrDate;
+    for(int i = 0; i < numOfPeople; i++) {
+            //If the death date is filled in then person is dead.
+            //This means they can't celebrate!
+            if(listPeople[i].deathDate[0] == '\0') {
+                //Reset date
+                tempCurrDate.day = CURRDAY;
+                tempCurrDate.month = CURRMONTH;
+                tempCurrDate.year = CURRYEAR;
+
+                //Check next 30 days
+                //cout << "NEW TARGET ==================" << endl;
+                //output << "NEW TARGET ==================" << endl;
+                for(int j = 0; j < 30; j++) {
+                        //cout << "TARG DATE: " << listPeople[i].birthInt.month << "-" << listPeople[i].birthInt.day << endl;
+                        //output << "TARG DATE: " << listPeople[i].birthInt.month << "-" << listPeople[i].birthInt.day << endl;
+                        
+                    if((listPeople[i].birthInt.month == tempCurrDate.month && listPeople[i].birthInt.day > tempCurrDate.day)){
+                     //Print name
+                        output << listPeople[i].peopleName << endl;
+                        cout << listPeople[i].peopleName << endl;
+                        break;
+                    } else {
+                        //cout << "TEMP CURR DATE: " << tempCurrDate.month << "-" << tempCurrDate.day << endl;
+                        //output << "TEMP CURR DATE: " << tempCurrDate.month << "-" << tempCurrDate.day << endl;
+                           
+                      //Increment day
+                      tempCurrDate.day++;
+                      //Check month rollover
+                      if(tempCurrDate.month == 2 && tempCurrDate.day > 28) {
+                         tempCurrDate.day = 1;
+                         tempCurrDate.month++;
+                      } else if((tempCurrDate.month == 1 || tempCurrDate.month == 3 || tempCurrDate.month == 5 || tempCurrDate.month == 7 || tempCurrDate.month == 8 || tempCurrDate.month == 10 || tempCurrDate.month == 12)&& tempCurrDate.day > 31) {
+                        tempCurrDate.day = 1;
+                        tempCurrDate.month++;
+                        if(tempCurrDate.month > 12) {
+                           tempCurrDate.year++;
+                           tempCurrDate.month = 1;
+                        }
+                      } else if((tempCurrDate.month == 4 || tempCurrDate.month == 6 || tempCurrDate.month == 9 || tempCurrDate.month == 11) && tempCurrDate.day > 30) {
+                         tempCurrDate.day = 1;
+                         tempCurrDate.month++;
+                      }
+                   }
+                }
+            }
+    }
+    
     //Print people and Family
 
     output << "-----------------------------------------------------------------------------" << endl;
@@ -420,7 +498,28 @@ int main(int argc, char *argv[]) {
                  cout << "Error 04: Marriage is after divorce in family: " << listFamily[i].familyID << endl;
            }
         }
-		
+        
+        //No more than 5 children born on the same day.
+        if(listFamily[i].numOfChild > 5) {
+               //More than 5 kids, check birthdays.
+               int sameBDay = 0;
+               //LOOPS WHY
+               for(int k = 0; k < listFamily[i].numOfChild; k++) {
+                       for(int l = 0; l < listFamily[i].numOfChild; l++) {
+                               //Prevent checking same kid.
+                               if(listFamily[i].listChild[k].childID != listFamily[i].listChild[l].childID) {
+                                   if((listFamily[i].listChild[k].childBirthday.year == listFamily[i].listChild[l].childBirthday.year) && (listFamily[i].listChild[k].childBirthday.month == listFamily[i].listChild[l].childBirthday.month) && (listFamily[i].listChild[k].childBirthday.day == listFamily[i].listChild[l].childBirthday.day)) {
+                                      sameBDay++;
+                                      break;
+                                   }
+                               }
+                       }
+                       
+               }
+               cout << "Error 14: " << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+               output << "Error 14: " << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+        }
+        		
         for(int j = 0; j < numOfPeople; j++) {
         	//IDs must be unique
         	if(nameIDList.find(listPeople[j].uniqueID) == nameIDList.end()) {
@@ -506,7 +605,7 @@ int main(int argc, char *argv[]) {
         	//Must be born before dying
         	if(listPeople[j].deathInt.year != 0) {
         		if(listPeople[j].birthInt.year > listPeople[j].deathInt.year || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month > listPeople[j].deathInt.month) || (listPeople[j].birthInt.year == listPeople[j].deathInt.year && listPeople[j].birthInt.month == listPeople[j].deathInt.month && listPeople[j].birthInt.day > listPeople[j].deathInt.day)) {
-					output << "Error 03: Birth is after death: " << listPeople[j].uniqueID << endl;
+					cout << "Error 03: Birth is after death: " << listPeople[j].uniqueID << endl;
 					output << "Error 03: Birth is after death: " << listPeople[j].uniqueID << endl;
 				}
 			}
@@ -550,7 +649,7 @@ int main(int argc, char *argv[]) {
 				  }
                }
             }
-        	
+    	    
         	// Must marry before death
         	if(listFamily[i].husbandoID == listPeople[j].uniqueID) {
                if(listPeople[j].deathInt.year != 0) {

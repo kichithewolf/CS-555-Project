@@ -8,6 +8,7 @@ GEDCOM Project
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <ctime>
 #include <map>
 #include <list>
 #include <sstream>
@@ -54,6 +55,7 @@ int main(int argc, char *argv[]) {
     map<string, string> familyNames;
     map<string, list<Family> > families;
     map<string, list<Family> >::iterator it;
+    map<string, string> nameIDList; //used to check that all IDs are unique
     
     output.open("output.txt");
     
@@ -367,6 +369,39 @@ int main(int argc, char *argv[]) {
         cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
     }
     
+    // List Recent Births, (people born in the last 30 days)
+    output << "-----------------------------------------------------------------------------" << endl;
+    output << "Recent Births" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
+    
+    cout << "-------------------------------------------------------------------------------" << endl;
+    cout << "Recent Births" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
+    
+    output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
+    cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
+    
+    for(int i = 0; i < numOfPeople; i++) {
+    	//get current date
+    	time_t t = time(0);
+    	struct tm * now = localtime( & t );
+    	num_date current;
+    	current.day = now->tm_mday;
+    	current.month = now->tm_mon + 1;
+    	current.year = now->tm_year + 1900;
+    	//get 30 days from now date
+		now->tm_mday -= 30;
+		mktime(now);
+		num_date monthBefore;
+		monthBefore.day = now->tm_mday;
+    	monthBefore.month = now->tm_mon + 1;
+    	monthBefore.year = now->tm_year + 1900;
+		if(checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore)) {
+			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t" << listPeople[i].birthDate << "\t" << listPeople[i].deathDate << endl;
+	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t" << listPeople[i].birthDate << "\t" << listPeople[i].deathDate << endl;
+	    }	
+    }
+    
     //Error checking for gedcom file. Error # corresponds to User Story Requirement
     
     output << "-----------------------------------------------" << endl;
@@ -387,6 +422,15 @@ int main(int argc, char *argv[]) {
         }
 		
         for(int j = 0; j < numOfPeople; j++) {
+        	//IDs must be unique
+        	if(nameIDList.find(listPeople[j].uniqueID) == nameIDList.end()) {
+//        		cout << "Error 22: " << listPeople[j].peopleName << " adding ID:  " << listPeople[j].uniqueID << endl;
+        		nameIDList[listPeople[j].uniqueID] = listPeople[j].peopleName;
+			} else if (nameIDList.find(listPeople[j].uniqueID)->second != listPeople[j].peopleName) {
+				output << "Error 22: " << listPeople[j].peopleName << "'s ID is not unique. ID: " << listPeople[j].uniqueID << endl;
+	            cout << "Error 22: " << listPeople[j].peopleName << "'s ID is not unique ID: " << listPeople[j].uniqueID << endl;
+			}
+			
         	//Age must be less than 150 years old
         	if(listPeople[j].age > 149) {
 	            output << "Error 07: " << listPeople[j].peopleName << "'s age is bigger than 150 (" << listPeople[j].age << ")" << endl;

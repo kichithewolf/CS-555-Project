@@ -1,80 +1,26 @@
 -----------------------------------------------
 US29: Hall of the Dead
 -----------------------------------------------
-Scott /Aldrin/
-Paw /Revere/
-Hafta /Gough/
-Stacy /Blade/
-Santa /Claws/
-David /Blade/
-Sarah /Blade/
 -----------------------------------------------
 US30: Hall of the Living and Married
 -----------------------------------------------
-Fuzz /Aldrin/
-Pawkeye /Gough/
 -----------------------------------------------------------------------------
 People
 -----------------------------------------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
-0	@I1@	Seymour /Butz/	M	215	6 FEB 1801	
-1	@I2@	Larry /Butz/	F	38	3 JUN 1978	
-2	@I3@	Katie /Aldrin/	F	36	20 JUN 1980	
-3	@I4@	Fuzz /Aldrin/	M	64	11 FEB 1952	
-4	@I5@	Pawkeye /Gough/	F	62	4 OCT 1954	
-5	@I6@	Adam /Aldrin/	M	38	11 DEC 1978	
-6	@I7@	Lara /Butz/	F	13	7 MAR 2003	
-7	@I8@	Scott /Aldrin/	M	266	15 NOV 1733	10 MAY 1999
-8	@I9@	Paw /Revere/	M	66	18 APR 1932	19 APR 1998
-9	@I10@	Hafta /Gough/	M	70	6 AUG 1925	20 DEC 1995
-10	@I11@	Stacy /Blade/	F	71	9 MAR 1929	12 MAY 2000
-11	@I12@	Santa /Claws/	F	23	9 MAR 1977	12 APR 2000
-12	@I13@	Paw /Revere/	F	37	30 OCT 1979	
-13	@I14@	Mary /Aldrin/	F	19	18 MAY 1997	
-14	@I15@	Mike /Aldrin/	M	7	26 NOV 2009	
-15	@I16@	David /Blade/	M	49	1 FEB 1890	8 NOV 1939
-16	@I17@	Sarah /Blade/	F	60	10 JUL 1890	9 JUL 1950
+0	@I1@	Julia /Kim/	F	0	19 OCT 2016	
+1	@I2@	Charles /Kim/	M	55	23 AUG 1961	
+2	@I3@	Hyung Sook /Cho/	F	55	2 DEC 1961	
 -----------------------------------------------------------------------------
 Family
 -----------------------------------------------------------------------------
 ID	UID	Husb		Wife		Marry		Div	
-0	@F1@	Larry /Butz/	Katie /Aldrin/	4 AUG 2000	4 MAY 2000
-1	@F2@	Fuzz /Aldrin/	Pawkeye /Gough/	4 APR 1953	
-2	@F3@	Scott /Aldrin/	Paw /Revere/	11 FEB 1951	3 APR 1950
-3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	3 APR 1997
-4	@F5@	Adam /Aldrin/	Paw /Revere/		
-5	@F6@	Adam /Aldrin/	Santa /Claws/		
-6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	
+0	@F1@	Charles /Kim/	Hyung Sook /Cho/		
+-----------------------------------------------------------------------------
+Recent Births
+-----------------------------------------------------------------------------
+ID	UID	Name	Sex	Age	Birth		Death
+0	@I1@	Julia /Kim/	F	0	19 OCT 2016	
 -----------------------------------------------
 Errors
 -----------------------------------------------
-Error 04: Marriage is after divorce in family: @F1@
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error 21: Husband is not a Male in family: @F1@
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error: Husband remarried during another marriage: @F2@
-Error 10: Marriage is before Husband's 14th birthday: @F2@
-Error: Wife remarried during another marriage: @F2@
-Error 02: Birth is after Wife's marriage in family: @F2@
-Error 10: Marriage is before Wife's 14th birthday: @F2@
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error 04: Marriage is after divorce in family: @F3@
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error 21: Wife is not a Female in family: @F3@
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error: Husband remarried during another marriage: @F4@
-Error 06: Divorce is after Husband's death in family: @F4@
-Error: Wife remarried during another marriage: @F4@
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error: Seymour /Butz/'s age is bigger than 150 (215)
-Error: Scott /Aldrin/'s age is bigger than 150 (266)
-Error: Husband remarried during another marriage: @F7@
-Error 05: Marriage is after Husband's death in family: @F7@
-Error: Wife remarried during another marriage: @F7@
-Error 05: Marriage is after Wife's death in family: @F7@

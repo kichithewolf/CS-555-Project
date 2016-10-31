@@ -14,9 +14,13 @@ US30: Hall of the Living and Married
 Fuzz /Aldrin/
 Pawkeye /Gough/
 -----------------------------------------------
+US31: Hall of the Living and Single
+-----------------------------------------------
+Mary /Aldrin/
+Mike /Aldrin/
+-----------------------------------------------
 US38: Upcoming Birthdays
 -----------------------------------------------
-Paw /Revere/
 Mike /Aldrin/
 Cero /Aldrin/
 Uno /Aldrin/
@@ -32,17 +36,17 @@ ID	UID	Name	Sex	Age	Birth		Death
 1	@I2@	Larry /Butz/	M	38	3 JUN 1978	
 2	@I3@	Katie /Aldrin/	F	36	20 JUN 1980	
 3	@I4@	Fuzz /Aldrin/	M	64	11 FEB 1952	
-4	@I5@	Pawkeye /Gough/	F	62	4 OCT 1954	
+4	@I5@	Pawkeye /Gough/	F	0	4 OCT 2016	
 5	@I6@	Adam /Adams/	M	38	11 DEC 1978	
 6	@I7@	Lara /Butz/	F	13	7 MAR 2003	
 7	@I8@	Scott /Aldrin/	M	66	15 NOV 1933	10 MAY 1999
 8	@I9@	Paw /Revere/	F	66	18 APR 1932	19 APR 1998
 9	@I10@	Hafta /Gough/	M	70	6 AUG 1925	20 DEC 1995
-10	@I11@	Stacy /Blade/	F	71	9 MAR 1929	12 MAY 2000
+10	@I11@	Stacy /Blade/	F	87	9 MAR 1929	12 OCT 2016
 11	@I12@	Santa /Claws/	F	23	9 MAR 1977	12 APR 2000
 12	@I13@	Paw /Revere/	F	37	30 OCT 1979	
-13	@I14@	Mary /Aldrin/	F	19	18 MAY 1997	
-14	@I15@	Mike /Aldrin/	M	6	26 NOV 2010	
+13	@I14@	Mary /Aldrin/	F	31	18 MAY 1985	
+14	@I15@	Mike /Aldrin/	M	34	26 NOV 1982	
 15	@I16@	David /Blade/	M	49	1 FEB 1890	8 NOV 1939
 16	@I17@	Sarah /Blade/	F	60	10 JUL 1890	9 JUL 1950
 17	@I18@	Cero /Aldrin/	F	7	26 NOV 2009	
@@ -63,9 +67,11 @@ ID	UID	Husb		Wife		Marry		Div
 5	@F6@	Adam /Adams/	Santa /Claws/		
 6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	
 -----------------------------------------------------------------------------
-Recent Births
+Recent Births and Deaths (within last 30 days)
 -----------------------------------------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
+4	@I5@	Pawkeye /Gough/	F	0	(4 OCT 2016)	 
+10	@I11@	Stacy /Blade/	F	87	 9 MAR 1929	(12 OCT 2016)
 -----------------------------------------------
 Errors
 -----------------------------------------------

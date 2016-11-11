@@ -18,7 +18,7 @@ GEDCOM Project
 #include "Dates.h"
 
 #define CURRYEAR 2016
-#define CURRMONTH 10
+#define CURRMONTH 3
 #define CURRDAY 30
 
 using namespace std;
@@ -436,6 +436,75 @@ int main(int argc, char *argv[]) {
                    }
                 }
             }
+    }
+    
+    //List anniversaries in next 30 days (US39)
+    output << "-----------------------------------------------" << endl;
+    output << "US39: Upcoming Anniversaries" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US39: Upcoming Anniversaries" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    bool wifeAlive;
+    bool husbAlive;
+    string wifeName;
+    string husbName;
+    
+    for(int i = 0; i < numOfFamilies; i++) {
+            //show married but not divorced
+            wifeAlive = false;
+            husbAlive = false;
+            if((listFamily[i].marryDate[0] != '\0') && (listFamily[i].divDate[0] == '\0')){           
+                for(int j = 0; j < numOfPeople; j++){
+                        //check if husband and wife are alive
+                        if((listFamily[i].husbandoID == listPeople[j].uniqueID)){
+                               //show only if alive
+                               if(listPeople[j].deathDate[0] == '\0') {
+                                   husbAlive = true;
+                                   husbName = listPeople[j].peopleName;
+                               }
+                        } else if((listFamily[i].waifuID == listPeople[j].uniqueID)) {
+                               if(listPeople[j].deathDate[0] == '\0') {
+                                   wifeAlive = true;
+                                   wifeName = listPeople[j].peopleName;
+                               }
+                        }
+                }
+                if(husbAlive && wifeAlive) {
+                    tempCurrDate.day = CURRDAY;
+                    tempCurrDate.month = CURRMONTH;
+                    tempCurrDate.year = CURRYEAR;
+                    for(int j = 0; j < 30; j++) {
+                            
+                        if((listFamily[i].marryInt.month == tempCurrDate.month && listFamily[i].marryInt.day > tempCurrDate.day)){
+                         //Print couple
+                            output << wifeName << " and " << husbName << endl;
+                            cout << wifeName << " and " << husbName << endl;
+                            break;
+                        } else {
+                          //Increment day
+                          tempCurrDate.day++;
+                          //Check month rollover
+                          if(tempCurrDate.month == 2 && tempCurrDate.day > 28) {
+                             tempCurrDate.day = 1;
+                             tempCurrDate.month++;
+                          } else if((tempCurrDate.month == 1 || tempCurrDate.month == 3 || tempCurrDate.month == 5 || tempCurrDate.month == 7 || tempCurrDate.month == 8 || tempCurrDate.month == 10 || tempCurrDate.month == 12)&& tempCurrDate.day > 31) {
+                            tempCurrDate.day = 1;
+                            tempCurrDate.month++;
+                            if(tempCurrDate.month > 12) {
+                               tempCurrDate.year++;
+                               tempCurrDate.month = 1;
+                            }
+                          } else if((tempCurrDate.month == 4 || tempCurrDate.month == 6 || tempCurrDate.month == 9 || tempCurrDate.month == 11) && tempCurrDate.day > 30) {
+                             tempCurrDate.day = 1;
+                             tempCurrDate.month++;
+                          }
+                       }
+                    }
+                }
+            }           
     }
     
     //Print people and Family

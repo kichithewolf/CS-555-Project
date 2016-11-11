@@ -21,13 +21,10 @@ Mike /Aldrin/
 -----------------------------------------------
 US38: Upcoming Birthdays
 -----------------------------------------------
-Mike /Aldrin/
-Cero /Aldrin/
-Uno /Aldrin/
-Dos /Aldrin/
-Tres /Aldrin/
-Cuarto /Aldrin/
-Cinco /Aldrin/
+-----------------------------------------------
+US39: Upcoming Anniversaries
+-----------------------------------------------
+Pawkeye /Gough/andFuzz /Aldrin/
 -----------------------------------------------------------------------------
 People
 -----------------------------------------------------------------------------
@@ -70,8 +67,6 @@ ID	UID	Husb		Wife		Marry		Div
 Recent Births and Deaths (within last 30 days)
 -----------------------------------------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
-4	@I5@	Pawkeye /Gough/	F	0	(4 OCT 2016)	 
-10	@I11@	Stacy /Blade/	F	87	 9 MAR 1929	(12 OCT 2016)
 -----------------------------------------------
 Errors
 -----------------------------------------------

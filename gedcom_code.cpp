@@ -507,6 +507,37 @@ int main(int argc, char *argv[]) {
             }           
     }
     
+    //List multiple births (US32)
+    output << "-----------------------------------------------" << endl;
+    output << "US32: Multiple Births" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US32: Multiple Births" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfFamilies; i++) {
+               int sameBDay = 0;
+               for(int k = 0; k < listFamily[i].numOfChild; k++) {
+                       for(int l = 0; l < listFamily[i].numOfChild; l++) {
+                               //Prevent checking same kid.
+                               if(listFamily[i].listChild[k].childID != listFamily[i].listChild[l].childID) {
+                                   if((listFamily[i].listChild[k].childBirthday.year == listFamily[i].listChild[l].childBirthday.year) && (listFamily[i].listChild[k].childBirthday.month == listFamily[i].listChild[l].childBirthday.month) && (listFamily[i].listChild[k].childBirthday.day == listFamily[i].listChild[l].childBirthday.day)) {
+                                      sameBDay++;
+                                      break;
+                                   }
+                               }
+                       }
+                       
+               }
+               
+               if(sameBDay > 0) {
+                   cout << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+                   output << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+               }
+        
+    }
+    
     //Print people and Family
 
     output << "-----------------------------------------------------------------------------" << endl;

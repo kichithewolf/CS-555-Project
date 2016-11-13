@@ -41,6 +41,8 @@ bool checkIfBefore(num_date date1, num_date date2) {
 int main(int argc, char *argv[]) {
     ifstream gedcomFile;
     ofstream output;
+    ofstream errorQueue;
+    string errors;
     string gedcomLine;
     string levelNum;
     string tag;
@@ -242,6 +244,27 @@ int main(int argc, char *argv[]) {
                 if(!(tag.compare("DATE") == 0)) {
                    tag = "Invalid tag!";
                 }
+                //check if date is valid (Before current date)
+                //get current date
+		    	time_t t = time(0);
+		    	struct tm * now = localtime( & t );
+		    	num_date current;
+		    	current.day = now->tm_mday;
+		    	current.month = now->tm_mon + 1;
+		    	current.year = now->tm_year + 1900;
+		    	string temptag = tag;
+		    	num_date tempdate;
+		    	tempdate.day = atoi((temptag.substr(0, temptag.find(" "))).c_str());
+                temptag.erase(0,temptag.find(" ")+1);
+                tempdate.month = monthToInteger(temptag.substr(0, temptag.find(" ")).c_str());
+                temptag.erase(0,temptag.find(" ")+1);
+                tempdate.year = atoi(temptag.substr(0, temptag.find(" ")).c_str());
+		    	
+		    	if (checkIfBefore(current, tempdate)) {
+		    		errorQueue << "Error 01: Date invalid: " << tempdate.year << tempdate.month << tempdate.day << endl;
+		    		errors += "Error 01: Date invalid: " + tag + "/n";
+				}
+                
                 //Decrement/Increment before doing things to prevent crashes.
                 numOfPeople--;
                 numOfFamilies--;
@@ -609,6 +632,49 @@ int main(int argc, char *argv[]) {
          }	
     }
     
+     // List Recent Survivors (in the last 30 days)
+    output << "-----------------------------------------------------------------------------" << endl;
+    output << "Recent Survivors (within last 30 days)" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
+    
+    cout << "-------------------------------------------------------------------------------" << endl;
+    cout << "Recent Survivors (within last 30 days)" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
+    
+    output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
+    cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
+    
+    //get current date
+	time_t t = time(0);
+	struct tm * now = localtime( & t );
+	num_date current;
+	current.day = now->tm_mday;
+	current.month = now->tm_mon + 1;
+	current.year = now->tm_year + 1900;
+	//get 30 days from now date
+	now->tm_mday -= 30;
+	mktime(now);
+	num_date monthBefore;
+	monthBefore.day = now->tm_mday;
+	monthBefore.month = now->tm_mon + 1;
+	monthBefore.year = now->tm_year + 1900;
+	
+	for (int i = 0; i < numOfPeople; i++) {
+		if (listPeople[i].deathInt.year != 0) {
+			for (int j = 0; j < numOfFamilies; j++) {
+				for (int k = 0; k < numOfPeople; k++) {
+					//if male, check wives; if female, check husbands
+					if((listPeople[i].sexFlag && listFamily[j].husbandoID == listPeople[k].uniqueID) || (!listPeople[i].sexFlag && listFamily[j].waifuID == listPeople[k].uniqueID)) {
+						if(listPeople[k].deathInt.year == 0 && (checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore))) {
+							output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+					        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+				        }
+					}
+				}
+			}
+		}
+	}
+    
     //Error checking for gedcom file. Error # corresponds to User Story Requirement
     
     output << "-----------------------------------------------" << endl;
@@ -618,6 +684,8 @@ int main(int argc, char *argv[]) {
     cout << "-----------------------------------------------" << endl;
     cout << "Errors" << endl;
     cout << "-----------------------------------------------" << endl;
+
+    cout << errors;
     
     for(int i = 0; i < numOfFamilies; i++) {
         // Must marry before divorce

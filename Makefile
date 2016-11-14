@@ -7,7 +7,7 @@ all: $(OBJ)
 	g++ $(SRC) -o $(NAME)
 clean:
 	-$(RM) ../my/*~
-	-$(RM) ../my/.o
+    -$(RM) ../my/.o
 	-$(RM) *.swp
 	-$(RM) *.core
 	-$(RM) *.o

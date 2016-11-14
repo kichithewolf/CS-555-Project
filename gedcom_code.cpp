@@ -23,6 +23,46 @@ GEDCOM Project
 
 using namespace std;
 
+bool dateChecker(num_date input){
+    int flag = 0;
+    int leapF = 0;
+    //leap year
+    // months that have 30 days
+    if((input.month == 4) || (input.month == 6) || (input.month == 9) || (input.month == 11))
+           if((input.day > 0) && (input.day < 31))
+                 flag = 1;
+    //months that have 31 days
+    if((input.month == 1) || (input.month == 3) || (input.month == 5) || (input.month == 7) || (input.month == 8) || (input.month == 10) || (input.month == 12))
+           if((input.day > 0) && (input.day < 32))
+                 flag = 1;
+    if(input.month == 2){
+           if((input.year % 4) == 0){
+                  if((input.year % 100) == 0){
+                         if((input.year % 400) == 0)
+                                leapF = 1;
+                         else;
+                  }
+                  else
+                      leapF = 1;
+           }
+           else;
+           if(leapF == 1)
+                    if((input.day > 0) && (input.day < 30))
+                         flag = 1;
+           else
+                    if((input.day > 0) && (input.day < 29))
+                         flag = 1;
+    }
+    
+    if(flag == 1){
+         return true; }
+    else{
+        return false; }
+}
+        
+                     
+    
+
 int monthToInteger(string monthString) {
     string allMonthStrings[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
     for(int i = 0; i < 12; i++) {
@@ -60,7 +100,7 @@ int main(int argc, char *argv[]) {
     map<string, list<Family> > families;
     map<string, list<Family> >::iterator it;
     map<string, string> nameIDList; //used to check that all IDs are unique
-    
+    num_date holder;
     output.open("output.txt");
     
     // Check for command line args.
@@ -262,9 +302,15 @@ int main(int argc, char *argv[]) {
 		    	
 		    	if (checkIfBefore(current, tempdate)) {
 		    		errorQueue << "Error 01: Date invalid: " << tempdate.year << tempdate.month << tempdate.day << endl;
-		    		errors += "Error 01: Date invalid: " + tag + "/n";
+		    		errors += "Error 01: Date invalid: " + tag + "\n";
 				}
-                
+				//cout << tempdate.day << tempdate.month << tempdate.year << endl;
+				/*
+				if(dateChecker(tempdate) == false) {
+		    		errorQueue << "Error 42: Date Rejected: " << tempdate.year << tempdate.month << tempdate.day << endl;
+		    		errors += "Error 42: Date Rejected: " + tag + "\n";
+                }
+                */
                 //Decrement/Increment before doing things to prevent crashes.
                 numOfPeople--;
                 numOfFamilies--;
@@ -276,11 +322,22 @@ int main(int argc, char *argv[]) {
                     //Set false again just in case.
                     listPeople[numOfPeople].birthFlag = false;
                     //Parse string into integers while we're at it.
+                    
                     listPeople[numOfPeople].birthInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listPeople[numOfPeople].birthInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listPeople[numOfPeople].birthInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    /*
+                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    
+                    if (dateChecker(holder) == true)
+                       listPeople[numOfPeople].birthInt = holder;
+                    */
                 } else if(listPeople[numOfPeople].deathFlag == true) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
@@ -288,11 +345,23 @@ int main(int argc, char *argv[]) {
                     //Set false again just in case.
                     listPeople[numOfPeople].deathFlag = false;
                     //Parse string into integers while we're at it.
+                    
                     listPeople[numOfPeople].deathInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listPeople[numOfPeople].deathInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listPeople[numOfPeople].deathInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    /*
+                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    
+                    if (dateChecker(holder) == true)
+                       listPeople[numOfPeople].deathInt = holder;
+                      */  
+                    
                 } else if(listFamily[numOfFamilies].marryFlag == true) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
@@ -300,11 +369,22 @@ int main(int argc, char *argv[]) {
                     //Set false again just in case.
                     listFamily[numOfFamilies].marryFlag = false;
                     //Parse string into integers while we're at it.
+                    
                     listFamily[numOfFamilies].marryInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listFamily[numOfFamilies].marryInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listFamily[numOfFamilies].marryInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    /*
+                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    
+                    if (dateChecker(holder) == true)
+                       listFamily[numOfFamilies].marryInt = holder;
+                   */ 
                 } else if(listFamily[numOfFamilies].divFlag == true) {
                     gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
                     tag = gedcomLine.substr(0);
@@ -312,17 +392,28 @@ int main(int argc, char *argv[]) {
                     //Set false again just in case.
                     listFamily[numOfFamilies].divFlag = false;
                     //Parse string into integers while we're at it.
+                    
                     listFamily[numOfFamilies].divInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listFamily[numOfFamilies].divInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
                     tag.erase(0,tag.find(" ")+1);
                     listFamily[numOfFamilies].divInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    /*
+                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                    tag.erase(0,tag.find(" ")+1);
+                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    
+                    if (dateChecker(holder) == true)
+                       listFamily[numOfFamilies].divInt = holder;
+                    */
                 }
                 numOfPeople++;
                 numOfFamilies++;
                 //Reset tag for initial printout.
                 tag = "DATE";
-           }
+       }
            
            //output << "Tag: " << tag << endl;
            //cout << "Tag: " << tag << endl;
@@ -348,9 +439,13 @@ int main(int argc, char *argv[]) {
                 cout << listPeople[i].peopleName << endl;
                 //Also calculate age (For US27)
                 listPeople[i].age = listPeople[i].deathInt.year - listPeople[i].birthInt.year;
+                //if(listPeople[i].age > 200)
+                //      listPeople[i].age = -1;
             } else {
                 //Calculate age if not dead
                 listPeople[i].age = CURRYEAR - listPeople[i].birthInt.year;
+                //if(listPeople[i].age > 200)
+                //      listPeople[i].age = -1;
             }
     }
     
@@ -560,6 +655,56 @@ int main(int argc, char *argv[]) {
                }
         
     }
+    //List large age differences (US34)
+    output << "-----------------------------------------------" << endl;
+    output << "US34: Large Age Differences" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US34: Large Age Differences" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfFamilies; i++) {
+            int ageH = 0;
+            int ageW = 0;
+            string hus;
+            string wif; 
+            //show married
+            if(listFamily[i].marryDate[0] != '\0'){              
+                for(int j = 0; j < numOfPeople; j++){
+                            //store names and ages
+                            if(listFamily[i].husbandoID == listPeople[j].uniqueID){
+                                   ageH = listPeople[j].age;
+                                   hus = listPeople[j].peopleName;
+                            }
+                            if(listFamily[i].waifuID == listPeople[j].uniqueID){
+                                   ageW = listPeople[j].age;
+                                   wif = listPeople[j].peopleName;
+                            }
+                }
+                //cout << hus << " (" << ageH << ")" << endl;
+                //cout << wif << " (" << ageW << ")\n" << endl;
+                
+                //show only more than twice as old
+                if(ageW > ageH)
+                     if((ageW - ageH) > ageH){
+                              cout << hus << " (" << ageH << ")" << endl;
+                              cout << wif << " (" << ageW << ")\n" << endl;
+                              output << hus << " (" << ageH << ")" << endl;
+                              output << wif << " (" << ageW << ")\n" << endl;
+                     }
+                     else
+                         continue;
+                else
+                    if((ageH - ageW) > ageW){
+                             cout << hus << " (" << ageH << ")" << endl;
+                             cout << wif << " (" << ageW << ")\n" << endl;
+                             output << hus << " (" << ageH << ")" << endl;
+                             output << wif << " (" << ageW << ")\n" << endl;
+                    }
+                
+            }
+    }
     
     //Print people and Family
 
@@ -726,6 +871,7 @@ int main(int argc, char *argv[]) {
 				output << "Error 22: " << listPeople[j].peopleName << "'s ID is not unique. ID: " << listPeople[j].uniqueID << endl;
 	            cout << "Error 22: " << listPeople[j].peopleName << "'s ID is not unique ID: " << listPeople[j].uniqueID << endl;
 			}
+			
 			
         	//Age must be less than 150 years old
         	if(listPeople[j].age > 149) {

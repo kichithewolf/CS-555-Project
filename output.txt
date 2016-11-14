@@ -1,6 +1,7 @@
 -----------------------------------------------
 US29: Hall of the Dead
 -----------------------------------------------
+Lara /Butz/
 Scott /Aldrin/
 Paw /Revere/
 Hafta /Gough/
@@ -16,8 +17,6 @@ Pawkeye /Gough/
 -----------------------------------------------
 US31: Hall of the Living and Single
 -----------------------------------------------
-Mary /Aldrin/
-Mike /Aldrin/
 -----------------------------------------------
 US38: Upcoming Birthdays
 -----------------------------------------------
@@ -29,26 +28,35 @@ Pawkeye /Gough/ and Fuzz /Aldrin/
 US32: Multiple Births
 -----------------------------------------------
 6 kids born at same time in @F5@
+-----------------------------------------------
+US34: Large Age Differences
+-----------------------------------------------
+Larry /Butz/ (38)
+Katie /Aldrin/ (18)
+
+Fuzz /Aldrin/ (64)
+Pawkeye /Gough/ (17)
+
 -----------------------------------------------------------------------------
 People
 -----------------------------------------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
-0	@I1@	Seymour /Butz/	M	15	6 FEB 2001	
-1	@I2@	Larry /Butz/	M	38	3 JUN 1978	
-2	@I3@	Katie /Aldrin/	F	36	20 JUN 1980	
+0	@I1@	Seymour /Butz/	M	15	27 FEB 2001	
+1	@I2@	Larry /Butz/	M	38	30 JUN 1978	
+2	@I3@	Katie /Aldrin/	F	18	20 JUN 1998	
 3	@I4@	Fuzz /Aldrin/	M	64	11 FEB 1952	
-4	@I5@	Pawkeye /Gough/	F	0	4 OCT 2016	
-5	@I6@	Adam /Adams/	M	38	11 DEC 1978	
-6	@I7@	Lara /Butz/	F	13	7 MAR 2003	
+4	@I5@	Pawkeye /Gough/	F	17	4 OCT 1999	
+5	@I6@	Adam /Adams/	M	30	11 DEC 1986	
+6	@I7@	Lara /Butz/		F	0	29 OCT 2016	
 7	@I8@	Scott /Aldrin/	M	66	15 NOV 1933	10 MAY 1999
 8	@I9@	Paw /Revere/	F	66	18 APR 1932	19 APR 1998
 9	@I10@	Hafta /Gough/	M	70	6 AUG 1925	20 DEC 1995
-10	@I11@	Stacy /Blade/	F	87	9 MAR 1929	12 OCT 2016
+10	@I11@	Stacy /Blade/	F	71	9 MAR 1929	12 MAY 2000
 11	@I12@	Santa /Claws/	F	23	9 MAR 1977	12 APR 2000
 12	@I13@	Paw /Revere/	F	37	30 OCT 1979	
-13	@I14@	Mary /Aldrin/	F	31	18 MAY 1985	
-14	@I15@	Mike /Aldrin/	M	34	26 NOV 1982	
-15	@I16@	David /Blade/	M	49	1 FEB 1890	8 NOV 1939
+13	@I14@	Mary /Aldrin/	F	19	18 MAY 1997	
+14	@I15@	Mike /Aldrin/	M	6	26 NOV 2010	
+15	@I16@	David /Blade/	M	49	1 MAY 1890	8 NOV 1939
 16	@I17@	Sarah /Blade/	F	60	10 JUL 1890	9 JUL 1950
 17	@I18@	Cero /Aldrin/	F	7	26 NOV 2009	
 18	@I19@	Uno /Aldrin/	F	7	26 NOV 2009	
@@ -71,6 +79,7 @@ ID	UID	Husb		Wife		Marry		Div
 Recent Births and Deaths (within last 30 days)
 -----------------------------------------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
+6	@I7@	Lara /Butz/	F	-2016	(32 OCT 2016)	 Lara
 -----------------------------------------------------------------------------
 Recent Survivors (within last 30 days)
 -----------------------------------------------------------------------------
@@ -79,6 +88,7 @@ ID	UID	Name	Sex	Age	Birth		Death
 Errors
 -----------------------------------------------
 Error 04: Marriage is after divorce in family: @F1@
+Error 10: Marriage is before Wife's 14th birthday: @F1@
 Error 11: Husband remarried during another marriage: @F2@
 Error 10: Marriage is before Husband's 14th birthday: @F2@
 Error 11: Wife remarried during another marriage: @F2@

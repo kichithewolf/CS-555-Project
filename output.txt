@@ -55,6 +55,7 @@ ID	UID	Name	Sex	Age	Birth		Death
 -----------------------------------------------
 US38: Upcoming Birthdays
 -----------------------------------------------
+Larry /Butz/
 -----------------------------------------------
 US39: Upcoming Anniversaries
 -----------------------------------------------
@@ -64,7 +65,7 @@ People
 -----------------------------------------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
 0	@I1@	Seymour /Butz/	M	2010	6/FEB/2001	
-1	@I1@	Larry /Butz/	M	38	3 JUN 1978	
+1	@I1@	Larry /Butz/	M	38	3 APR 1978	
 2	@I3@	Katie /Aldrin/	F	36	20 JUN 1980	
 3	@I4@	Fuzz /Aldrin/	M	64	11 FEB 1952	
 4	@I5@	Pawkeye /Gough/	F	62	4 OCT 1954	

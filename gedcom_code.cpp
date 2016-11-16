@@ -292,6 +292,8 @@ int main(int argc, char *argv[]) {
 		    	current.day = now->tm_mday;
 		    	current.month = now->tm_mon + 1;
 		    	current.year = now->tm_year + 1900;
+		    	gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                tag = gedcomLine.substr(0);
 		    	string temptag = tag;
 		    	num_date tempdate;
 		    	tempdate.day = atoi((temptag.substr(0, temptag.find(" "))).c_str());
@@ -300,9 +302,10 @@ int main(int argc, char *argv[]) {
                 temptag.erase(0,temptag.find(" ")+1);
                 tempdate.year = atoi(temptag.substr(0, temptag.find(" ")).c_str());
 		    	
+		    	
 		    	if (checkIfBefore(current, tempdate)) {
-		    		errorQueue << "Error 01: Date invalid: " << tempdate.year << tempdate.month << tempdate.day << endl;
-		    		errors += "Error 01: Date invalid: " + tag + "\n";
+		    		errorQueue << "Error 01: Dates after current date: " << tempdate.year << tempdate.month << tempdate.day << endl;
+		    		errors += "Error 01: Dates after current date: " + tag + "\n";
 				}
 				//cout << tempdate.day << tempdate.month << tempdate.year << endl;
 				/*
@@ -316,8 +319,6 @@ int main(int argc, char *argv[]) {
                 numOfFamilies--;
                 //Dates for things.
                 if(listPeople[numOfPeople].birthFlag == true) {
-                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                    tag = gedcomLine.substr(0);
                     listPeople[numOfPeople].birthDate = tag;
                     //Set false again just in case.
                     listPeople[numOfPeople].birthFlag = false;
@@ -339,8 +340,6 @@ int main(int argc, char *argv[]) {
                        listPeople[numOfPeople].birthInt = holder;
                     */
                 } else if(listPeople[numOfPeople].deathFlag == true) {
-                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                    tag = gedcomLine.substr(0);
                     listPeople[numOfPeople].deathDate = tag;
                     //Set false again just in case.
                     listPeople[numOfPeople].deathFlag = false;
@@ -363,8 +362,6 @@ int main(int argc, char *argv[]) {
                       */  
                     
                 } else if(listFamily[numOfFamilies].marryFlag == true) {
-                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                    tag = gedcomLine.substr(0);
                     listFamily[numOfFamilies].marryDate = tag;
                     //Set false again just in case.
                     listFamily[numOfFamilies].marryFlag = false;
@@ -386,8 +383,6 @@ int main(int argc, char *argv[]) {
                        listFamily[numOfFamilies].marryInt = holder;
                    */ 
                 } else if(listFamily[numOfFamilies].divFlag == true) {
-                    gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                    tag = gedcomLine.substr(0);
                     listFamily[numOfFamilies].divDate = tag;
                     //Set false again just in case.
                     listFamily[numOfFamilies].divFlag = false;
@@ -499,7 +494,168 @@ int main(int argc, char *argv[]) {
             }
     }
     
-    //List birthdays in next 30 days (US38)
+    //List multiple births (US32)
+    output << "-----------------------------------------------" << endl;
+    output << "US32: Multiple Births" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US32: Multiple Births" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfFamilies; i++) {
+               int sameBDay = 0;
+               for(int k = 0; k < listFamily[i].numOfChild; k++) {
+                       for(int l = 0; l < listFamily[i].numOfChild; l++) {
+                               //Prevent checking same kid.
+                               if(listFamily[i].listChild[k].childID != listFamily[i].listChild[l].childID) {
+                                   if((listFamily[i].listChild[k].childBirthday.year == listFamily[i].listChild[l].childBirthday.year) && (listFamily[i].listChild[k].childBirthday.month == listFamily[i].listChild[l].childBirthday.month) && (listFamily[i].listChild[k].childBirthday.day == listFamily[i].listChild[l].childBirthday.day)) {
+                                      sameBDay++;
+                                      break;
+                                   }
+                               }
+                       }
+                       
+               }
+               
+               if(sameBDay > 0) {
+                   cout << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+                   output << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
+               }
+        
+    }
+    //List large age differences (US34)
+    output << "-----------------------------------------------" << endl;
+    output << "US34: Large Age Differences" << endl;
+    output << "-----------------------------------------------" << endl;
+    
+    cout << "-----------------------------------------------" << endl;
+    cout << "US34: Large Age Differences" << endl;
+    cout << "-----------------------------------------------" << endl;
+    
+    for(int i = 0; i < numOfFamilies; i++) {
+            int ageH = 0;
+            int ageW = 0;
+            string hus;
+            string wif; 
+            //show married
+            if(listFamily[i].marryDate[0] != '\0'){              
+                for(int j = 0; j < numOfPeople; j++){
+                            //store names and ages
+                            if(listFamily[i].husbandoID == listPeople[j].uniqueID){
+                                   ageH = listPeople[j].age;
+                                   hus = listPeople[j].peopleName;
+                            }
+                            if(listFamily[i].waifuID == listPeople[j].uniqueID){
+                                   ageW = listPeople[j].age;
+                                   wif = listPeople[j].peopleName;
+                            }
+                }
+                //cout << hus << " (" << ageH << ")" << endl;
+                //cout << wif << " (" << ageW << ")\n" << endl;
+                
+                //show only more than twice as old
+                if(ageW > ageH)
+                     if((ageW - ageH) > ageH){
+                              cout << hus << " (" << ageH << ")" << endl;
+                              cout << wif << " (" << ageW << ")\n" << endl;
+                              output << hus << " (" << ageH << ")" << endl;
+                              output << wif << " (" << ageW << ")\n" << endl;
+                     }
+                     else
+                         continue;
+                else
+                    if((ageH - ageW) > ageW){
+                             cout << hus << " (" << ageH << ")" << endl;
+                             cout << wif << " (" << ageW << ")\n" << endl;
+                             output << hus << " (" << ageH << ")" << endl;
+                             output << wif << " (" << ageW << ")\n" << endl;
+                    }
+                
+            }
+    }
+    
+    // List Recent Births, Recent Deaths (people born and people who died in the last 30 days)
+    output << "-----------------------------------------------------------------------------" << endl;
+    output << "US 35 & 36: Recent Births and Deaths (within last 30 days)" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
+    
+    cout << "-------------------------------------------------------------------------------" << endl;
+    cout << "US 35 & 36: Recent Births and Deaths (within last 30 days)" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
+    
+    output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
+    cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
+    
+    for(int i = 0; i < numOfPeople; i++) {
+    	//get current date
+    	time_t t = time(0);
+    	struct tm * now = localtime( & t );
+    	num_date current;
+    	current.day = now->tm_mday;
+    	current.month = now->tm_mon + 1;
+    	current.year = now->tm_year + 1900;
+    	//get 30 days from now date
+		now->tm_mday -= 30;
+		mktime(now);
+		num_date monthBefore;
+		monthBefore.day = now->tm_mday;
+    	monthBefore.month = now->tm_mon + 1;
+    	monthBefore.year = now->tm_year + 1900;
+		if(checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore)) {
+			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+         }
+        if(checkIfBefore(listPeople[i].deathInt, current) && !checkIfBefore(listPeople[i].deathInt, monthBefore)) {
+			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t " << listPeople[i].birthDate << "\t(" << listPeople[i].deathDate << ")" << endl;
+	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t " << listPeople[i].birthDate << "\t(" << listPeople[i].deathDate << ")" << endl;
+         }	
+    }
+    
+     // List Recent Survivors (in the last 30 days)
+    output << "-----------------------------------------------------------------------------" << endl;
+    output << "US 37: Recent Survivors (within last 30 days)" << endl;
+    output << "-----------------------------------------------------------------------------" << endl;
+    
+    cout << "-------------------------------------------------------------------------------" << endl;
+    cout << "US 37: Recent Survivors (within last 30 days)" << endl;
+    cout << "-------------------------------------------------------------------------------" << endl;
+    
+    output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
+    cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
+    
+    //get current date
+	time_t t = time(0);
+	struct tm * now = localtime( & t );
+	num_date current;
+	current.day = now->tm_mday;
+	current.month = now->tm_mon + 1;
+	current.year = now->tm_year + 1900;
+	//get 30 days from now date
+	now->tm_mday -= 30;
+	mktime(now);
+	num_date monthBefore;
+	monthBefore.day = now->tm_mday;
+	monthBefore.month = now->tm_mon + 1;
+	monthBefore.year = now->tm_year + 1900;
+	
+	for (int i = 0; i < numOfPeople; i++) {
+		if (listPeople[i].deathInt.year != 0) {
+			for (int j = 0; j < numOfFamilies; j++) {
+				for (int k = 0; k < numOfPeople; k++) {
+					//if male, check wives; if female, check husbands
+					if((listPeople[i].sexFlag && listFamily[j].husbandoID == listPeople[k].uniqueID) || (!listPeople[i].sexFlag && listFamily[j].waifuID == listPeople[k].uniqueID)) {
+						if(listPeople[k].deathInt.year == 0 && (checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore))) {
+							output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+					        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
+				        }
+					}
+				}
+			}
+		}
+	}
+    
+     //List birthdays in next 30 days (US38)
     output << "-----------------------------------------------" << endl;
     output << "US38: Upcoming Birthdays" << endl;
     output << "-----------------------------------------------" << endl;
@@ -625,87 +781,6 @@ int main(int argc, char *argv[]) {
             }           
     }
     
-    //List multiple births (US32)
-    output << "-----------------------------------------------" << endl;
-    output << "US32: Multiple Births" << endl;
-    output << "-----------------------------------------------" << endl;
-    
-    cout << "-----------------------------------------------" << endl;
-    cout << "US32: Multiple Births" << endl;
-    cout << "-----------------------------------------------" << endl;
-    
-    for(int i = 0; i < numOfFamilies; i++) {
-               int sameBDay = 0;
-               for(int k = 0; k < listFamily[i].numOfChild; k++) {
-                       for(int l = 0; l < listFamily[i].numOfChild; l++) {
-                               //Prevent checking same kid.
-                               if(listFamily[i].listChild[k].childID != listFamily[i].listChild[l].childID) {
-                                   if((listFamily[i].listChild[k].childBirthday.year == listFamily[i].listChild[l].childBirthday.year) && (listFamily[i].listChild[k].childBirthday.month == listFamily[i].listChild[l].childBirthday.month) && (listFamily[i].listChild[k].childBirthday.day == listFamily[i].listChild[l].childBirthday.day)) {
-                                      sameBDay++;
-                                      break;
-                                   }
-                               }
-                       }
-                       
-               }
-               
-               if(sameBDay > 0) {
-                   cout << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
-                   output << sameBDay << " kids born at same time in " << listFamily[i].familyID << endl;
-               }
-        
-    }
-    //List large age differences (US34)
-    output << "-----------------------------------------------" << endl;
-    output << "US34: Large Age Differences" << endl;
-    output << "-----------------------------------------------" << endl;
-    
-    cout << "-----------------------------------------------" << endl;
-    cout << "US34: Large Age Differences" << endl;
-    cout << "-----------------------------------------------" << endl;
-    
-    for(int i = 0; i < numOfFamilies; i++) {
-            int ageH = 0;
-            int ageW = 0;
-            string hus;
-            string wif; 
-            //show married
-            if(listFamily[i].marryDate[0] != '\0'){              
-                for(int j = 0; j < numOfPeople; j++){
-                            //store names and ages
-                            if(listFamily[i].husbandoID == listPeople[j].uniqueID){
-                                   ageH = listPeople[j].age;
-                                   hus = listPeople[j].peopleName;
-                            }
-                            if(listFamily[i].waifuID == listPeople[j].uniqueID){
-                                   ageW = listPeople[j].age;
-                                   wif = listPeople[j].peopleName;
-                            }
-                }
-                //cout << hus << " (" << ageH << ")" << endl;
-                //cout << wif << " (" << ageW << ")\n" << endl;
-                
-                //show only more than twice as old
-                if(ageW > ageH)
-                     if((ageW - ageH) > ageH){
-                              cout << hus << " (" << ageH << ")" << endl;
-                              cout << wif << " (" << ageW << ")\n" << endl;
-                              output << hus << " (" << ageH << ")" << endl;
-                              output << wif << " (" << ageW << ")\n" << endl;
-                     }
-                     else
-                         continue;
-                else
-                    if((ageH - ageW) > ageW){
-                             cout << hus << " (" << ageH << ")" << endl;
-                             cout << wif << " (" << ageW << ")\n" << endl;
-                             output << hus << " (" << ageH << ")" << endl;
-                             output << wif << " (" << ageW << ")\n" << endl;
-                    }
-                
-            }
-    }
-    
     //Print people and Family
 
     output << "-----------------------------------------------------------------------------" << endl;
@@ -740,85 +815,6 @@ int main(int argc, char *argv[]) {
         cout << listFamily[i].IDNumber << "\t" << listFamily[i].familyID << "\t" << listFamily[i].husbando << "\t" << listFamily[i].waifu << "\t" << listFamily[i].marryDate << "\t" << listFamily[i].divDate << endl;
     }
     
-    // List Recent Births, Recent Deaths (people born and people who died in the last 30 days)
-    output << "-----------------------------------------------------------------------------" << endl;
-    output << "Recent Births and Deaths (within last 30 days)" << endl;
-    output << "-----------------------------------------------------------------------------" << endl;
-    
-    cout << "-------------------------------------------------------------------------------" << endl;
-    cout << "Recent Births and Deaths (within last 30 days)" << endl;
-    cout << "-------------------------------------------------------------------------------" << endl;
-    
-    output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
-    cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
-    
-    for(int i = 0; i < numOfPeople; i++) {
-    	//get current date
-    	time_t t = time(0);
-    	struct tm * now = localtime( & t );
-    	num_date current;
-    	current.day = now->tm_mday;
-    	current.month = now->tm_mon + 1;
-    	current.year = now->tm_year + 1900;
-    	//get 30 days from now date
-		now->tm_mday -= 30;
-		mktime(now);
-		num_date monthBefore;
-		monthBefore.day = now->tm_mday;
-    	monthBefore.month = now->tm_mon + 1;
-    	monthBefore.year = now->tm_year + 1900;
-		if(checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore)) {
-			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
-	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
-         }
-        if(checkIfBefore(listPeople[i].deathInt, current) && !checkIfBefore(listPeople[i].deathInt, monthBefore)) {
-			output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t " << listPeople[i].birthDate << "\t(" << listPeople[i].deathDate << ")" << endl;
-	        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t " << listPeople[i].birthDate << "\t(" << listPeople[i].deathDate << ")" << endl;
-         }	
-    }
-    
-     // List Recent Survivors (in the last 30 days)
-    output << "-----------------------------------------------------------------------------" << endl;
-    output << "Recent Survivors (within last 30 days)" << endl;
-    output << "-----------------------------------------------------------------------------" << endl;
-    
-    cout << "-------------------------------------------------------------------------------" << endl;
-    cout << "Recent Survivors (within last 30 days)" << endl;
-    cout << "-------------------------------------------------------------------------------" << endl;
-    
-    output << "ID\tUID\tName\tSex\tAge\tBirth\t\tDeath" << endl;
-    cout << "ID\tUID\tName\t\tSex\tAge\tBirth\t\tDeath" << endl;
-    
-    //get current date
-	time_t t = time(0);
-	struct tm * now = localtime( & t );
-	num_date current;
-	current.day = now->tm_mday;
-	current.month = now->tm_mon + 1;
-	current.year = now->tm_year + 1900;
-	//get 30 days from now date
-	now->tm_mday -= 30;
-	mktime(now);
-	num_date monthBefore;
-	monthBefore.day = now->tm_mday;
-	monthBefore.month = now->tm_mon + 1;
-	monthBefore.year = now->tm_year + 1900;
-	
-	for (int i = 0; i < numOfPeople; i++) {
-		if (listPeople[i].deathInt.year != 0) {
-			for (int j = 0; j < numOfFamilies; j++) {
-				for (int k = 0; k < numOfPeople; k++) {
-					//if male, check wives; if female, check husbands
-					if((listPeople[i].sexFlag && listFamily[j].husbandoID == listPeople[k].uniqueID) || (!listPeople[i].sexFlag && listFamily[j].waifuID == listPeople[k].uniqueID)) {
-						if(listPeople[k].deathInt.year == 0 && (checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore))) {
-							output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
-					        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
-				        }
-					}
-				}
-			}
-		}
-	}
     
     //Error checking for gedcom file. Error # corresponds to User Story Requirement
     

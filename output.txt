@@ -10,6 +10,7 @@ David /Blade/
 Sarah /Blade/
 Cero /Aldrin/
 Uno /Aldrin/
+Cinco /Aldrin/
 -----------------------------------------------
 US30: Hall of the Living and Married
 -----------------------------------------------
@@ -22,14 +23,6 @@ US31: Hall of the Living and Single
 Seymour /Butz/
 Larry /Butz/
 -----------------------------------------------
-US38: Upcoming Birthdays
------------------------------------------------
-Lara /Butz/
------------------------------------------------
-US39: Upcoming Anniversaries
------------------------------------------------
-Pawkeye /Gough/ and Fuzz /Aldrin/
------------------------------------------------
 US32: Multiple Births
 -----------------------------------------------
 6 kids born at same time in @F5@
@@ -39,6 +32,27 @@ US34: Large Age Differences
  (0)
 Katie /Aldrin/ (36)
 
+Scott /Aldrin/ (66)
+Paw /Revere/ (17)
+
+-----------------------------------------------------------------------------
+US 35 & 36: Recent Births and Deaths (within last 30 days)
+-----------------------------------------------------------------------------
+ID	UID	Name	Sex	Age	Birth		Death
+6	@I7@	Lara /Butz/	F	0	(2 NOV 2016)	 
+11	@I12@	Santa /Claws/	F	39	 9 MAR 1977	(12 NOV 2016)
+18	@I19@	Uno /Aldrin/	F	7	 26 NOV 2009	(30 OCT 2016)
+-----------------------------------------------------------------------------
+US 37: Recent Survivors (within last 30 days)
+-----------------------------------------------------------------------------
+ID	UID	Name	Sex	Age	Birth		Death
+-----------------------------------------------
+US38: Upcoming Birthdays
+-----------------------------------------------
+-----------------------------------------------
+US39: Upcoming Anniversaries
+-----------------------------------------------
+Pawkeye /Gough/ and Fuzz /Aldrin/
 -----------------------------------------------------------------------------
 People
 -----------------------------------------------------------------------------
@@ -49,23 +63,23 @@ ID	UID	Name	Sex	Age	Birth		Death
 3	@I4@	Fuzz /Aldrin/	M	64	11 FEB 1952	
 4	@I5@	Pawkeye /Gough/	F	62	4 OCT 1954	
 5	@I6@	Adam /Adams/	F	38	11 DEC 1978	
-6	@I7@	Lara /Butz/	F	0	2 APR 2016	
+6	@I7@	Lara /Butz/	F	0	2 NOV 2016	
 7	@I8@	Scott /Aldrin/	M	66	15 NOV 1933	10 MAY 1999
-8	@I9@	Paw /Revere/	F	66	18 APR 1932	19 APR 1998
+8	@I9@	Paw /Revere/	F	17	18 APR 1932	19 APR 1949
 9	@I10@	Hafta /Gough/	M	70	6 AUG 1925	20 DEC 1995
 10	@I11@	Stacy /Blade/	F	71	9 MAR 1929	12 MAY 2000
-11	@I12@	Santa /Claws/	F	23	9 MAR 1977	12 APR 2000
+11	@I12@	Santa /Claws/	F	39	9 MAR 1977	12 NOV 2016
 12	@I13@	Paw /Revere/	F	37	30 OCT 1979	
 13	@I14@	Mary /Aldrin/	F	19	18 MAY 1997	
 14	@I15@	Mike /Aldrin/	M	6	26 NOV 2010	
 15	@I16@	David /Blade/	M	49	1 FEB 1890	8 NOV 1939
 16	@I17@	Sarah /Blade/	F	60	10 JUL 1890	9 JUL 1950
 17	@I18@	Cero /Aldrin/	F	1000	26 NOV 2009	6 OCT 3009
-18	@I19@	Uno /Aldrin/	F	7	26 NOV 2009	30 MAR 2016
+18	@I19@	Uno /Aldrin/	F	7	26 NOV 2009	30 OCT 2016
 19	@I20@	Dos /Aldrin/	F	7	26 NOV 2009	
 20	@I21@	Tres /Aldrin/	F	7	26 NOV 2009	
 21	@I22@	Cuarto /Aldrin/	F	7	26 NOV 2009	
-22	@I23@	Cinco /Aldrin/	F	7	26 NOV 2009	
+22	@I23@	Cinco /Aldrin/	F	-2	26 NOV 2009	26 NOV 2007
 -----------------------------------------------------------------------------
 Family
 -----------------------------------------------------------------------------
@@ -76,15 +90,7 @@ ID	UID	Husb		Wife		Marry		Div
 3	@F4@	Hafta /Gough/	Stacy /Blade/	4 OCT 1953	
 4	@F5@	Paw /Revere/	Adam /Adams/		
 5	@F6@	Adam /Adams/	Santa /Claws/	12 APR 1990	
-6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	
------------------------------------------------------------------------------
-Recent Births and Deaths (within last 30 days)
------------------------------------------------------------------------------
-ID	UID	Name	Sex	Age	Birth		Death
------------------------------------------------------------------------------
-Recent Survivors (within last 30 days)
------------------------------------------------------------------------------
-ID	UID	Name	Sex	Age	Birth		Death
+6	@F7@	David /Blade/	Sarah /Blade/	14 NOV 1960	37 NOV 1960
 -----------------------------------------------
 Errors
 -----------------------------------------------
@@ -92,6 +98,7 @@ Error 04: Marriage is after divorce in family: @F1@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
 Error 07: Cero /Aldrin/'s age is bigger than 150 (1000)
+Error 03: Birth is after death: @I23@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
 Error 11: Husband remarried during another marriage: @F2@
@@ -100,20 +107,26 @@ Error 11: Wife remarried during another marriage: @F2@
 Error 02: Birth is after Wife's marriage in family: @F2@
 Error 10: Marriage is before Wife's 14th birthday: @F2@
 Error 07: Cero /Aldrin/'s age is bigger than 150 (1000)
+Error 03: Birth is after death: @I23@
 Error 04: Marriage is after divorce in family: @F3@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
+Error 05: Marriage is after Wife's death in family: @F3@
+Error 06: Divorce is after Wife's death in family: @F3@
 Error 07: Cero /Aldrin/'s age is bigger than 150 (1000)
+Error 03: Birth is after death: @I23@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
 Error 11: Husband remarried during another marriage: @F4@
 Error 11: Wife remarried during another marriage: @F4@
 Error 07: Cero /Aldrin/'s age is bigger than 150 (1000)
+Error 03: Birth is after death: @I23@
 Error 14: 6 kids born at same time in @F5@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
 Error 21: Husband is not a Male in family: @F5@
 Error 07: Cero /Aldrin/'s age is bigger than 150 (1000)
+Error 03: Birth is after death: @I23@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
 Error 11: Husband remarried during another marriage: @F6@
@@ -122,10 +135,14 @@ Error 21: Husband is not a Male in family: @F6@
 Error 11: Wife remarried during another marriage: @F6@
 Error 10: Marriage is before Wife's 14th birthday: @F6@
 Error 07: Cero /Aldrin/'s age is bigger than 150 (1000)
+Error 03: Birth is after death: @I23@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
 Error 11: Husband remarried during another marriage: @F7@
 Error 05: Marriage is after Husband's death in family: @F7@
+Error 06: Divorce is after Husband's death in family: @F7@
 Error 11: Wife remarried during another marriage: @F7@
 Error 05: Marriage is after Wife's death in family: @F7@
+Error 06: Divorce is after Wife's death in family: @F7@
 Error 07: Cero /Aldrin/'s age is bigger than 150 (1000)
+Error 03: Birth is after death: @I23@

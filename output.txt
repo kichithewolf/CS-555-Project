@@ -46,6 +46,12 @@ ID	UID	Name	Sex	Age	Birth		Death
 US 37: Recent Survivors (within last 30 days)
 -----------------------------------------------------------------------------
 ID	UID	Name	Sex	Age	Birth		Death
+11	@I12@	Santa /Claws/	F	39	(9 MAR 1977)	 12 NOV 2016
+11	@I12@	Santa /Claws/	F	39	(9 MAR 1977)	 12 NOV 2016
+11	@I12@	Santa /Claws/	F	39	(9 MAR 1977)	 12 NOV 2016
+18	@I19@	Uno /Aldrin/	F	7	(26 NOV 2009)	 30 OCT 2016
+18	@I19@	Uno /Aldrin/	F	7	(26 NOV 2009)	 30 OCT 2016
+18	@I19@	Uno /Aldrin/	F	7	(26 NOV 2009)	 30 OCT 2016
 -----------------------------------------------
 US38: Upcoming Birthdays
 -----------------------------------------------
@@ -94,6 +100,7 @@ ID	UID	Husb		Wife		Marry		Div
 -----------------------------------------------
 Errors
 -----------------------------------------------
+Error 01: Dates after current date: 6 OCT 3009
 Error 04: Marriage is after divorce in family: @F1@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@

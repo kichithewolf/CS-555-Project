@@ -81,7 +81,6 @@ bool checkIfBefore(num_date date1, num_date date2) {
 int main(int argc, char *argv[]) {
     ifstream gedcomFile;
     ofstream output;
-    ofstream errorQueue;
     string errors;
     string gedcomLine;
     string levelNum;
@@ -304,7 +303,6 @@ int main(int argc, char *argv[]) {
 		    	
 		    	
 		    	if (checkIfBefore(current, tempdate)) {
-		    		errorQueue << "Error 01: Dates after current date: " << tempdate.year << tempdate.month << tempdate.day << endl;
 		    		errors += "Error 01: Dates after current date: " + tag + "\n";
 				}
 				//cout << tempdate.day << tempdate.month << tempdate.year << endl;
@@ -645,7 +643,7 @@ int main(int argc, char *argv[]) {
 				for (int k = 0; k < numOfPeople; k++) {
 					//if male, check wives; if female, check husbands
 					if((listPeople[i].sexFlag && listFamily[j].husbandoID == listPeople[k].uniqueID) || (!listPeople[i].sexFlag && listFamily[j].waifuID == listPeople[k].uniqueID)) {
-						if(listPeople[k].deathInt.year == 0 && (checkIfBefore(listPeople[i].birthInt, current) && !checkIfBefore(listPeople[i].birthInt, monthBefore))) {
+						if(listPeople[k].deathInt.year == 0 && (checkIfBefore(listPeople[i].deathInt, current) && !checkIfBefore(listPeople[i].deathInt, monthBefore))) {
 							output << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
 					        cout << "" << listPeople[i].IDNumber << "\t" << listPeople[i].uniqueID << "\t"<< listPeople[i].peopleName << "\t" << listPeople[i].sex << "\t" << listPeople[i].age << "\t(" << listPeople[i].birthDate << ")\t " << listPeople[i].deathDate << endl;
 				        }
@@ -826,6 +824,7 @@ int main(int argc, char *argv[]) {
     cout << "Errors" << endl;
     cout << "-----------------------------------------------" << endl;
 
+	output << errors;
     cout << errors;
     
     for(int i = 0; i < numOfFamilies; i++) {

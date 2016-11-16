@@ -46,12 +46,14 @@ bool dateChecker(num_date input){
                       leapF = 1;
            }
            else;
-           if(leapF == 1)
+           if(leapF == 1){
                     if((input.day > 0) && (input.day < 30))
                          flag = 1;
-           else
+           }
+           else {
                     if((input.day > 0) && (input.day < 29))
                          flag = 1;
+           }
     }
     
     if(flag == 1){
@@ -283,129 +285,90 @@ int main(int argc, char *argv[]) {
                 if(!(tag.compare("DATE") == 0)) {
                    tag = "Invalid tag!";
                 }
-                //check if date is valid (Before current date)
-                //get current date
-		    	time_t t = time(0);
-		    	struct tm * now = localtime( & t );
-		    	num_date current;
-		    	current.day = now->tm_mday;
-		    	current.month = now->tm_mon + 1;
-		    	current.year = now->tm_year + 1900;
-		    	gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
-                tag = gedcomLine.substr(0);
-		    	string temptag = tag;
-		    	num_date tempdate;
-		    	tempdate.day = atoi((temptag.substr(0, temptag.find(" "))).c_str());
-                temptag.erase(0,temptag.find(" ")+1);
-                tempdate.month = monthToInteger(temptag.substr(0, temptag.find(" ")).c_str());
-                temptag.erase(0,temptag.find(" ")+1);
-                tempdate.year = atoi(temptag.substr(0, temptag.find(" ")).c_str());
-		    	
-		    	
-		    	if (checkIfBefore(current, tempdate)) {
-		    		errors += "Error 01: Dates after current date: " + tag + "\n";
-				}
-				//cout << tempdate.day << tempdate.month << tempdate.year << endl;
-				/*
-				if(dateChecker(tempdate) == false) {
-		    		errorQueue << "Error 42: Date Rejected: " << tempdate.year << tempdate.month << tempdate.day << endl;
-		    		errors += "Error 42: Date Rejected: " + tag + "\n";
-                }
-                */
-                //Decrement/Increment before doing things to prevent crashes.
-                numOfPeople--;
-                numOfFamilies--;
-                //Dates for things.
-                if(listPeople[numOfPeople].birthFlag == true) {
-                    listPeople[numOfPeople].birthDate = tag;
-                    //Set false again just in case.
-                    listPeople[numOfPeople].birthFlag = false;
-                    //Parse string into integers while we're at it.
+                else {
+                    //check if date is valid (Before current date)
+                    //get current date
+    		    	time_t t = time(0);
+    		    	struct tm * now = localtime( & t );
+    		    	num_date current;
+    		    	current.day = now->tm_mday;
+    		    	current.month = now->tm_mon + 1;
+    		    	current.year = now->tm_year + 1900;
+    		    	gedcomLine.erase(0, gedcomLine.find(delimiter)+1);
+                    tag = gedcomLine.substr(0);
+    		    	string temptag = tag;
+    		    	num_date tempdate;
+    		    	tempdate.day = atoi((temptag.substr(0, temptag.find(" "))).c_str());
+                    temptag.erase(0,temptag.find(" ")+1);
+                    tempdate.month = monthToInteger(temptag.substr(0, temptag.find(" ")).c_str());
+                    temptag.erase(0,temptag.find(" ")+1);
+                    tempdate.year = atoi(temptag.substr(0, temptag.find(" ")).c_str());
+    		    	
+    		    	if (checkIfBefore(current, tempdate)) {
+    		    		errors += "Error 01: Dates after current date: " + tag + "\n";
+    				}
+    				
+    				if((!((tempdate.year == 0) && (tempdate.month == 0) && (tempdate.day == 0))) && (dateChecker(tempdate) == false)) {
+                        //cout << tempdate.day << " " << tempdate.month << " " << tempdate. year << endl;
+                        //cout << tag << endl;
+    		    		errors += "Error 42: Date Rejected: " + tag + "\n";
+                    }
                     
-                    listPeople[numOfPeople].birthInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listPeople[numOfPeople].birthInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listPeople[numOfPeople].birthInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                    /*
-                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    tempdate.year = 0;
+                    tempdate.month = 0;
+                    tempdate.day = 0;
                     
-                    if (dateChecker(holder) == true)
-                       listPeople[numOfPeople].birthInt = holder;
-                    */
-                } else if(listPeople[numOfPeople].deathFlag == true) {
-                    listPeople[numOfPeople].deathDate = tag;
-                    //Set false again just in case.
-                    listPeople[numOfPeople].deathFlag = false;
-                    //Parse string into integers while we're at it.
-                    
-                    listPeople[numOfPeople].deathInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listPeople[numOfPeople].deathInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listPeople[numOfPeople].deathInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                    /*
-                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                    
-                    if (dateChecker(holder) == true)
-                       listPeople[numOfPeople].deathInt = holder;
-                      */  
-                    
-                } else if(listFamily[numOfFamilies].marryFlag == true) {
-                    listFamily[numOfFamilies].marryDate = tag;
-                    //Set false again just in case.
-                    listFamily[numOfFamilies].marryFlag = false;
-                    //Parse string into integers while we're at it.
-                    
-                    listFamily[numOfFamilies].marryInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].marryInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].marryInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                    /*
-                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                    
-                    if (dateChecker(holder) == true)
-                       listFamily[numOfFamilies].marryInt = holder;
-                   */ 
-                } else if(listFamily[numOfFamilies].divFlag == true) {
-                    listFamily[numOfFamilies].divDate = tag;
-                    //Set false again just in case.
-                    listFamily[numOfFamilies].divFlag = false;
-                    //Parse string into integers while we're at it.
-                    
-                    listFamily[numOfFamilies].divInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].divInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    listFamily[numOfFamilies].divInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                    /*
-                    holder.day = atoi((tag.substr(0, tag.find(" "))).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
-                    tag.erase(0,tag.find(" ")+1);
-                    holder.year = atoi(tag.substr(0, tag.find(" ")).c_str());
-                    
-                    if (dateChecker(holder) == true)
-                       listFamily[numOfFamilies].divInt = holder;
-                    */
-                }
-                numOfPeople++;
-                numOfFamilies++;
-                //Reset tag for initial printout.
-                tag = "DATE";
+                    //Decrement/Increment before doing things to prevent crashes.
+                    numOfPeople--;
+                    numOfFamilies--;
+                    //Dates for things.
+                    if(listPeople[numOfPeople].birthFlag == true) {
+                        listPeople[numOfPeople].birthDate = tag;
+                        //Set false again just in case.
+                        listPeople[numOfPeople].birthFlag = false;
+                        //Parse string into integers while we're at it.
+                        listPeople[numOfPeople].birthInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listPeople[numOfPeople].birthInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listPeople[numOfPeople].birthInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    } else if(listPeople[numOfPeople].deathFlag == true) {
+                        listPeople[numOfPeople].deathDate = tag;
+                        //Set false again just in case.
+                        listPeople[numOfPeople].deathFlag = false;
+                        //Parse string into integers while we're at it.
+                        listPeople[numOfPeople].deathInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listPeople[numOfPeople].deathInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listPeople[numOfPeople].deathInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    } else if(listFamily[numOfFamilies].marryFlag == true) {
+                        listFamily[numOfFamilies].marryDate = tag;
+                        //Set false again just in case.
+                        listFamily[numOfFamilies].marryFlag = false;
+                        //Parse string into integers while we're at it.
+                        listFamily[numOfFamilies].marryInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listFamily[numOfFamilies].marryInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listFamily[numOfFamilies].marryInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    } else if(listFamily[numOfFamilies].divFlag == true) {
+                        listFamily[numOfFamilies].divDate = tag;
+                        //Set false again just in case.
+                        listFamily[numOfFamilies].divFlag = false;
+                        //Parse string into integers while we're at it.
+                        
+                        listFamily[numOfFamilies].divInt.day = atoi((tag.substr(0, tag.find(" "))).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listFamily[numOfFamilies].divInt.month = monthToInteger(tag.substr(0, tag.find(" ")).c_str());
+                        tag.erase(0,tag.find(" ")+1);
+                        listFamily[numOfFamilies].divInt.year = atoi(tag.substr(0, tag.find(" ")).c_str());
+                    }
+                    numOfPeople++;
+                    numOfFamilies++;
+                    //Reset tag for initial printout.
+                    tag = "DATE";
+            }
        }
            
            //output << "Tag: " << tag << endl;

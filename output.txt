@@ -101,7 +101,9 @@ ID	UID	Husb		Wife		Marry		Div
 -----------------------------------------------
 Errors
 -----------------------------------------------
+Error 42: Date Rejected: 6/FEB/2001
 Error 01: Dates after current date: 6 OCT 3009
+Error 42: Date Rejected: 37 NOV 1960
 Error 04: Marriage is after divorce in family: @F1@
 Error 07: Seymour /Butz/'s age is bigger than 150 (2010)
 Error 22: Larry /Butz/'s ID is not unique. ID: @I1@
